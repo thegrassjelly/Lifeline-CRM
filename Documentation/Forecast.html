@@ -1,0 +1,104 @@
+﻿<html>
+	
+<head>
+	<title>Forecast</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.8.0.849">
+	<meta name="keywords" content="">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Lifeline CRM.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Forecast");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Forecast</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="AdministratorModule.html">Administrator Module</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="AdministratorModule.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Logs.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="MarketingAutomation.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts22">Regression Modeling</span></span></h1>
+<hr style="height: 1px; color : #000000;  background-color : #000000; border-width : 0px;">
+<h1 class="rvps5"><img width="1000" height="480" alt="" style="padding : 1px;" src="lib/Admin - Regression tool.png"></h1>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts18">The Regression Modeling tool seen in the Forecast submodule lets administrators use previous data used in the systems database to create regression analysis of the data selected. </span></p>
+<p class="rvps2"><span class="rvts18"><br/></span></p>
+<p class="rvps2"><span class="rvts18">A link to a full transcript of documentation to how to create this linear regression model can be seen in this link:</span></p>
+<p class="rvps2"><span class="rvts18"><br/></span></p>
+<p class="rvps2"><span class="rvts18">http://www.telerik.com/blogs/how-to-plot-a-simple-linear-regression-in-telerik-asp.net-web-form-chart</span></p>
+<p class="rvps2"><span class="rvts18"><br/></span></p>
+<p class="rvps2"><span class="rvts18">In a brief summary of the transcript, basically the model is referred to the approach in statistics related to modeling the relationship between a dependent variable/variables and an independent variable. Regression lines are also known as trend lines, and to which there are different types such as linear, logarithmic, exponential and so on. The main trend lines used in the page is the linear. </span></p>
+<p class="rvps2"><span class="rvts18"><br/></span></p>
+<p class="rvps2"><span class="rvts18">Going back to the Regression modeling tool, to use it the administrator picks a period with ranges from 10, 20 and 30. This numbers are representations of dates on the dataset, which the user can pick either # of Renewals over a period and Payment amounts.</span></p>
+<p class="rvps2"><span class="rvts18"></span><br/><span class="rvts18">The span gets the span of the most recent records depending on the chosen selection. A span of 7 gets the recent 7 days dataset, 30 days gets the recent</span></p>
+<p class="rvps2"><span class="rvts18">30 day dataset on the time of using the tool, and so on.</span></p>
+<p class="rvps2"><span class="rvts18"><br/></span></p>
+<p class="rvps2"><span class="rvts18">After modeling the trend line, administrators or management then can pick the appropriate regression type closest to recreate the most accurate forecast with the formula formulated in the right. </span></p>
+<p class="rvps2"><span class="rvts18"><br/></span></p>
+<p class="rvps2"><span class="rvts18"><br/></span></p>
+<p class="rvps2"><span class="rvts18"><br/></span></p>
+<p class="rvps2"><span class="rvts18"> </span></p>
+<p></p>
+<p class="rvps6"><span class="rvts16">Created with the Personal Edition of HelpNDoc: </span><a class="rvts17" href="http://www.helpndoc.com/help-authoring-tool">Create HTML Help, DOC, PDF and print manuals from 1 single source</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; by Lifeline Ambulance Rescue Inc., 2015 All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+
