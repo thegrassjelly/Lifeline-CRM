@@ -143,8 +143,7 @@
                 </div>
         </div>
     </div>
-    <div class="col-lg-12">
-        <div class="x_panel">
+    <div class="x_panel">
             <div class="x_title">
                 <h2>Sent Messages</h2>
                 <div class="clearfix"></div>
@@ -233,7 +232,6 @@
                 <hr />
             </div>
         </div>
-    </div>
 </form>
 </asp:Content>
 
