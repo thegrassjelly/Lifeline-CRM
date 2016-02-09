@@ -176,7 +176,7 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
             MailMessage mm = new MailMessage();
             mm.From = new MailAddress("lifelineambulancerescue@gmail.com");
             mm.To.Add(txtEmail.Text.Trim());
-            mm.Subject = "Membership - Membership Renewal Confirmation";
+            mm.Subject = "Membership - Membership Application Confirmation";
             string body = string.Empty;
             body = File.ReadAllText(Server.MapPath("~/Account/ClientForms/ApplicationEmailTemplate.html"));
             body = body.Replace("{Street}", txtStreet.Text.ToString());

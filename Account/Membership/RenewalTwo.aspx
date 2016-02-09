@@ -36,13 +36,13 @@
                         <label class="control-label col-lg-2 col-xs-12">Payment</label>
                         <div class="col-lg-2 text-center">
                             <button type="button" id="btnPaid" class="btn btn-info btn-md">
-                                <asp:Literal ID="txtPayStatus" runat="server"></asp:Literal>
+                                <asp:TextBox ID="txtPayStatus" class="form-control" runat="server" disabled />
                             </button>
                         </div>
                         <label class="control-label col-lg-2 col-xs-12">Membership Status</label>
                         <div class="col-lg-2 text-center">
                             <button type="button" id="btnActive" class="btn btn-info btn-md">
-                                <asp:Literal ID="txtMemStatus" runat="server"></asp:Literal>
+                                <asp:TextBox ID="txtMemStatus" class="form-control" runat="server" disabled />
                             </button>
                         </div>
                     </div>
@@ -195,7 +195,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-6"></div>
             <div class="col-lg-6">
                 <div class="x_panel">

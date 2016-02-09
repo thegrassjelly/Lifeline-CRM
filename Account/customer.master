@@ -138,10 +138,13 @@
                                 <ul class="nav side-menu" id="clientforms" runat="server" visible="false">
                                     <li><a><i class="fa fa-file-text-o"></i>Client Forms<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href='<%= Page.ResolveUrl("~/Account/ClientForms/ClientVerification.aspx") %>'><i class="fa fa-file-text-o"></i>Client Verification Request Form</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Account/ClientForms/ClientVerification.aspx") %>'><i class="fa fa-check"></i>Client Verification Request Form</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Account/ClientForms/MembershipApplication.aspx") %>'><i class="fa fa-file-text-o"></i>Membership Application Form</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Account/ClientForms/MembershipApplication.aspx") %>'><i class="fa fa-ambulance"></i>Membership Application Form</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Account/ClientForms/MembershipApplicationTwo.aspx") %>'><i class="fa fa-credit-card"></i>Application Payment Form</a>
 
                                             </li>
                                         </ul>
