@@ -10,6 +10,7 @@ public partial class Admin_admin : System.Web.UI.MasterPage
         {
             if (Session["typeid"].ToString() != "10")
             {
+                Session.Clear();
                 Response.Redirect("~/Account/Login.aspx");
             }
             else

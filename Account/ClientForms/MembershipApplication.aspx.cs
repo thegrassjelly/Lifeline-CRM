@@ -9,14 +9,42 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
     protected void Page_Load(object sender, EventArgs e)
     {
         Helper.ValidateUser();
-        if (!IsPostBack)
+        if (IsApplied())
         {
-            GetUserInfo();
+            Response.Redirect("~/Account/ClientForms/MembershipApplicationTwo.aspx");
         }
-        if (Session["password"] != null)
+        else
         {
-            error.Visible = true;
-            Session.Remove("password");
+            if (!IsPostBack)
+            {
+                GetUserInfo();
+            }
+
+            if (Session["password"] != null)
+            {
+                error.Visible = true;
+                Session.Remove("password");
+            }
+        }
+    }
+
+    bool IsApplied()
+    {
+        bool hasApplied = false;
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT ApplicationID FROM Applications " +
+                              "WHERE UserID=@UserID";
+            cmd.Parameters.AddWithValue("@UserID", Session["userid"].ToString());
+            SqlDataReader data = cmd.ExecuteReader();
+            if (data.HasRows)
+                hasApplied = true;
+            else
+                hasApplied = false;
+            return hasApplied;
         }
     }
 
@@ -90,18 +118,19 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
                         cmd.Connection = con;
                         cmd.CommandText = "INSERT INTO Applications VALUES (@UserID, @Email, @FirstName, " +
                             "@LastName, @Birthday, @Street, @Municipality, @City, @Phone, @Mobile, " +
-                            "@DateSubmitted) SELECT TOP 1 ApplicationID FROM Applications " +
-                            "ORDER BY ApplicationID DESC";
+                            "@Status, @DateSubmitted) SELECT TOP 1 ApplicationID FROM Applications " +
+                            "WHERE UserID=@UserID ORDER BY ApplicationID DESC";
                         cmd.Parameters.AddWithValue("@UserID", UserID);
-                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text.ToString());
-                        cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text.ToString());
-                        cmd.Parameters.AddWithValue("@LastName", txtLastName.Text.ToString());
+                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+                        cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
                         cmd.Parameters.AddWithValue("@Birthday", txtBday.SelectedDate);
-                        cmd.Parameters.AddWithValue("@Street", txtStreet.Text.ToString());
-                        cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text.ToString());
-                        cmd.Parameters.AddWithValue("@City", txtCity.Text.ToString());
-                        cmd.Parameters.AddWithValue("@Phone", txtPhone.Text.ToString());
-                        cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.ToString());
+                        cmd.Parameters.AddWithValue("@Street", txtStreet.Text);
+                        cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
+                        cmd.Parameters.AddWithValue("@City", txtCity.Text);
+                        cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+                        cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text);
+                        cmd.Parameters.AddWithValue("@Status", "Inactive");
                         cmd.Parameters.AddWithValue("@DateSubmitted", DateTime.Now);
                         int ApplicationID = (int)cmd.ExecuteScalar();
 
@@ -117,7 +146,7 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
                         cmd.Parameters.AddWithValue("@AsthmaHis", ddlAsthmaHis.SelectedValue);
                         cmd.Parameters.AddWithValue("@EpilepsyHis", ddlEpilepsyHis.SelectedValue);
                         cmd.Parameters.AddWithValue("@LiverHis", ddlLiverHis.SelectedValue);
-                        cmd.Parameters.AddWithValue("@Others", txtOthers.Text.ToString());
+                        cmd.Parameters.AddWithValue("@Others", txtOthers.Text);
                         cmd.Parameters.AddWithValue("@UserID", UserID);
                         cmd.ExecuteNonQuery();
 
@@ -179,12 +208,12 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
             mm.Subject = "Membership - Membership Application Confirmation";
             string body = string.Empty;
             body = File.ReadAllText(Server.MapPath("~/Account/ClientForms/ApplicationEmailTemplate.html"));
-            body = body.Replace("{Street}", txtStreet.Text.ToString());
-            body = body.Replace("{Municipality}", txtMunicipality.Text.ToString());
-            body = body.Replace("{City}", txtCity.Text.ToString());
-            body = body.Replace("{Phone}", txtPhone.Text.ToString());
-            body = body.Replace("{Mobile}", txtMobile.Text.ToString());
-            body = body.Replace("{Email}", txtEmail.Text.ToString());
+            body = body.Replace("{Street}", txtStreet.Text);
+            body = body.Replace("{Municipality}", txtMunicipality.Text);
+            body = body.Replace("{City}", txtCity.Text);
+            body = body.Replace("{Phone}", txtPhone.Text);
+            body = body.Replace("{Mobile}", txtMobile.Text);
+            body = body.Replace("{Email}", txtEmail.Text);
             body = body.Replace("{StartDate}", sDate.ToString("MM/dd/yyyy"));
             body = body.Replace("{totalEndDate}", totalEndDate.ToString("MM/dd/yyyy"));
             body = body.Replace("{Gross}", (totalPrice * .88).ToString("₱ #,###.00"));
