@@ -50,45 +50,67 @@
                         An activation link sent to your email address
                     </div>
                     <div>
-                        <asp:TextBox ID="txtFirstName" class="form-control" runat="server" type="text" placeholder="First Name *" MaxLength="20" required />
+                        <label id="ddl-label" class="control-label pull-left">First Name</label>
+                        <asp:RegularExpressionValidator ID="fnVld" class="pull-right" runat="server"
+                            Display="Dynamic"
+                            ControlToValidate="txtFirstName"
+                            ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                            Text="Enter a valid first name" />
+                        <asp:TextBox ID="txtFirstName" class="form-control" runat="server" type="text" MaxLength="20" required />
                     </div>
                     <div>
-                        <asp:TextBox ID="txtLastName" class="form-control" runat="server" type="text" placeholder="Last Name *" MaxLength="20" required />
+                        <label id="ddl-label" class="control-label pull-left">Last Name</label>
+                        <asp:RegularExpressionValidator ID="lnVld" class="pull-right" runat="server"
+                            Display="Dynamic"
+                            ControlToValidate="txtLastName"
+                            ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                            Text="Enter a valid last name" />
+                        <asp:TextBox ID="txtLastName" class="form-control" runat="server" type="text" MaxLength="20" required />
                     </div>
                     <div>
-                        <asp:TextBox ID="txtEmail" class="form-control" runat="server" type="Email" TextMode="Email" placeholder="Email Address *" MaxLength="80" required 
-                            title="Enter a valid email address for account activation."/>
+                        <label id="ddl-label" class="control-label pull-left">Email Address</label>
+                        <asp:RegularExpressionValidator ID="emlVld" class="pull-right" runat="server"
+                            Display="Dynamic"
+                            ErrorMessage="Please enter valid e-mail address"
+                            ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$"
+                            ControlToValidate="txtEmail" />
+                        <asp:TextBox ID="txtEmail" class="form-control" runat="server" type="Email" TextMode="Email" MaxLength="80" required
+                            title="Enter a valid email address for account activation." />
                     </div>
                     <div>
-                        <asp:TextBox ID="txtBday" class="form-control" runat="server" placeholder="Date of Birth" data-toggle="tooltip"
-                            title="Date format: mm/dd/yyyy" MaxLength="10" />
-                        <asp:RegularExpressionValidator
-                            ID="dateValRegex"
-                            runat="server"
+                        <label id="ddl-label" class="control-label pull-left">Date of Birth</label>
+                        <asp:RegularExpressionValidator ID="dateValRegex" class="pull-right" runat="server"
+                            Display="Dynamic"
                             ControlToValidate="txtBday"
                             ErrorMessage="Please Enter a valid date in the format (mm/dd/yyyy)"
-                            ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$">
-                        </asp:RegularExpressionValidator>
+                            ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$" />
+                        <asp:TextBox ID="txtBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" data-toggle="tooltip"
+                            title="Date format: mm/dd/yyyy" MaxLength="10" />
                     </div>
                     <div>
+                        <label id="ddl-label" class="control-label pull-left">Password</label>
                         <asp:TextBox ID="txtPassword" runat="server" class="form-control" TextMode="Password" placeholder="Password *" MaxLength="20" required />
                     </div>
                     <div>
+                        <label id="ddl-label" class="control-label pull-left">Repeat Password</label>
                         <asp:TextBox ID="txtPassword2" runat="server" class="form-control" TextMode="Password" placeholder="Repeat Password *" MaxLength="20" required />
                     </div>
                     <div>
                         <label id="ddl-label" class="control-label pull-left">Register as *</label>
                         <asp:DropDownList ID="ddlUserType" class="form-control" runat="server" data-toggle="tooltip"
                             title="Pending Client registrations needs to be further verified,
-                            to make use of other features and services of this site." required>
+                            to make use of other features and services of this site."
+                            required>
                             <asp:ListItem>Guest</asp:ListItem>
                             <asp:ListItem>Pending Client</asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <div> <!-- Pending: Required validation for reCaptcha -->
+                    <div>
+                        <!-- Pending: Required validation for reCaptcha -->
                         <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtPassword2" ErrorMessage="Passwords do not match"></asp:CompareValidator>
                     </div>
-                    <div class="g-recaptcha" data-sitekey="6Ld1ohYTAAAAANzwfapvbp5hC2PsDH6ALQN2Aj5c"></div><br />
+                    <div class="g-recaptcha" data-sitekey="6Ld1ohYTAAAAANzwfapvbp5hC2PsDH6ALQN2Aj5c"></div>
+                    <br />
                     <div>
                         <asp:Button ID="btnRegister" runat="server" class="btn btn-default submit" Text="Register" OnClick="btnRegister_Click" />
                     </div>

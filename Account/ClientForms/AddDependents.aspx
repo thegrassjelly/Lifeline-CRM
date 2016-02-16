@@ -16,12 +16,22 @@
                         <label class="control-label col-lg-4 col-xs-12">First Name</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depOneFn" runat="server" class="form-control" MaxLength="80" required />
+                            <asp:RegularExpressionValidator ID="fnVldOne" runat="server"
+                                display="Dynamic"
+                                ControlToValidate="depOneFn"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Last Name</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depOneLn" runat="server" class="form-control" MaxLength="80" required />
+                            <asp:RegularExpressionValidator ID="lnVldOne" runat="server"
+                                display="Dynamic"
+                                ControlToValidate="depOneLn"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -46,9 +56,9 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="depOneBday" class="form-control" runat="server" data-toggle="tooltip"
-                                title="Date format: mm/dd/yyyy" MaxLength="10" required />
+                            <asp:TextBox ID="depOneBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" required />
                             <asp:RegularExpressionValidator
+                                display="Dynamic"
                                 ID="dateValRegex"
                                 runat="server"
                                 ControlToValidate="depOneBday"
@@ -71,12 +81,22 @@
                         <label class="control-label col-lg-4 col-xs-12">First Name</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depTwoFn" runat="server" class="form-control" MaxLength="80" />
+                            <asp:RegularExpressionValidator ID="fnVldTwo" runat="server"
+                                display="Dynamic"
+                                ControlToValidate="depTwoFn"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Last Name</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depTwoLn" runat="server" class="form-control" MaxLength="80" />
+                            <asp:RegularExpressionValidator ID="lnVldTwo" runat="server"
+                                display="Dynamic"
+                                ControlToValidate="depTwoLn"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -101,9 +121,9 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="depTwoBday" class="form-control" runat="server" data-toggle="tooltip"
-                                title="Date format: mm/dd/yyyy" MaxLength="10" />
+                            <asp:TextBox ID="depTwoBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" />
                             <asp:RegularExpressionValidator
+                                display="Dynamic"
                                 ID="RegularExpressionValidator1"
                                 runat="server"
                                 ControlToValidate="depTwoBday"
@@ -126,12 +146,22 @@
                         <label class="control-label col-lg-4 col-xs-12">First Name</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depThreeFn" runat="server" class="form-control" MaxLength="80" />
+                            <asp:RegularExpressionValidator ID="fnVldThree" runat="server"
+                                display="Dynamic"
+                                ControlToValidate="depThreeFn"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Last Name</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depThreeLn" runat="server" class="form-control" MaxLength="80" />
+                            <asp:RegularExpressionValidator ID="lnVldThree" runat="server"
+                                display="Dynamic"
+                                ControlToValidate="depThreeLn"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -156,9 +186,9 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="depThreeBday" class="form-control" runat="server" data-toggle="tooltip"
-                                title="Date format: mm/dd/yyyy" MaxLength="10" />
+                            <asp:TextBox ID="depThreeBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" />
                             <asp:RegularExpressionValidator
+                                display="Dynamic"
                                 ID="RegularExpressionValidator2"
                                 runat="server"
                                 ControlToValidate="depThreeBday"
@@ -181,12 +211,22 @@
                         <label class="control-label col-lg-4 col-xs-12">First Name</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depFourFn" runat="server" class="form-control" MaxLength="80" />
+                            <asp:RegularExpressionValidator ID="fnVldFour" runat="server"
+                                display="Dynamic"
+                                ControlToValidate="depFourFn"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Last Name</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depFourLn" runat="server" class="form-control" MaxLength="80" />
+                            <asp:RegularExpressionValidator ID="lnVldFour" runat="server"
+                                display="Dynamic"
+                                ControlToValidate="depFourLn"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -211,9 +251,9 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="depFourBday" class="form-control" runat="server" data-toggle="tooltip"
-                                title="Date format: mm/dd/yyyy" MaxLength="10" />
+                            <asp:TextBox ID="depFourBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" />
                             <asp:RegularExpressionValidator
+                                display="Dynamic"
                                 ID="RegularExpressionValidator3"
                                 runat="server"
                                 ControlToValidate="depFourBday"

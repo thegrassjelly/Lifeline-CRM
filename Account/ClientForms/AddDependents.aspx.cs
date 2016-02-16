@@ -28,35 +28,35 @@ public partial class Account_ClientForms_AddDependents : System.Web.UI.Page
                 "(@depFourFirstName, @depFourLastName, @depFourBirthday, @depFourRelatonship, @depFourOtherRel, @depFourMembershipID, @depFourUserID)";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@depOneUserID", UserID);
-            cmd.Parameters.AddWithValue("@depOneFirstName", depOneFn.Text.ToString());
-            cmd.Parameters.AddWithValue("@depOneLastName", depOneLn.Text.ToString());
-            cmd.Parameters.AddWithValue("@depOneBirthday", depOneBday.Text.ToString());
+            cmd.Parameters.AddWithValue("@depOneFirstName", depOneFn.Text);
+            cmd.Parameters.AddWithValue("@depOneLastName", depOneLn.Text);
+            cmd.Parameters.AddWithValue("@depOneBirthday", depOneBday.Text);
             cmd.Parameters.AddWithValue("@depOneRelatonship", ddlDepOneRel.SelectedValue);
-            cmd.Parameters.AddWithValue("@depOneOtherRel", depOneRelOthers.Text.ToString());
+            cmd.Parameters.AddWithValue("@depOneOtherRel", depOneRelOthers.Text);
             cmd.Parameters.AddWithValue("@depOneMembershipID", AppID);
 
             cmd.Parameters.AddWithValue("@depTwoUserID", UserID);
-            cmd.Parameters.AddWithValue("@depTwoFirstName", depTwoFn.Text.ToString());
-            cmd.Parameters.AddWithValue("@depTwoLastName", depTwoLn.Text.ToString());
-            cmd.Parameters.AddWithValue("@depTwoBirthday", depTwoBday.Text.ToString());
+            cmd.Parameters.AddWithValue("@depTwoFirstName", depTwoFn.Text);
+            cmd.Parameters.AddWithValue("@depTwoLastName", depTwoLn.Text);
+            cmd.Parameters.AddWithValue("@depTwoBirthday", depTwoBday.Text);
             cmd.Parameters.AddWithValue("@depTwoRelatonship", ddlDepTwoRel.SelectedValue);
-            cmd.Parameters.AddWithValue("@depTwoOtherRel", depTwoRelOthers.Text.ToString());
+            cmd.Parameters.AddWithValue("@depTwoOtherRel", depTwoRelOthers.Text);
             cmd.Parameters.AddWithValue("@depTwoMembershipID", AppID);
 
             cmd.Parameters.AddWithValue("@depThreeUserID", UserID);
-            cmd.Parameters.AddWithValue("@depThreeFirstName", depThreeFn.Text.ToString());
-            cmd.Parameters.AddWithValue("@depThreeLastName", depThreeLn.Text.ToString());
-            cmd.Parameters.AddWithValue("@depThreeBirthday", depThreeBday.Text.ToString());
+            cmd.Parameters.AddWithValue("@depThreeFirstName", depThreeFn.Text);
+            cmd.Parameters.AddWithValue("@depThreeLastName", depThreeLn.Text);
+            cmd.Parameters.AddWithValue("@depThreeBirthday", depThreeBday.Text);
             cmd.Parameters.AddWithValue("@depThreeRelatonship", ddlDepThreeRel.SelectedValue);
-            cmd.Parameters.AddWithValue("@depThreeOtherRel", depThreeOthers.Text.ToString());
+            cmd.Parameters.AddWithValue("@depThreeOtherRel", depThreeOthers.Text);
             cmd.Parameters.AddWithValue("@depThreeMembershipID", AppID);
 
             cmd.Parameters.AddWithValue("@depFourUserID", UserID);
-            cmd.Parameters.AddWithValue("@depFourFirstName", depFourFn.Text.ToString());
-            cmd.Parameters.AddWithValue("@depFourLastName", depFourLn.Text.ToString());
-            cmd.Parameters.AddWithValue("@depFourBirthday", depFourBday.Text.ToString());
+            cmd.Parameters.AddWithValue("@depFourFirstName", depFourFn.Text);
+            cmd.Parameters.AddWithValue("@depFourLastName", depFourLn.Text);
+            cmd.Parameters.AddWithValue("@depFourBirthday", depFourBday.Text);
             cmd.Parameters.AddWithValue("@depFourRelatonship", ddlFourRel.SelectedValue);
-            cmd.Parameters.AddWithValue("@depFourOtherRel", depFourOthers.Text.ToString());
+            cmd.Parameters.AddWithValue("@depFourOtherRel", depFourOthers.Text);
             cmd.Parameters.AddWithValue("@depFourMembershipID", AppID);
             cmd.ExecuteNonQuery();
 

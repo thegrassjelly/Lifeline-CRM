@@ -60,14 +60,21 @@
                         Facebook login failed. Try again
                     </div>
                     <div>
-                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" placeholder="Email Address" MaxLength="80" data-validate-linked="email" required />
+                        <label id="ddl-label" class="control-label pull-left">Email Address</label>
+                       <asp:RegularExpressionValidator ID="emlVld" class="pull-right" runat="server"
+                            Display="Dynamic"
+                            ErrorMessage="Please enter valid e-mail address"
+                            ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$"
+                            ControlToValidate="txtEmail" />
+                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" MaxLength="80" data-validate-linked="email" required />
                     </div>
                     <div>
-                        <asp:TextBox ID="txtPassword" runat="server" class="form-control" placeholder="Password" TextMode="Password" required />
+                        <label id="ddl-label" class="control-label pull-left">Password</label>
+                        <asp:TextBox ID="txtPassword" runat="server" class="form-control" TextMode="Password" required />
                     </div>
                     <div>
                         <asp:Button ID="btnLogin" runat="server" class="btn btn-default submit" Text="Login" OnClick="btnLogin_Click" />
-                        <a class="reset_pass" href="#">Lost your password?</a>
+                        <%--<a class="reset_pass" href="#">Lost your password?</a>--%>
                     </div>
                     <div class="clearfix"></div>
                     <div class="separator">
