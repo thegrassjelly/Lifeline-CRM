@@ -21,12 +21,24 @@
                             <label class="control-label col-lg-4 col-xs-12">First Name</label>
                             <div class="col-lg-6 col-xs-12">
                                 <asp:TextBox ID="txtFirstName" class="form-control" runat="server" required />
+                                <asp:RegularExpressionValidator ID="fnVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtFirstName"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid name" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4 col-xs-12">Last Name</label>
                             <div class="col-lg-6 col-xs-12">
                                 <asp:TextBox ID="txtLastName" class="form-control" runat="server" required />
+                                <asp:RegularExpressionValidator ID="lnVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtLastName"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid name" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -34,6 +46,12 @@
                             <div class="col-lg-8 col-xs-12">
                                 <asp:TextBox ID="txtEmail" class="form-control" runat="server" TextMode="Email" required 
                                     title="Please enter a valid email address so we can respond to your issue/inquiry"/>
+                                <asp:RegularExpressionValidator ID="emlVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtEmail"
+                                    ErrorMessage="Please enter valid e-mail address"
+                                    ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -71,8 +89,10 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-lg-12 col-xs-12">
+                        <label class="control-label">
+                            Comments
+                        </label>
                         <dx:ASPxMemo ID="txtMessage" Width="100%" Height="250px" runat="server"></dx:ASPxMemo>
-
                     </div>
                 </div>
                 <hr />

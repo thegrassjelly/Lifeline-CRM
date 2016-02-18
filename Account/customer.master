@@ -290,5 +290,12 @@
             $(":input").inputmask();
         });
     </script>
+
+    <script type="text/javascript" language="javascript">
+        function validate() {
+            if (Page_ClientValidate())
+                return confirm('Are you sure?');
+        }
+    </script>
 </body>
 </html>

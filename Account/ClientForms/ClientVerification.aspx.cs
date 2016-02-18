@@ -7,14 +7,45 @@ public partial class Account_ClientForms_PendingClient : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Helper.ValidateUser();
-        if (!IsPostBack)
+        if (CheckVerification())
         {
-            GetUserInfo();
+            verify_pending.Visible = true;
+            btnSubmit.Visible = false;
         }
-        if (Session["verification"] != null)
+        else
         {
-            verify.Visible = true;
-            Session.Remove("verification");
+            if (!IsPostBack)
+            {
+                GetUserInfo();
+            }
+            if (Session["verification"] != null)
+            {
+                verify.Visible = true;
+                Session.Remove("verification");
+            }
+        }
+
+    }
+
+    bool CheckVerification()
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            bool hasVerification = true;
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT ScanID FROM Verification WHERE UserID=@UserID";
+            cmd.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+            using (SqlDataReader data = cmd.ExecuteReader())
+            {
+                if (data.HasRows)
+                    hasVerification = true;
+                else
+                    hasVerification = false;
+                con.Close();
+                return hasVerification;
+            }
         }
     }
 

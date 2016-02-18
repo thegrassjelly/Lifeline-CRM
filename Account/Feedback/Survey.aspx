@@ -21,7 +21,7 @@
                     <div class="col-lg-10">
                         <div class="form-group">
                             <label class="control-label">
-                                Survey 1
+                                Survey 1: Heyah
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -224,6 +224,9 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-lg-12 col-xs-12">
+                        <label class="control-label">
+                            Comments
+                        </label>
                         <dx:ASPxMemo ID="txtMessage" Width="100%" Height="250px" runat="server"></dx:ASPxMemo>
                     </div>
                 </div>

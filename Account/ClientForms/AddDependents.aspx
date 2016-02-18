@@ -17,6 +17,7 @@
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depOneFn" runat="server" class="form-control" MaxLength="80" required />
                             <asp:RegularExpressionValidator ID="fnVldOne" runat="server"
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ControlToValidate="depOneFn"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -28,6 +29,7 @@
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depOneLn" runat="server" class="form-control" MaxLength="80" required />
                             <asp:RegularExpressionValidator ID="lnVldOne" runat="server"
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ControlToValidate="depOneLn"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -51,6 +53,12 @@
                         <label class="control-label col-lg-4">If others</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depOneRelOthers" runat="server" class="form-control" MaxLength="12" />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server"
+                                ForeColor="Red"
+                                display="Dynamic"
+                                ControlToValidate="depOneRelOthers"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid relationship" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -58,6 +66,7 @@
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depOneBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" required />
                             <asp:RegularExpressionValidator
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ID="dateValRegex"
                                 runat="server"
@@ -82,6 +91,7 @@
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depTwoFn" runat="server" class="form-control" MaxLength="80" />
                             <asp:RegularExpressionValidator ID="fnVldTwo" runat="server"
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ControlToValidate="depTwoFn"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -93,6 +103,7 @@
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depTwoLn" runat="server" class="form-control" MaxLength="80" />
                             <asp:RegularExpressionValidator ID="lnVldTwo" runat="server"
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ControlToValidate="depTwoLn"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -116,6 +127,12 @@
                         <label class="control-label col-lg-4">If others</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depTwoRelOthers" runat="server" class="form-control" MaxLength="12" />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server"
+                                ForeColor="Red"
+                                display="Dynamic"
+                                ControlToValidate="depTwoRelOthers"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid relationship" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -123,6 +140,7 @@
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depTwoBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" />
                             <asp:RegularExpressionValidator
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ID="RegularExpressionValidator1"
                                 runat="server"
@@ -147,6 +165,7 @@
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depThreeFn" runat="server" class="form-control" MaxLength="80" />
                             <asp:RegularExpressionValidator ID="fnVldThree" runat="server"
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ControlToValidate="depThreeFn"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -158,6 +177,7 @@
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depThreeLn" runat="server" class="form-control" MaxLength="80" />
                             <asp:RegularExpressionValidator ID="lnVldThree" runat="server"
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ControlToValidate="depThreeLn"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -181,6 +201,12 @@
                         <label class="control-label col-lg-4">If others</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depThreeOthers" runat="server" class="form-control" MaxLength="12" />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server"
+                                ForeColor="Red"
+                                display="Dynamic"
+                                ControlToValidate="depThreeOthers"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid relationship" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -188,6 +214,7 @@
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depThreeBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" />
                             <asp:RegularExpressionValidator
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ID="RegularExpressionValidator2"
                                 runat="server"
@@ -212,6 +239,7 @@
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depFourFn" runat="server" class="form-control" MaxLength="80" />
                             <asp:RegularExpressionValidator ID="fnVldFour" runat="server"
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ControlToValidate="depFourFn"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -223,6 +251,7 @@
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depFourLn" runat="server" class="form-control" MaxLength="80" />
                             <asp:RegularExpressionValidator ID="lnVldFour" runat="server"
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ControlToValidate="depFourLn"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -246,6 +275,12 @@
                         <label class="control-label col-lg-4">If others</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depFourOthers" runat="server" class="form-control" MaxLength="12" />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server"
+                                ForeColor="Red"
+                                display="Dynamic"
+                                ControlToValidate="depFourOthers"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid relationship" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -253,6 +288,7 @@
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="depFourBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" />
                             <asp:RegularExpressionValidator
+                                ForeColor="Red"
                                 display="Dynamic"
                                 ID="RegularExpressionValidator3"
                                 runat="server"
@@ -272,7 +308,7 @@
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
                             <asp:Button ID="btnAdd" runat="server" class="btn btn-primary pull-right" Text="Add Dependent(s)"
-                                OnClick="btnAdd_Click" OnClientClick="return confirm('Are you sure?')" />
+                                OnClick="btnAdd_Click" OnClientClick="return validate()" />
                         </div>
                     </div>
                 </div>

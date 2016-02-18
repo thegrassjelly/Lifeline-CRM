@@ -16,12 +16,24 @@
                         <label class="control-label col-lg-4 col-xs-12">First Name</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtFirstName" runat="server" class="form-control" MaxLength="80" required />
+                            <asp:RegularExpressionValidator ID="fnVld" runat="server"
+                                ForeColor="red"
+                                Display="Dynamic"
+                                ControlToValidate="txtFirstName"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Last Name</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtLastName" runat="server" class="form-control" MaxLength="80" required />
+                            <asp:RegularExpressionValidator ID="lnVld" runat="server"
+                                ForeColor="red"
+                                Display="Dynamic"
+                                ControlToValidate="txtLastName"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -43,20 +55,25 @@
                         <label class="control-label col-lg-4">If others</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtOtherRel" runat="server" class="form-control" MaxLength="12" />
+                            <asp:RegularExpressionValidator ID="nmVld" runat="server"
+                                ForeColor="red"
+                                Display="Dynamic"
+                                ControlToValidate="txtOtherRel"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid value" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtBday" class="form-control" runat="server" data-toggle="tooltip"
-                                title="Date format: mm/dd/yyyy" MaxLength="10" required />
-                            <asp:RegularExpressionValidator
-                                ID="dateValRegex"
-                                runat="server"
+                            <asp:TextBox ID="txtBday" class="form-control" runat="server"
+                                placeholder="mm/dd/yyyy" MaxLength="10" required />
+                            <asp:RegularExpressionValidator ID="bdayVld" runat="server"
+                                ForeColor="red"
+                                Display="Dynamic"
                                 ControlToValidate="txtBday"
                                 ErrorMessage="Please Enter a valid date in the format (mm/dd/yyyy)"
-                                ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$">
-                            </asp:RegularExpressionValidator>
+                                ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$" />
                         </div>
                     </div>
                 </div>

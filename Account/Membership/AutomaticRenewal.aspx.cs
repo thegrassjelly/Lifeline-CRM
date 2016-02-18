@@ -102,6 +102,7 @@ public partial class Account_Membership_AutomaticRenewal : System.Web.UI.Page
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
         {
+            bool hasMembership = true;
             con.Open();
             cmd.Connection = con;
             cmd.CommandText = "SELECT MembershipID FROM Memberships " +
@@ -109,7 +110,10 @@ public partial class Account_Membership_AutomaticRenewal : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@UserID", Session["userid"].ToString());
             using (SqlDataReader data = cmd.ExecuteReader())
             {
-                var hasMembership = data.HasRows;
+                if (data.HasRows)
+                    hasMembership = true;
+                else
+                    hasMembership = false;
                 con.Close();
                 return hasMembership;
             }

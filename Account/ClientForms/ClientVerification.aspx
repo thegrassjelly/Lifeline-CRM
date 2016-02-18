@@ -20,16 +20,32 @@
                         style="color: white;">
                         Verification Not Sent. Try again later.
                     </div>
+                    <div id="verify_pending" runat="server" class="alert alert-warning text-center" visible="false"
+                        style="color: white;">
+                        A previous verification is already sent. Wait for further notice.
+                    </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">First Name</label>
                         <div class="col-lg-6 col-xs-12">
                             <asp:TextBox ID="txtFN" runat="server" class="form-control" required />
+                            <asp:RegularExpressionValidator ID="fnVld" runat="server"
+                                ForeColor="Red" 
+                                Display="Dynamic"
+                                ControlToValidate="txtFN"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Last Name</label>
                         <div class="col-lg-5 col-xs-12">
                             <asp:TextBox ID="txtLN" runat="server" class="form-control" required />
+                            <asp:RegularExpressionValidator ID="lnVld" runat="server"
+                                ForeColor="Red" 
+                                Display="Dynamic"
+                                ControlToValidate="txtLN"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -49,34 +65,66 @@
                         <label class="control-label col-lg-4 col-xs-12">Municipality</label>
                         <div class="col-lg-5 col-xs-12">
                             <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" required />
+                            <asp:RegularExpressionValidator ID="MncpltyVld" runat="server"
+                                ForeColor="Red" 
+                                Display="Dynamic"
+                                ControlToValidate="txtMunicipality"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid Municipality" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">City</label>
                         <div class="col-lg-5 col-xs-12">
                             <asp:TextBox ID="txtCity" runat="server" class="form-control" required />
+                            <asp:RegularExpressionValidator ID="CtyVld" runat="server"
+                                ForeColor="Red" 
+                                Display="Dynamic"
+                                ControlToValidate="txtCity"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid City" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Phone No.</label>
                         <div class="col-lg-5 col-xs-12">
-                            <asp:TextBox ID="txtPhone" runat="server" class="form-control" />
+                            <asp:TextBox ID="txtPhone" runat="server" class="form-control" MaxLength="7"
+                                placeholder="#######" />
+                            <asp:RegularExpressionValidator ID="PhnVld" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ControlToValidate="txtPhone"
+                                ValidationExpression="^[0-9]{7}$"
+                                ErrorMessage="Enter a valid Phone Number" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Mobile No.</label>
                         <div class="col-lg-5 col-xs-12">
-                            <asp:TextBox ID="txtMobile" runat="server" class="form-control" required />
+                            <asp:TextBox ID="txtMobile" runat="server" class="form-control" MaxLength="11"
+                                placeholder="09#########" required/>
+                            <asp:RegularExpressionValidator ID="MblVld" runat="server"
+                                ForeColor="Red" 
+                                Display="Dynamic"
+                                ControlToValidate="txtMobile" 
+                                ValidationExpression="^[0-9]{11}$" 
+                                ErrorMessage="Enter a valid Mobile Number" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Email Address</label>
                         <div class="col-lg-7 col-xs-12">
                             <asp:TextBox ID="txtEmail" runat="server" class="form-control" required />
+                            <asp:RegularExpressionValidator ID="emlVld" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ErrorMessage="Please enter valid e-mail address"
+                                ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$"
+                                ControlToValidate="txtEmail" />
                         </div>
                     </div>
                     <hr />
-                    <label class="control-label col-lg-10 col-xs-12">
+                    <label class="control-label col-lg-10 col-xs-12" style="font-size: 12px;">
                         Please verify that all the information above is correct<br />
                     </label>
                 </div>
@@ -140,7 +188,8 @@
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
                             <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pull-right" Text="Submit"
-                                OnClick="btnSubmit_Click" OnClientClick="return confirm('Are you sure?')" />
+                                OnClick="btnSubmit_Click" OnClientClick="return validate()"
+                                Visible="true" CausesValidation="True" />
                         </div>
                     </div>
                 </div>
