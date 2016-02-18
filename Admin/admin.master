@@ -88,22 +88,22 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-users"></i>User Management <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Users/View.aspx") %>'><i class="fa fa-user"></i>User Master List</a>
-
-                                            </li>
                                             <li><a href='<%= Page.ResolveUrl("~/Admin/Users/Add.aspx") %>'><i class="fa fa-plus"></i>Add Users</a>
-
-                                            </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Medical/View.aspx") %>'><i class="fa fa-ambulance"></i>Medical & Dispatch info</a>
-
-                                            </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Users/CorporateAccounts.aspx") %>'><i class="fa fa-building"></i>Corporate Accounts</a>
 
                                             </li>
                                             <li><a href='<%= Page.ResolveUrl("~/Admin/Users/AddCorporateAccounts.aspx") %>'><i class="fa fa-plus"></i>Add Corporate Accounts</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Users/Verification.aspx") %>'><i class="fa fa-check"></i>Membership Verifications</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Medical/View.aspx") %>'><i class="fa fa-plus"></i>Add Medical & Dispatch info</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Users/View.aspx") %>'><i class="fa fa-list"></i>User Master List</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Users/CorporateAccounts.aspx") %>'><i class="fa fa-list"></i>Corporate Accounts</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Users/Verification.aspx") %>'><i class="fa fa-list"></i>Membership Verifications</a>
 
                                             </li>
                                         </ul>
@@ -112,13 +112,13 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-envelope"></i>Feedbacks<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Feedback/ViewFeedback.aspx") %>'><i class="fa fa-smile-o"></i>Feedback list</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Feedback/ViewFeedback.aspx") %>'><i class="fa fa-list"></i>Feedback list</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Feedback/SurveySummary.aspx") %>'><i class="fa fa-envelope"></i>Survey Summary</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Feedback/SurveySummary.aspx") %>'><i class="fa fa-list"></i>Survey Summary</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Feedback/ViewIssue-Inquiry.aspx") %>'><i class="fa fa-life-ring"></i>Issue/Inquiry list</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Feedback/ViewIssue-Inquiry.aspx") %>'><i class="fa fa-list"></i>Issue/Inquiry list</a>
 
                                             </li>
                                         </ul>
@@ -127,13 +127,13 @@
                                 <ul class="nav side-menu" id="Ul6" runat="server">
                                     <li><a><i class="fa fa-ambulance"></i>Membership Application<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/MembershipApplications.aspx") %>'><i class="fa fa-ambulance"></i>Membership Applications</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/MembershipApplications.aspx") %>'><i class="fa fa-list"></i>Membership Applications</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/MembershipPayments.aspx") %>'><i class="fa fa-credit-card"></i>Membership Payments</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/MembershipPayments.aspx") %>'><i class="fa fa-list"></i>Membership Payments</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/ApplicationVoidList.aspx") %>'><i class="fa fa-eraser"></i>Application Voids</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/ApplicationVoidList.aspx") %>'><i class="fa fa-list"></i>Application Voids</a>
 
                                             </li>
                                         </ul>
@@ -142,13 +142,13 @@
                                 <ul class="nav side-menu" id="renewals" runat="server">
                                     <li><a><i class="fa fa-suitcase"></i>Account Renewals<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/Renewals.aspx") %>'><i class="fa fa-suitcase"></i>Renewals List</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/Renewals.aspx") %>'><i class="fa fa-list"></i>Renewals List</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/DepositSlipList.aspx") %>'><i class="fa fa-university"></i>Deposit Slip List</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/DepositSlipList.aspx") %>'><i class="fa fa-list"></i>Deposit Slip List</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/VoidedRenewals.aspx") %>'><i class="fa fa-eraser"></i>Renewal Voids</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/VoidedRenewals.aspx") %>'><i class="fa fa-list"></i>Renewal Voids</a>
 
                                             </li>
                                         </ul>
@@ -157,10 +157,10 @@
                                 <ul class="nav side-menu" id="Ul3" runat="server">
                                     <li><a><i class="fa fa-newspaper-o"></i>Content Management<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Articles/View.aspx") %>'><i class="fa fa-newspaper-o"></i>View Articles</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Articles/Add.aspx") %>'><i class="fa fa-plus"></i>Add Articles</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Articles/Add.aspx") %>'><i class="fa fa-plus"></i>Add Articles</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Articles/View.aspx") %>'><i class="fa fa-list"></i>View Articles</a>
 
                                             </li>
                                         </ul>
@@ -169,22 +169,22 @@
                                 <ul class="nav side-menu" id="Ul2" runat="server">
                                     <li><a><i class="fa fa-list-alt"></i>Logs<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ViewMessage.aspx") %>'><i class="fa fa-envelope"></i>Feedback Logs</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ViewMessage.aspx") %>'><i class="fa fa-list"></i>Feedback Logs</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ViewRenewalSubmission.aspx") %>'><i class="fa fa-suitcase"></i>Renewal Submissions</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ViewRenewalSubmission.aspx") %>'><i class="fa fa-list"></i>Renewal Submissions</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ViewRenewalVoid.aspx") %>'><i class="fa fa-trash-o"></i>Renewal Voids</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ViewRenewalVoid.aspx") %>'><i class="fa fa-list"></i>Renewal Voids</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ViewRenewalDeposit.aspx") %>'><i class="fa fa-university"></i>Deposit Slip Submissions</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ViewRenewalDeposit.aspx") %>'><i class="fa fa-list"></i>Deposit Slip Submissions</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ClientVerificationLogs.aspx") %>'><i class="fa fa-envelope"></i>Client Verification Logs</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ClientVerificationLogs.aspx") %>'><i class="fa fa-list"></i>Client Verification Logs</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ExceptionLogs.aspx") %>'><i class="fa fa-chain-broken"></i>Exception Logs</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/ExceptionLogs.aspx") %>'><i class="fa fa-list"></i>Exception Logs</a>
 
                                             </li>
                                         </ul>
@@ -211,10 +211,43 @@
                                 <ul class="nav side-menu" id="Ul5" runat="server">
                                     <li><a><i class="fa fa-calendar"></i>Opportunity Tracking<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/OpportunityTracking/ViewOpportunityList.aspx") %>'><i class="fa fa-calendar-o"></i>Opportunity List</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/OpportunityTracking/AddOpportunity.aspx") %>'><i class="fa fa-plus"></i>Add Opportunity</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/OpportunityTracking/AddOpportunity.aspx") %>'><i class="fa fa-plus"></i>Add Opportunity</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/OpportunityTracking/ViewOpportunityList.aspx") %>'><i class="fa fa-list"></i>Opportunity List</a>
+
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="nav side-menu" id="Ul7" runat="server">
+                                    <li><a><i class="fa fa-print"></i>Reports<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Users/Reports/UserReports.aspx") %>'><i class="fa fa-print"></i>Users Reports</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Users/Reports/CorporateAccountReports.aspx") %>'><i class="fa fa-print"></i>Corporate Accounts Reports</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Feedback/Reports/FeedbacksReport.aspx") %>'><i class="fa fa-print"></i>Feedbacks Reports</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Feedback/Reports/IssueInquiryReport.aspx") %>'><i class="fa fa-print"></i>Issue & Inquiries Reports</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/Reports/RenewalsReport.aspx") %>'><i class="fa fa-print"></i>Renewal Reports</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/Reports/VoidRenewalsReport.aspx") %>'><i class="fa fa-print"></i>Renewal Voids Reports</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/Reports/ExceptionLogReports.aspx") %>'><i class="fa fa-print"></i>Exception Log Reports</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/Reports/FeedbackLogReports.aspx") %>'><i class="fa fa-print"></i>Feedback Log Reports</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/Reports/RenewalLogsReports.aspx") %>'><i class="fa fa-print"></i>Renewal Log Reports</a>
 
                                             </li>
                                         </ul>
