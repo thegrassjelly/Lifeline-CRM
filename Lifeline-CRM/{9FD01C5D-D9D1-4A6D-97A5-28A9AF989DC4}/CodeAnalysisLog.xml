@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 14.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="14.0">
+ <Targets>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_0bwvghpr.dll">
+   <Modules>
+    <Module Name="app_web_0bwvghpr.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Account_Medical_Dispatch" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetMedicalHistory(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Medical" File="Dispatch.aspx.cs" Line="104">Object 'con' can be disposed more than once in method 'Account_Medical_Dispatch.GetMedicalHistory(int)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 104</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_4d4wlhfe.dll">
+   <Modules>
+    <Module Name="app_web_4d4wlhfe.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Admin_Marketing_EmailCampaign" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#FilterUserList(System.String,System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Marketing" File="EmailCampaign.aspx.cs" Line="53">The query string passed to 'SqlCommand.CommandText.set(string)' in 'Admin_Marketing_EmailCampaign.FilterUserList(string, string)' could contain the following variables 'usertype', 'status'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_5oirfazs.dll">
+   <Modules>
+    <Module Name="app_web_5oirfazs.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Account_Login" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnLogin_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account" File="Login.aspx.cs" Line="114">Object 'con' can be disposed more than once in method 'Account_Login.btnLogin_Click(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 114</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_c5xpaqtj.dll">
+   <Modules>
+    <Module Name="app_web_c5xpaqtj.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Admin_Articles_Add" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnSubmit_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Articles" File="Add.aspx.cs" Line="47">Object 'con' can be disposed more than once in method 'Admin_Articles_Add.btnSubmit_Click(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 47</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Admin_Articles_ArticleSingle" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnUpdate_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Articles" File="ArticleSingle.aspx.cs" Line="109">Object 'con' can be disposed more than once in method 'Admin_Articles_ArticleSingle.btnUpdate_Click(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 109</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetArticle(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Articles" File="ArticleSingle.aspx.cs" Line="70">Object 'con' can be disposed more than once in method 'Admin_Articles_ArticleSingle.GetArticle(int)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 70</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_dspyxmm1.dll">
+   <Modules>
+    <Module Name="app_web_dspyxmm1.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Admin_Login" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnLogin_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin" File="Login.aspx.cs" Line="48">Object 'con' can be disposed more than once in method 'Admin_Login.btnLogin_Click(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 48</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_hmz3jqzn.dll">
+   <Modules>
+    <Module Name="app_web_hmz3jqzn.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Admin_Forecast_SalesForecast" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#FillData()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Forecast" File="Regression.aspx.cs" Line="28">The query string passed to 'SqlCommand.CommandText.set(string)' in 'Admin_Forecast_SalesForecast.FillData()' could contain the following variables 'this.ddlPeriod.SelectedValue'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_k2qk3o21.dll">
+   <Modules>
+    <Module Name="app_web_k2qk3o21.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Admin_Users_CorporateAccountDetails" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SortPaymentHistory(System.String,System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Users" File="CorporateAccountDetails.aspx.cs" Line="80">The query string passed to 'SqlCommand.CommandText.set(string)' in 'Admin_Users_CorporateAccountDetails.SortPaymentHistory(string, string)' could contain the following variables 'column', 'dir'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Admin_Users_MessageDetails" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetMessageDetails(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Users" File="MessageDetails.aspx.cs" Line="66">Object 'con' can be disposed more than once in method 'Admin_Users_MessageDetails.GetMessageDetails(int)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 66</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Admin_Users_Update" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SortMessages(System.String,System.String,System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Users" File="Update.aspx.cs" Line="257">The query string passed to 'SqlCommand.CommandText.set(string)' in 'Admin_Users_Update.SortMessages(string, string, int)' could contain the following variables 'Column', 'Dir'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SortUserRenewals(System.String,System.String,System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Users" File="Update.aspx.cs" Line="188">The query string passed to 'SqlCommand.CommandText.set(string)' in 'Admin_Users_Update.SortUserRenewals(string, string, int)' could contain the following variables 'column', 'dir'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_ki2qjgx3.dll">
+   <Modules>
+    <Module Name="app_web_ki2qjgx3.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Account_Membership_AutomaticRenewal" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnDisable_OnClick(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Membership" File="AutomaticRenewal.aspx.cs" Line="211">Object 'con' can be disposed more than once in method 'Account_Membership_AutomaticRenewal.btnDisable_OnClick(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 211</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#btnEnable_OnClick(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Membership" File="AutomaticRenewal.aspx.cs" Line="186">Object 'con' can be disposed more than once in method 'Account_Membership_AutomaticRenewal.btnEnable_OnClick(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 186</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#CheckMembership()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Membership" File="AutomaticRenewal.aspx.cs" Line="118">Object 'con' can be disposed more than once in method 'Account_Membership_AutomaticRenewal.CheckMembership()'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 118</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Account_Membership_PaymentDetails" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnSubmit_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Membership" File="PaymentDetails.aspx.cs" Line="208">Object 'con' can be disposed more than once in method 'Account_Membership_PaymentDetails.btnSubmit_Click(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 208</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Account_Membership_PaymentDetailsUpDep" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnUpdate_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Membership" File="PaymentDetailsUpDep.aspx.cs" Line="79">Object 'con' can be disposed more than once in method 'Account_Membership_PaymentDetailsUpDep.btnUpdate_Click(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 79</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Account_Membership_Payments" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SortPayments(System.String,System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Membership" File="Payments.aspx.cs" Line="57">Object 'con' can be disposed more than once in method 'Account_Membership_Payments.SortPayments(string, string)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 57</Issue>
+            </Message>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Membership" File="Payments.aspx.cs" Line="44">The query string passed to 'SqlCommand.CommandText.set(string)' in 'Account_Membership_Payments.SortPayments(string, string)' could contain the following variables 'column', 'dir'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Account_Membership_PreviousPayments" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SortPayments(System.String,System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Membership" File="PaymentsHistory.aspx.cs" Line="44">The query string passed to 'SqlCommand.CommandText.set(string)' in 'Account_Membership_PreviousPayments.SortPayments(string, string)' could contain the following variables 'column', 'dir'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Account_Membership_RenewalTwo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnSubmit_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Membership" File="RenewalTwo.aspx.cs" Line="187">Object 'con' can be disposed more than once in method 'Account_Membership_RenewalTwo.btnSubmit_Click(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 187</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_ow32zxbb.dll">
+   <Modules>
+    <Module Name="app_web_ow32zxbb.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Admin_Feedback_FeedbackDetails" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetMessageDetails(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Feedback" File="FeedbackDetails.aspx.cs" Line="67">Object 'con' can be disposed more than once in method 'Admin_Feedback_FeedbackDetails.GetMessageDetails(int)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 67</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Admin_Feedback_SurveyDetails" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetSurveyDetails(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Admin\Feedback" File="SurveyDetails.aspx.cs" Line="76">Object 'con' can be disposed more than once in method 'Admin_Feedback_SurveyDetails.GetSurveyDetails(int)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 76</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_rtgamz2u.dll">
+   <Modules>
+    <Module Name="app_web_rtgamz2u.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Account_ArticleView" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetArticle(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account" File="ArticleView.aspx.cs" Line="70">Object 'con' can be disposed more than once in method 'Account_ArticleView.GetArticle(int)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 70</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Account_MessageDetails" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetMessageDetails(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account" File="MessageDetails.aspx.cs" Line="67">Object 'con' can be disposed more than once in method 'Account_MessageDetails.GetMessageDetails(int)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 67</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Account_Profile" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SortMessages(System.String,System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account" File="Profile.aspx.cs" Line="146">The query string passed to 'SqlCommand.CommandText.set(string)' in 'Account_Profile.SortMessages(string, string)' could contain the following variables 'Column', 'Dir'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_unypldh4.dll">
+   <Modules>
+    <Module Name="app_web_unypldh4.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Account_Issue_Inquiry" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnSubmit_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\Feedback" File="Issue-Inquiry.aspx.cs" Line="75">Object 'con' can be disposed more than once in method 'Account_Issue_Inquiry.btnSubmit_Click(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 75</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\steve\AppData\Local\Temp\tmp5EE2.tmp.cadir\bin\App_Web_x3ugfn5n.dll">
+   <Modules>
+    <Module Name="app_web_x3ugfn5n.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Account_ClientForms_MembershipApplicationTwo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#btnSubmit_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\ClientForms" File="MembershipApplicationTwo.aspx.cs" Line="201">Object 'con' can be disposed more than once in method 'Account_ClientForms_MembershipApplicationTwo.btnSubmit_Click(object, EventArgs)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 201</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Account_ClientForms_PendingClient" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#CheckVerification()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-02-20 14:47:35Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\steve\Documents\Repo\Lifeline-CRM\Account\ClientForms" File="ClientVerification.aspx.cs" Line="47">Object 'con' can be disposed more than once in method 'Account_ClientForms_PendingClient.CheckVerification()'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 47</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>Do not dispose objects multiple times</Name>
+   <Description>A correctly implemented Dispose method can be called multiple times without throwing an exception. However, this is not guaranteed and to avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.</Description>
+   <Resolution Name="Default">Object {0} can be disposed more than once in method {1}. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 66</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>Review SQL queries for security vulnerabilities</Name>
+   <Description>A SQL command string built from user input is vulnerable to SQL injection attacks. Microsoft SQL Server and other database servers support stored procedures and parameterized SQL queries, which reduce the risk of injection attacks.</Description>
+   <Resolution Name="WithNonLiterals">The query string passed to {0} in {1} could contain the following variables {2}. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+</FxCopReport>
