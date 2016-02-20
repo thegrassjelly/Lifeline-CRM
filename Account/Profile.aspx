@@ -104,7 +104,7 @@
                         <div class="form-group">
                             <label class="control-label col-lg-4">Date of Birth</label>
                             <div class="col-lg-5 col-sm-12 col-xs-12">
-                                 <asp:TextBox ID="txtBday" class="form-control" runat="server" TextMode="Date" />
+                                <asp:TextBox ID="txtBday" class="form-control" runat="server" TextMode="Date" />
                                 <asp:RangeValidator ID="bdayVld" runat="server"
                                     Display="Dynamic"
                                     ForeColor="Red"

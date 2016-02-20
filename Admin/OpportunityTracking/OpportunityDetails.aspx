@@ -36,8 +36,13 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Contact No.</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtContact" runat="server" class="form-control" MaxLength="80"
-                                TextMode="Phone" required/>
+                            <asp:TextBox ID="txtContact" runat="server" class="form-control" MaxLength="7" required/>
+                            <asp:RegularExpressionValidator ID="ctnctVld" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ControlToValidate="txtContact"
+                                ValidationExpression="^[0-9]{7}$"
+                                ErrorMessage="Enter a valid contact Number" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,6 +50,13 @@
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtEmail" runat="server" class="form-control" MaxLength="80"
                                 TextMode="Email" required/>
+                            <asp:RegularExpressionValidator ID="emlVld" runat="server"
+                                ForeColor="red"
+                                Display="Dynamic"
+                                ControlToValidate="txtEmail"
+                                ErrorMessage="Please enter valid e-mail address"
+                                ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" />
+
                         </div>
                     </div>
                     <hr />
@@ -128,15 +140,22 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Probability</label>
                         <div class="col-lg-2 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtProbability" runat="server" class="form-control" Min="1" Max="100" required/>
+                            <asp:TextBox ID="txtProbability" runat="server" class="form-control" Min="1" Max="100" 
+                                MaxLength="3" required/>
                         </div>
                         <label class="control-label">%</label>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Expected Close Date</label>
-                        <div class="col-lg-3 col-sm-12 col-xs-12">
-                            <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-                            <telerik:RadDatePicker ID="txtCloseDate" runat="server" class="form-control"></telerik:RadDatePicker>
+                        <div class="col-lg-5 col-sm-12 col-xs-12">
+                            <asp:TextBox ID="txtCloseDate" class="form-control" runat="server" TextMode="date" />
+                            <asp:RangeValidator ID="cdVld" runat="server"
+                                Display="Dynamic"
+                                ForeColor="Red"
+                                ControlToValidate="txtCloseDate"
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2050-01-01"
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                     <hr />

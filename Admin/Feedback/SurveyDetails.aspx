@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="SurveyDetails.aspx.cs" Inherits="Admin_Feedback_SurveyDetails" %>
-<%@ Register TagPrefix="dx" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <h3>Feedbacks</h3>
@@ -107,7 +106,8 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-lg-12">
-                        <dx:ASPxMemo ID="txtMessage" Width="100%" Height="250px" runat="server"></dx:ASPxMemo>
+                        <asp:TextBox ID="txtMessage" Width="100%" Height="100" TextMode="Multiline" runat="server" 
+                            style="max-width: 100%" disabled />
                     </div>
                 </div>
                 <hr />

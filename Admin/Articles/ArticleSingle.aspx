@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="ArticleSingle.aspx.cs" Inherits="Admin_Articles_ArticleSingle" %>
-<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <h3>Articles</h3>
@@ -19,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4 col-xs-12">Date Submitted</label>
-                            <div class="col-lg-8 col-xs-12">
+                            <div class="col-lg-4 col-xs-12">
                                 <asp:TextBox ID="txtDateSubmitted" class="form-control" runat="server" disabled />
                             </div>
                         </div>
@@ -32,7 +31,8 @@
                         <div class="form-group">
                             <label class="control-label col-lg-4 col-xs-12">Summary</label>
                             <div class="col-lg-8 col-xs-12">
-                                <asp:TextBox ID="txtSummary" class="form-control" runat="server" TextMode="Multiline"/>
+                                <asp:TextBox ID="txtSummary" class="form-control" runat="server" TextMode="Multiline"
+                                    style="max-width: 100%" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -74,9 +74,9 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-lg-12 col-xs-12">
-                        <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-                        <telerik:RadEditor ID="ckeBody" runat="server" ToolbarMode="Default"></telerik:RadEditor>
-
+                        <asp:TextBox ID="txtMessage" class="form-control" TextMode="MultiLine" runat="server" 
+                            style="max-width: 100%" />
+                        <br />
                     </div>
                 </div>
                 <hr />

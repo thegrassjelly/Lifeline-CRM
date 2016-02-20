@@ -55,33 +55,63 @@
                         <hr />
                         <div class="form-group">
                             <label class="control-label col-lg-4">First Name</label>
-                            <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtFirstName" runat="server" class="form-control" MaxLength="80" />
+                                <asp:RegularExpressionValidator ID="fnVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtFirstName"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid name" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Last Name</label>
-                            <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtLastName" runat="server" class="form-control" MaxLength="80" />
+                                <asp:RegularExpressionValidator ID="lnVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtLastName"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid name" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Phone No.</label>
                             <div class="col-lg-4 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtPhone" runat="server" class="form-control" MaxLength="8" />
+                                <asp:RegularExpressionValidator ID="PhnVld" runat="server"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtPhone"
+                                    ValidationExpression="^[0-9]{7}$"
+                                    ErrorMessage="Enter a valid Phone Number" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Mobile No.</label>
                             <div class="col-lg-4 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtMobile" runat="server" class="form-control" MaxLength="11" />
+                                <asp:RegularExpressionValidator ID="MblVld" runat="server"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtMobile"
+                                    ValidationExpression="^[0-9]{11}$"
+                                    ErrorMessage="Enter a valid mobile Number" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Date of Birth</label>
-                            <div class="col-lg-8 col-sm-12 col-xs-12">
-                                 <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-                                 <telerik:RadDatePicker ID="txtBday" runat="server" class="form-control"></telerik:RadDatePicker>
+                            <div class="col-lg-5 col-sm-12 col-xs-12">
+                                <asp:TextBox ID="txtBday" class="form-control" runat="server" TextMode="Date" />
+                                <asp:RangeValidator ID="bdayVld" runat="server"
+                                    Display="Dynamic"
+                                    ForeColor="Red"
+                                    ControlToValidate="txtBday"
+                                    ErrorMessage="Choose a valid date"
+                                    MaximumValue="2017-01-01"
+                                    MinimumValue="1900-01-01" />
                             </div>
                         </div>
                     </div>
@@ -89,7 +119,7 @@
                         <hr />
                         <div class="form-group">
                             <label class="control-label col-lg-4">Street</label>
-                            <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="col-lg-7 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtStreet" runat="server" class="form-control" />
                             </div>
                         </div>
@@ -97,18 +127,36 @@
                             <label class="control-label col-lg-4">Municipality</label>
                             <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" />
+                                <asp:RegularExpressionValidator ID="MncpltyVld" runat="server"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtMunicipality"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid Municipality" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">City</label>
                             <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtCity" runat="server" class="form-control" />
+                                <asp:RegularExpressionValidator ID="CtyVld" runat="server"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtCity"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid City" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Email Address</label>
                             <div class="col-lg-6 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtEmail" runat="server" class="form-control" TextMode="Email" MaxLength="80" />
+                                <asp:RegularExpressionValidator ID="emlVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtEmail"
+                                    ErrorMessage="Please enter valid e-mail address"
+                                    ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" />
                             </div>
                         </div>
                         <div class="form-group">

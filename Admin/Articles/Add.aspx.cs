@@ -7,6 +7,7 @@ public partial class Admin_Articles_Add : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Helper.ValidateAdmin();
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
@@ -21,7 +22,7 @@ public partial class Admin_Articles_Add : System.Web.UI.Page
                 "(@ArticleType, @Others, @DateSubmitted, @ArticlePic, @Title, @Summary, " +
                 "@Body, @UserID)";
             cmd.Parameters.AddWithValue("@ArticleType", ddlArticleCat.SelectedValue);
-            cmd.Parameters.AddWithValue("@Others", txtOthers.Text.ToString());
+            cmd.Parameters.AddWithValue("@Others", txtOthers.Text);
             cmd.Parameters.AddWithValue("@DateSubmitted", DateTime.Now);
 
             if (!fileImgArticle.HasFile)
@@ -36,9 +37,9 @@ public partial class Admin_Articles_Add : System.Web.UI.Page
                 fileImgArticle.SaveAs(Server.MapPath("~/articlepics/" + id + fileExt));
             }
 
-            cmd.Parameters.AddWithValue("@Title", txtTitle.Text.ToString());
-            cmd.Parameters.AddWithValue("@Summary", txtSummary.Text.ToString());
-            cmd.Parameters.AddWithValue("@Body", ckeBody.Text.ToString());
+            cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
+            cmd.Parameters.AddWithValue("@Summary", txtSummary.Text);
+            cmd.Parameters.AddWithValue("@Body", txtMessage.Text);
             cmd.Parameters.AddWithValue("@UserID", Session["userid"].ToString());
             cmd.ExecuteNonQuery();
             con.Close();

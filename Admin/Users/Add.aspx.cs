@@ -12,6 +12,7 @@ public partial class Admin_Users_Add : System.Web.UI.Page
         {
             GetUserType();
         }
+        this.Form.DefaultButton = this.btnInsert.UniqueID;
     }
 
     void GetUserType()
@@ -60,14 +61,14 @@ public partial class Admin_Users_Add : System.Web.UI.Page
                 cmd.Connection = con;
                 cmd.CommandText = "INSERT INTO Users VALUES (@TypeID, @Email, @Password, @FirstName, " +
                 "@LastName, @Birthday, @UserPic, @Street, @Municipality, @City, @Phone, @Mobile, @Status, " +
-                "@DateAdded, @DateModified, @FacebookID, @Priority); SELECT TOP 1 UserID FROM Users ORDER BY UserID DESC";
+                "@DateAdded, @DateModified, @FacebookID, @Priority, @CorporateID); SELECT TOP 1 UserID FROM Users ORDER BY UserID DESC";
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash(txtPassword.Text));
                 cmd.Parameters.AddWithValue("@TypeID", ddlUserType.SelectedValue);
                 cmd.Parameters.AddWithValue("@Status", ddlStatus.SelectedValue);
-                cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text.ToString());
-                cmd.Parameters.AddWithValue("@LastName", txtLastName.Text.ToString());
-                cmd.Parameters.AddWithValue("@Birthday", txtBday.DbSelectedDate);
+                cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+                cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+                cmd.Parameters.AddWithValue("@Birthday", txtBday.Text);
                 if (!usrPicUpload.HasFile)
                 {
                     cmd.Parameters.AddWithValue("@UserPic", "placeholder.png");
@@ -79,15 +80,16 @@ public partial class Admin_Users_Add : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@UserPic", id + fileExt);
                     usrPicUpload.SaveAs(Server.MapPath("~/images/users/" + id + fileExt));
                 }
-                cmd.Parameters.AddWithValue("@Street", txtStreet.Text.ToString());
-                cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text.ToString());
-                cmd.Parameters.AddWithValue("@City", txtCity.Text.ToString());
-                cmd.Parameters.AddWithValue("@Phone", txtPhone.Text.ToString());
-                cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.ToString());
+                cmd.Parameters.AddWithValue("@Street", txtStreet.Text);
+                cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
+                cmd.Parameters.AddWithValue("@City", txtCity.Text);
+                cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+                cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text);
                 cmd.Parameters.AddWithValue("@DateModified", "");
                 cmd.Parameters.AddWithValue("@DateAdded", DateTime.Now);
                 cmd.Parameters.AddWithValue("@FacebookID", "");
                 cmd.Parameters.AddWithValue("@Priority", "Normal");
+                cmd.Parameters.AddWithValue("@CorporateID", "");
                 int UserID = (int)cmd.ExecuteScalar();
 
                 cmd.CommandText = "INSERT INTO MedicalInfo (UserID) VALUES (@UserID)";

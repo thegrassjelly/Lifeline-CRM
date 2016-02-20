@@ -27,6 +27,7 @@ public partial class Admin_Feedback_FeedbackDetails : System.Web.UI.Page
         {
             Response.Redirect("~/Admin/Feedback/ViewFeedback.aspx");
         }
+        this.Form.DefaultButton = this.btnUpdate.UniqueID;
     }
 
     void GetMessageDetails(int messageID)

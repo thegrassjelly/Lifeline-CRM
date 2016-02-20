@@ -29,6 +29,7 @@ public partial class Admin_Users_VerificationDetails : System.Web.UI.Page
         {
             Response.Redirect("~/Admin/Users/VerificationLogs.aspx");
         }
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     private void GetVerificationInfo(int scanID)

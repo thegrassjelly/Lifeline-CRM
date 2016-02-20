@@ -29,11 +29,12 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Enter your password</label>
-                        <div class="col-lg-8 col-sm-12 col-xs-12">
+                        <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtPassword" runat="server" class="form-control" MaxLength="30"
                                 TextMode="Password" />
                         </div>
                     </div>
+                    <hr />
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
                             <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pull-right" Text="Void Renewal"

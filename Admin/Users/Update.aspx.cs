@@ -84,7 +84,7 @@ public partial class Admin_Users_Update : System.Web.UI.Page
                         txtFirstName.Text = data["FirstName"].ToString();
                         txtLastName.Text = data["LastName"].ToString();
                         DateTime bDay = Convert.ToDateTime(data["Birthday"].ToString());
-                        txtBday.DbSelectedDate = bDay.ToString("MM/dd/yyyy");
+                        txtBday.Text = bDay.ToString("yyyy-MM-dd");
                         imgUser.ImageUrl = "~/images/users/" + data["UserPic"].ToString();
                         imgUserLb.NavigateUrl = "~/images/users/" + data["UserPic"].ToString();
                         txtStreet.Text = data["Street"].ToString();
@@ -316,20 +316,20 @@ public partial class Admin_Users_Update : System.Web.UI.Page
                 "Municipality=@Municipality, City=@City, Phone=@Phone, Mobile=@Mobile, Status=@Status, TypeID=@TypeID, Priority=@Priority, DateModified=@DateModified WHERE UserID=@UserID";
             }
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text.ToString());
-            cmd.Parameters.AddWithValue("@LastName", txtLastName.Text.ToString());
-            cmd.Parameters.AddWithValue("@Birthday", txtBday.DbSelectedDate);
+            cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+            cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+            cmd.Parameters.AddWithValue("@Birthday", txtBday.Text);
 
             string fileExt = Path.GetExtension(usrPicUpload.FileName);
             string id = Guid.NewGuid().ToString();
             cmd.Parameters.AddWithValue("@UserPic", id + fileExt);
             usrPicUpload.SaveAs(Server.MapPath("~/images/users/" + id + fileExt));
 
-            cmd.Parameters.AddWithValue("@Street", txtStreet.Text.ToString());
-            cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text.ToString());
-            cmd.Parameters.AddWithValue("@City", txtCity.Text.ToString());
-            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text.ToString());
-            cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.ToString());
+            cmd.Parameters.AddWithValue("@Street", txtStreet.Text);
+            cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
+            cmd.Parameters.AddWithValue("@City", txtCity.Text);
+            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+            cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text);
             cmd.Parameters.AddWithValue("@Status", ddlStatus.SelectedValue);
             cmd.Parameters.AddWithValue("@TypeID", ddlUserType.SelectedValue);
             cmd.Parameters.AddWithValue("@Priority", ddlPriority.SelectedValue);
@@ -354,13 +354,13 @@ public partial class Admin_Users_Update : System.Web.UI.Page
                 "CancerHis=@CancerHis, HeartHis=@HeartHis, AsthmaHis=@AsthmaHis, EpilepsyHis=@EpilepsyHis, " +
                 "LiverHis=@LiverHis, Others=@Others WHERE UserID=@UserID";
             cmd.Parameters.AddWithValue("@BloodType", ddlBloodType.SelectedValue);
-            cmd.Parameters.AddWithValue("@Allergies", txtAllergies.Text.ToString());
+            cmd.Parameters.AddWithValue("@Allergies", txtAllergies.Text);
             cmd.Parameters.AddWithValue("@CancerHis", ddlCancerHis.SelectedValue);
             cmd.Parameters.AddWithValue("@HeartHis", ddlHeartHis.SelectedValue);
             cmd.Parameters.AddWithValue("@AsthmaHis", ddlAsthmaHis.SelectedValue);
             cmd.Parameters.AddWithValue("@EpilepsyHis", ddlEpilepsyHis.SelectedValue);
             cmd.Parameters.AddWithValue("@LiverHis", ddlLiverHis.SelectedValue);
-            cmd.Parameters.AddWithValue("@Others", txtOthers.Text.ToString());
+            cmd.Parameters.AddWithValue("@Others", txtOthers.Text);
             cmd.Parameters.AddWithValue("@UserID", Request.QueryString["ID"].ToString());
             cmd.ExecuteNonQuery(); 
         }
@@ -382,7 +382,7 @@ public partial class Admin_Users_Update : System.Web.UI.Page
                 cmd.Connection = con;
                 cmd.CommandText = "SELECT CorporateID FROM CorporateAccounts " +
                                   "WHERE EmployerCode=@EmployerCode";
-                cmd.Parameters.AddWithValue("@EmployerCode", txtEmployerCode.Text.ToString());
+                cmd.Parameters.AddWithValue("@EmployerCode", txtEmployerCode.Text);
                 int corporateID = (int)cmd.ExecuteScalar();
 
                 cmd.CommandText = "UPDATE Users SET CorporateID=@CorporateID " +
@@ -410,7 +410,7 @@ public partial class Admin_Users_Update : System.Web.UI.Page
             cmd.Connection = con;
             cmd.CommandText = "SELECT EmployerCode FROM CorporateAccounts " +
                               "WHERE EmployerCode=@EmployerCode";
-            cmd.Parameters.AddWithValue("@EmployerCode", txtEmployerCode.Text.ToString());
+            cmd.Parameters.AddWithValue("@EmployerCode", txtEmployerCode.Text);
             using (SqlDataReader da = cmd.ExecuteReader())
             {
                 var validCode = da.HasRows;

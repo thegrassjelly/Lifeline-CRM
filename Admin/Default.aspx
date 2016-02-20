@@ -8,47 +8,69 @@
         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
             <div class="left"></div>
             <div class="right">
-                <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-                <div class="count"><asp:Literal ID="ltUserCount" runat="server"/></div>
-                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><asp:Literal ID="ltUserNew" runat="server"/> </i> last 24 hours</span>
+                <a href='<%= Page.ResolveUrl("~/Admin/Users/View.aspx") %>'>
+                    <span class="count_top"><i class="fa fa-user"></i>Total Users</span>
+                    <div class="count">
+                        <asp:Literal ID="ltUserCount" runat="server" /></div>
+                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
+                        <asp:Literal ID="ltUserNew" runat="server" /></i>last 24 hours</span>
+                </a>
             </div>
         </div>
         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
             <div class="left"></div>
             <div class="right">
-                <span class="count_top"><i class="fa fa-inbox"></i> Unread Messages</span>
-                <div class="count"><asp:Literal ID="ltUnreadMsg" runat="server"/></div>
-                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><asp:Literal ID="ltUnreadNew" runat="server" /> </i> last 24 hours</span>
+                <a href='<%= Page.ResolveUrl("~/Admin/Users/Verification.aspx") %>'>
+                    <span class="count_top"><i class="fa fa-check"></i>Membership Verifications</span>
+                    <div class="count">
+                        <asp:Literal ID="ltVerification" runat="server" /></div>
+                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
+                        <asp:Literal ID="ltVerificationNew" runat="server" />
+                    </i>last 24 hours</span>
+                </a>
             </div>
         </div>
         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
             <div class="left"></div>
             <div class="right">
-                <span class="count_top"><i class="fa fa-envelope"></i> Total Surveys</span>
-                <div class="count"><asp:Literal ID="ltSurveys" runat="server"/></div>
-                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><asp:Literal ID="ltSurveyNew" runat="server"/> </i> last 24 hours</span>
+                <a href='<%= Page.ResolveUrl("~/Admin/Membership/Renewals.aspx") %>'>
+                    <span class="count_top"><i class="fa fa-suitcase"></i>New Renewals</span>
+                    <div class="count">
+                        <asp:Literal ID="ltRenewals" runat="server" /></div>
+                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
+                        <asp:Literal ID="ltRenewalsNew" runat="server" />
+                    </i>last 24 hours</span>
+                </a>
             </div>
         </div>
         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
             <div class="left"></div>
             <div class="right">
-                <span class="count_top"><i class="fa fa-suitcase"></i> New Renewals</span>
-                <div class="count"><asp:Literal ID="ltRenewals" runat="server"/></div>
-                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><asp:Literal ID="ltRenewalsNew" runat="server"/> </i> last 24 hours</span>
+                <a href='<%= Page.ResolveUrl("~/Admin/Membership/MembershipApplications.aspx") %>'>
+                    <span class="count_top"><i class="fa fa-suitcase"></i>Membership Applications</span>
+                    <div class="count">
+                        <asp:Literal ID="ltMembership" runat="server" /></div>
+                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
+                        <asp:Literal ID="ltMembershipNew" runat="server" />
+                    </i>last 24 hours</span>
+                </a>
             </div>
         </div>
         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
             <div class="left"></div>
             <div class="right">
-                <span class="count_top"><i class="fa fa-bank"></i> Deposit Uploads</span>
-                <div class="count"><asp:Literal ID="ltPayments" runat="server"/></div>
-                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><asp:Literal ID="ltPaymentsNew" runat="server"/> </i> last 24 hours</span>
+                    <span class="count_top"><i class="fa fa-inbox"></i>Total Unread Messages</span>
+                    <div class="count">
+                        <asp:Literal ID="ltUnreadMsg" runat="server" /></div>
+                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
+                        <asp:Literal ID="ltUnreadNew" runat="server" />
+                    </i>last 24 hours</span>
             </div>
         </div>
         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
             <div class="left"></div>
             <div class="right">
-                <span class="count_top"><i class="fa fa-list-alt"></i> Total Logs</span>
+                <span class="count_top"><i class="fa fa-bank"></i> Total Logs</span>
                 <div class="count"><asp:Literal ID="ltLogs" runat="server"/></div>
                 <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><asp:Literal ID="ltLogsNew" runat="server"/> </i> last 24 hours</span>
             </div>

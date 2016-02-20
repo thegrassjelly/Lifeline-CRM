@@ -37,6 +37,7 @@ public partial class Admin_OpportunityTracking_OpportunityDetails : System.Web.U
         {
             Response.Redirect("~/Admin/OpportunityTracking/VeiwOpportunityList.aspx");
         }
+        this.Form.DefaultButton = this.btnUpdate.UniqueID;
     }
 
     void GetOpportunityDetails(int opportunityId)
@@ -65,7 +66,8 @@ public partial class Admin_OpportunityTracking_OpportunityDetails : System.Web.U
                     ddlStage.SelectedValue = data["Stage"].ToString();
                     txtAmount.Text = data["Amount"].ToString();
                     txtProbability.Text = data["Probability"].ToString();
-                    txtCloseDate.DbSelectedDate = data["CloseDate"].ToString();
+                    DateTime someDate = Convert.ToDateTime(data["CloseDate"].ToString());
+                    txtCloseDate.Text = someDate.ToString("yyyy-MM-dd");
                 }
             }
         }
@@ -95,7 +97,7 @@ public partial class Admin_OpportunityTracking_OpportunityDetails : System.Web.U
             cmd.Parameters.AddWithValue("@Stage", ddlStage.SelectedValue);
             cmd.Parameters.AddWithValue("@Amount", txtAmount.Text.ToString());
             cmd.Parameters.AddWithValue("@Probability", txtProbability.Text.ToString());
-            cmd.Parameters.AddWithValue("@CloseDate", txtCloseDate.DbSelectedDate);
+            cmd.Parameters.AddWithValue("@CloseDate", txtCloseDate.Text);
             cmd.Parameters.AddWithValue("@DateModified", DateTime.Now);
             cmd.ExecuteNonQuery();
             Session["updated"] = "yes";

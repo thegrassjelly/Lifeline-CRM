@@ -12,9 +12,9 @@ public partial class Admin_Default : System.Web.UI.Page
         Helper.ValidateAdmin();
         GetUserCount();
         GetMessageCount();
-        GetSurveyCount();
+        GetVerificationCount();
         GetRenewalsCount();
-        GetPaymentsCount();
+        GetMembershipCount();
         GetLogsCount();
         GetDashboardMessage();
         GetPieChart();
@@ -302,7 +302,7 @@ public partial class Admin_Default : System.Web.UI.Page
         }
     }
 
-    void GetPaymentsCount()
+    void GetMembershipCount()
     {
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
@@ -310,16 +310,16 @@ public partial class Admin_Default : System.Web.UI.Page
             con.Open();
             cmd.Connection = con;
             cmd.CommandText = "SELECT COUNT(LogsID) FROM Logs WHERE " +
-                              "Description='Deposit slip submission'";
+                              "LogType='Membership Application'";
             int totalCount = (int)cmd.ExecuteScalar();
-            ltPayments.Text = totalCount.ToString();
+            ltMembership.Text = totalCount.ToString();
 
             DateTime yesterday = DateTime.Now.AddHours(-24);
             cmd.CommandText = "SELECT COUNT(LogsID) FROM Logs WHERE " +
-                              "Description='Deposit slip submission' AND TimeStamp>@Yesterday";
+                              "LogType='Membership Application' AND TimeStamp>@Yesterday";
             cmd.Parameters.AddWithValue("@Yesterday", yesterday);
             int newCount = (int)cmd.ExecuteScalar();
-            ltPaymentsNew.Text = newCount.ToString(); 
+            ltMembershipNew.Text = newCount.ToString(); 
         }
     }
 
@@ -344,23 +344,24 @@ public partial class Admin_Default : System.Web.UI.Page
         }
     }
 
-    void GetSurveyCount()
+    void GetVerificationCount()
     {
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
         {
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT COUNT(SurveyID) FROM Surveys";
+            cmd.CommandText = "SELECT COUNT(Description) FROM Logs WHERE " +
+                "Description='Client Verification'";
             int totalCount = (int)cmd.ExecuteScalar();
-            ltSurveys.Text = totalCount.ToString();
+            ltVerification.Text = totalCount.ToString();
 
             DateTime yesterday = DateTime.Now.AddHours(-24);
-            cmd.CommandText = "SELECT COUNT(SurveyID) FROM Surveys WHERE " +
-                              "DateSubmitted>@Yesterday";
+            cmd.CommandText = "SELECT COUNT(Description) FROM Logs WHERE " +
+                              "Description='Client Verification' AND TimeStamp>@Yesterday";
             cmd.Parameters.AddWithValue("@Yesterday", yesterday);
             int newCount = (int)cmd.ExecuteScalar();
-            ltSurveyNew.Text = newCount.ToString(); 
+            ltVerificationNew.Text = newCount.ToString(); 
         }
     }
 

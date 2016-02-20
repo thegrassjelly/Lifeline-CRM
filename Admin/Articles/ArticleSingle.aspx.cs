@@ -30,6 +30,7 @@ public partial class Admin_Articles_ArticleSingle : System.Web.UI.Page
         {
             Response.Redirect("~/Admin/Articles/View.aspx");
         }
+        this.Form.DefaultButton = this.btnUpdate.UniqueID;
     }
 
     void GetArticle(int articleID)
@@ -56,7 +57,7 @@ public partial class Admin_Articles_ArticleSingle : System.Web.UI.Page
                         txtOthers.Text = data["Others"].ToString();
                         DateTime dDate = Convert.ToDateTime(data["DateSubmitted"].ToString());
                         txtDateSubmitted.Text = dDate.ToString("MM/dd/yyyy");
-                        ckeBody.Content = data["Body"].ToString();
+                        txtMessage.Text = data["Body"].ToString();
                     }
                     con.Close();
                 }
@@ -91,7 +92,7 @@ public partial class Admin_Articles_ArticleSingle : System.Web.UI.Page
             }
             cmd.Parameters.AddWithValue("@ArticleID", Request.QueryString["ID"].ToString());
             cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
-            cmd.Parameters.AddWithValue("@Summary", txtSummary.Text.ToString());
+            cmd.Parameters.AddWithValue("@Summary", txtSummary.Text);
             cmd.Parameters.AddWithValue("@ArticleType", ddlArticleCat.SelectedValue);
 
             string fileExt = Path.GetExtension(fileImgArticle.FileName);
@@ -99,8 +100,8 @@ public partial class Admin_Articles_ArticleSingle : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@ArticlePic", id + fileExt);
             fileImgArticle.SaveAs(Server.MapPath("~/articlepics/" + id + fileExt));
 
-            cmd.Parameters.AddWithValue("@Others", txtOthers.Text.ToString());
-            cmd.Parameters.AddWithValue("@Body", ckeBody.Text.ToString());
+            cmd.Parameters.AddWithValue("@Others", txtOthers.Text);
+            cmd.Parameters.AddWithValue("@Body", txtMessage.Text);
 
             cmd.ExecuteNonQuery();
             con.Close();

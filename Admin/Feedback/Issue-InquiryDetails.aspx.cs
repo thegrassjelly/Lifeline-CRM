@@ -28,6 +28,7 @@ public partial class Admin_Feedback_Issue_InquiryDetails : System.Web.UI.Page
         {
             Response.Redirect("~/Admin/Feedback/ViewIssue-Inquiry.aspx");
         }
+        this.Form.DefaultButton = this.btnUpdate.UniqueID;
     }
 
     void GetMessageDetails(int messageID)

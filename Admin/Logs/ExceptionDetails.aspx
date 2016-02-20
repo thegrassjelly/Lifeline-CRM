@@ -1,7 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="ExceptionDetails.aspx.cs" Inherits="Admin_Logs_ExceptionDetails" %>
 
-<%@ Register Assembly="DevExpress.Web.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <h3>Logs</h3>
 </asp:Content>
@@ -43,7 +41,8 @@
                 <div class="col-lg-12">
                     <hr/>
                     <div class="form-group">
-                        <dx:ASPxMemo ID="txtDescription" Width="100%" Height="250px" runat="server"></dx:ASPxMemo>
+                        <asp:TextBox ID="txtDescription" Width="100%" Height="100" TextMode="Multiline" runat="server" 
+                            style="max-width: 100%" disabled />
                     </div>
                 </div>
             </div>

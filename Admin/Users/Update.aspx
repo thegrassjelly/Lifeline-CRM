@@ -33,31 +33,61 @@
                         <label class="control-label col-lg-4">First Name</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtFirstName" runat="server" class="form-control" MaxLength="80" />
+                            <asp:RegularExpressionValidator ID="fnVld" runat="server"
+                                ForeColor="red"
+                                Display="Dynamic"
+                                ControlToValidate="txtFirstName"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Last Name</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtLastName" runat="server" class="form-control" MaxLength="80" />
+                            <asp:RegularExpressionValidator ID="lnVld" runat="server"
+                                ForeColor="red"
+                                Display="Dynamic"
+                                ControlToValidate="txtLastName"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid name" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Phone No.</label>
                         <div class="col-lg-4 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtPhone" runat="server" class="form-control" MaxLength="8" />
+                            <asp:RegularExpressionValidator ID="PhnVld" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ControlToValidate="txtPhone"
+                                ValidationExpression="^[0-9]{7}$"
+                                ErrorMessage="Enter a valid Phone Number" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Mobile No.</label>
                         <div class="col-lg-4 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtMobile" runat="server" class="form-control" MaxLength="11" />
+                            <asp:RegularExpressionValidator ID="MblVld" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ControlToValidate="txtMobile"
+                                ValidationExpression="^[0-9]{11}$"
+                                ErrorMessage="Enter a valid mobile Number" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Date of Birth</label>
-                        <div class="col-lg-6 col-sm-12 col-xs-12">
-                            <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-                            <telerik:RadDatePicker ID="txtBday" runat="server" class="form-control"></telerik:RadDatePicker>
+                        <div class="col-lg-5 col-sm-12 col-xs-12">
+                            <asp:TextBox ID="txtBday" class="form-control" runat="server" TextMode="Date" />
+                            <asp:RangeValidator ID="bdayVld" runat="server"
+                                Display="Dynamic"
+                                ForeColor="Red"
+                                ControlToValidate="txtBday"
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01"
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -70,6 +100,12 @@
                         <label class="control-label col-lg-4">Municipality</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" />
+                            <asp:RegularExpressionValidator ID="MncpltyVld" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ControlToValidate="txtMunicipality"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid Municipality" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -82,12 +118,18 @@
                         <label class="control-label col-lg-4">Email Address</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtEmail" runat="server" class="form-control" TextMode="Email" MaxLength="80" />
+                                <asp:RegularExpressionValidator ID="emlVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtEmail"
+                                    ErrorMessage="Please enter valid e-mail address"
+                                    ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" />
                         </div>
                     </div>
                     <hr />
                     <div class="form-group">
                         <label class="control-label col-lg-4">Status</label>
-                        <div class="col-lg-5 col-sm-12 col-xs-12">
+                        <div class="col-lg-4 col-sm-12 col-xs-12">
                             <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" data-toggle="tooltip">
                                 <asp:ListItem>Active</asp:ListItem>
                                 <asp:ListItem>Pending</asp:ListItem>
@@ -96,14 +138,14 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">User Type</label>
-                        <div class="col-lg-5 col-sm-12 col-xs-12">
+                        <div class="col-lg-4 col-sm-12 col-xs-12">
                             <asp:DropDownList ID="ddlUserType" class="form-control" runat="server" data-toggle="tooltip">
                             </asp:DropDownList>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Priority</label>
-                        <div class="col-lg-5 col-sm-12 col-xs-12">
+                        <div class="col-lg-4 col-sm-12 col-xs-12">
                             <asp:DropDownList ID="ddlPriority" class="form-control" runat="server" data-toggle="tooltip">
                                 <asp:ListItem>Normal</asp:ListItem>
                                 <asp:ListItem>Contact Immediately</asp:ListItem>
@@ -135,7 +177,7 @@
                                         <td><%# Eval("SecondaryContactID") %></td>
                                         <td><%# Eval("LastName") %>, <%# Eval("FirstName") %></td>
                                         <td>
-                                            <a href='ViewSecondaryContact.aspx?ID=<%# Eval("SecondaryContactID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Details</a>
+                                            <a href='ViewSecondaryContact.aspx?ID=<%# Eval("SecondaryContactID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>Details</a>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -243,8 +285,8 @@
         <div class="col-lg-6">
             <div class="x_panel">
                 <div class="x_title">
-                   <h2>Add Employer</h2>
-                <div class="clearfix"></div>     
+                    <h2>Add Employer</h2>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                     <div id="employererror" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
@@ -259,7 +301,7 @@
                             <asp:TextBox ID="txtEmployerCode" runat="server" class="form-control" MaxLength="8" />
                         </div>
                     </div>
-                        <hr/>
+                    <hr />
                     <asp:Button ID="btnAddEmployer" runat="server" class="btn btn-primary pull-right" Text="Submit"
                         OnClick="btnAddEmployer_Click" />
                 </div>
@@ -275,8 +317,8 @@
                         <div class="col-lg-offset-4 col-lg-8">
                             <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary pull-right" Text="Update Info"
                                 OnClick="btnUpdate_Click" />
-                            <asp:Button ID="btnPrint" runat="server" class="btn btn-primary pull-right" Text="Print user report" 
-                                OnClick="btnPrint_Click"/>
+                            <asp:Button ID="btnPrint" runat="server" class="btn btn-primary pull-right" Text="Print user report"
+                                OnClick="btnPrint_Click" />
                         </div>
                     </div>
                 </div>
@@ -339,7 +381,7 @@
                                             <button type="button" class="btn btn-success btn-xs"><%# Eval("Status") %></button>
                                         </td>
                                         <td>
-                                            <a href='MessageDetails.aspx?ID=<%# Eval("MessageID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Message details </a>
+                                            <a href='MessageDetails.aspx?ID=<%# Eval("MessageID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>Message details </a>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -439,7 +481,8 @@
                                             </td>
                                             <td>
                                                 <a href='<%= Page.ResolveUrl("~/Admin/Membership/RenewalDetails.aspx?ID=") %>
-                                                    <%# Eval("MembershipID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Details </a>
+                                                    <%# Eval("MembershipID") %>'
+                                                    class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>Details </a>
                                             </td>
                                         </tr>
                                     </ItemTemplate>

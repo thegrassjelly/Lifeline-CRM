@@ -1,7 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="EmailCampaign.aspx.cs" Inherits="Admin_Marketing_EmailCampaign" %>
-<%@ Register TagPrefix="CKEditor" Namespace="CKEditor.NET" Assembly="CKEditor.NET, Version=3.6.6.2, Culture=neutral, PublicKeyToken=e379cdf2f8354999" %>
-<%@ Register TagPrefix="dx" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
-<%@ Register TagPrefix="de" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <h3>Mail Automation</h3>
@@ -88,7 +85,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-lg-12 col-xs-12">
-                            <dx:ASPxMemo ID="txtMessage" Width="100%" Height="250px" runat="server"></dx:ASPxMemo>
+                            <asp:TextBox ID="txtMessage" Width="100%" Height="250px" runat="server" 
+                                TextMode="Multiline" style="max-width: 100%" />
                         </div>
                     </div>
                     <hr />

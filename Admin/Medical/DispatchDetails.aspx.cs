@@ -28,6 +28,7 @@ public partial class Admin_Medical_Default : System.Web.UI.Page
         {
             Response.Redirect("~/Admin/Medical/View.aspx");
         }
+        this.Form.DefaultButton = this.btnUpdate.UniqueID;
     }
 
     void GetDispatchInfo(int ID)
@@ -51,7 +52,7 @@ public partial class Admin_Medical_Default : System.Web.UI.Page
                         txtDispatcher.Text = data["Dispatcher"].ToString();
                         txtDate.Text = data["Date"].ToString();
                         DateTime dDate = Convert.ToDateTime(data["Date"].ToString());
-                        txtDate.Text = dDate.ToString("MM/dd/yyyy");
+                        txtDate.Text = dDate.ToString("yyyy-MM-dd");
                         txtAmbulance.Text = data["Ambulance"].ToString();
                         txtTL.Text = data["TeamLeader"].ToString();
                         txtTransport.Text = data["TransportOfficer"].ToString();

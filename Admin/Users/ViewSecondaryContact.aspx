@@ -15,19 +15,19 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="control-label col-lg-4">First Name</label>
-                            <div class="col-lg-8 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-sm-12 col-xs-12">
                                 <asp:textbox id="txtFirstName" runat="server" class="form-control" disabled/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Last Name</label>
-                            <div class="col-lg-8 col-sm-12 col-xs-12">
+                            <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:textbox id="txtLastName" runat="server" class="form-control" disabled/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Phone No.</label>
-                            <div class="col-lg-5 col-sm-12 col-xs-12">
+                            <div class="col-lg-4 col-sm-12 col-xs-12">
                                 <asp:textbox id="txtPhone" runat="server" class="form-control" disabled/>
                             </div>
                         </div>

@@ -28,6 +28,7 @@ public partial class Admin_Membership_ApplicationVoid : System.Web.UI.Page
             voidsuccess.Visible = true;
             Session.Remove("voidsuccess");
         }
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     bool IsPasswordCorrect()

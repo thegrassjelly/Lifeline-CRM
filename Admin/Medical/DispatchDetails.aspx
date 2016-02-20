@@ -56,7 +56,14 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Date</label>
                                 <div class="col-lg-5 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txtDate" runat="server" class="form-control" />
+                                    <asp:TextBox ID="txtDate" class="form-control" runat="server" TextMode="date" />
+                                    <asp:RangeValidator ID="dtVld" runat="server"
+                                        Display="Dynamic"
+                                        ForeColor="Red"
+                                        ControlToValidate="txtDate"
+                                        ErrorMessage="Choose a valid date"
+                                        MaximumValue="2017-01-01"
+                                        MinimumValue="1900-01-01" />
                                 </div>
                             </div>
                             <div class="form-group">

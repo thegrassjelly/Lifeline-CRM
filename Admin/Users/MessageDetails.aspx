@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="MessageDetails.aspx.cs" Inherits="Admin_Users_MessageDetails" %>
-<%@ Register TagPrefix="dx" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <h3>User Management</h3>
@@ -72,7 +71,8 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-lg-12">
-                    <dx:ASPxMemo ID="txtMessage" Width="100%" Height="250px" runat="server"></dx:ASPxMemo>
+                        <asp:TextBox ID="txtMessage" Width="100%" Height="200" TextMode="MultiLine" runat="server" 
+                            style="max-height: 100%; max-width: 100%" disabled />
                     </div>
                 </div>
                 <hr />

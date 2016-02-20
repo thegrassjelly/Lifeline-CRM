@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="FeedbackDetails.aspx.cs" Inherits="Admin_Feedback_FeedbackDetails" %>
-<%@ Register TagPrefix="dx" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <h3>Feedbacks</h3>
@@ -28,19 +27,19 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Email</label>
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <asp:TextBox ID="txtEmail" class="form-control" runat="server" TextMode="Email" disabled />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Message Category</label>
-                            <div class="col-lg-6">
+                            <div class="col-lg-5">
                                 <asp:TextBox ID="txtCategory" class="form-control" runat="server" disabled />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Date Submitted</label>
-                            <div class="col-lg-6">
+                            <div class="col-lg-5">
                                 <asp:TextBox ID="txtDate" class="form-control" runat="server" disabled />
                             </div>
                         </div>
@@ -48,7 +47,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <label class="control-label col-lg-4">Satisfaction Rating</label>
-                            <div class="col-lg-6">
+                            <div class="col-lg-5">
                                 <asp:TextBox ID="txtSubject" class="form-control" runat="server" disabled />
                             </div>
                         </div>
@@ -72,7 +71,8 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-lg-12">
-                        <dx:ASPxMemo ID="txtMessage" Width="100%" Height="250px" runat="server"></dx:ASPxMemo>
+                        <asp:TextBox ID="txtMessage" Width="100%" Height="100" TextMode="Multiline" runat="server" 
+                            style="max-width: 100%" disabled />
                     </div>
                 </div>
                 <hr />

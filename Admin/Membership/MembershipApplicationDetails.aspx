@@ -72,7 +72,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4 col-xs-12">Street</label>
-                            <div class="col-lg-8 col-xs-12">
+                            <div class="col-lg-7 col-xs-12">
                                 <asp:TextBox ID="txtStreet" runat="server" class="form-control" disabled />
                             </div>
                         </div>
@@ -102,20 +102,20 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4 col-xs-12">Email Address</label>
-                            <div class="col-lg-7 col-xs-12">
+                            <div class="col-lg-6 col-xs-12">
                                 <asp:TextBox ID="txtEmail" runat="server" class="form-control" disabled />
                             </div>
                         </div>
                     <hr />
                     <div class="form-group">
                         <label class="control-label col-lg-4">Status</label>
-                        <div class="col-lg-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-4 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtUserStatus" runat="server" class="form-control" disabled/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">User Type</label>
-                        <div class="col-lg-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-4 col-sm-12 col-xs-12">
                             <asp:DropDownList id="ddlUserType" class="form-control" runat="server">
                                 <asp:ListItem>Client</asp:ListItem>
                                 <asp:ListItem>Pending Client</asp:ListItem>
@@ -178,7 +178,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4 col-xs-12">Membership Type</label>
-                            <div class="col-lg-6 col-xs-12">
+                            <div class="col-lg-5 col-xs-12">
                                 <asp:TextBox ID="txtMembershipType" runat="server" class="form-control" disabled />
                             </div>
                         </div>

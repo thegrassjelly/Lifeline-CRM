@@ -131,11 +131,11 @@ public partial class Account_Login : System.Web.UI.Page
                         cmd.CommandText = "INSERT INTO Users VALUES (@TypeID, @Email, @Password, @FirstName, " +
                         "@LastName, @Birthday, @UserPic, @Street, @Municipality, @City, @Phone, @Mobile, @Status, " +
                         "@DateAdded, @DateModified, @FacebookID, @Priority, @CorporateID); SELECT TOP 1 UserID FROM Users ORDER BY UserID DESC";
-                        cmd.Parameters.AddWithValue("@Email", lblEmail.Text.ToString());
+                        cmd.Parameters.AddWithValue("@Email", lblEmail.Text);
                         cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash(txtPassword.Text));
                         cmd.Parameters.AddWithValue("@TypeID", "1");
                         cmd.Parameters.AddWithValue("@Status", "Active");
-                        cmd.Parameters.AddWithValue("@FirstName", lblName.Text.ToString());
+                        cmd.Parameters.AddWithValue("@FirstName", lblName.Text);
                         cmd.Parameters.AddWithValue("@LastName", "");
                         cmd.Parameters.AddWithValue("@Birthday", "01/01/1950");
                         cmd.Parameters.AddWithValue("@UserPic", "placeholder.png");
@@ -146,7 +146,7 @@ public partial class Account_Login : System.Web.UI.Page
                         cmd.Parameters.AddWithValue("@Mobile", "");
                         cmd.Parameters.AddWithValue("@DateModified", "");
                         cmd.Parameters.AddWithValue("@DateAdded", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@FacebookID", lblId.Text.ToString());
+                        cmd.Parameters.AddWithValue("@FacebookID", lblId.Text);
                         cmd.Parameters.AddWithValue("@Priority", "Normal");
                         cmd.Parameters.AddWithValue("@CorporateID", "");
                         int UserID = (int)cmd.ExecuteScalar();

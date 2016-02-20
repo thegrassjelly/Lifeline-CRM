@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Enter your password</label>
-                        <div class="col-lg-8 col-sm-12 col-xs-12">
+                        <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtPassword" runat="server" class="form-control" MaxLength="30"
                                 TextMode="Password" />
                         </div>
@@ -40,6 +40,7 @@
                                 OnClick="btnSubmit_Click" OnClientClick="return confirm('Are you sure?')" />
                         </div>
                     </div>
+                    <hr />
                 </div>
             </div>
         </div>

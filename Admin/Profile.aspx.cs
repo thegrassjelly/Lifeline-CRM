@@ -21,6 +21,7 @@ public partial class Admin_Profile : System.Web.UI.Page
         {
             GetUserInfo();
         }
+        this.Form.DefaultButton = this.btnUpdate.UniqueID;
     }
 
     void GetUserInfo()
@@ -42,7 +43,7 @@ public partial class Admin_Profile : System.Web.UI.Page
                     txtFirstName.Text = data["FirstName"].ToString();
                     txtLastName.Text = data["LastName"].ToString();
                     DateTime bDay = Convert.ToDateTime(data["Birthday"].ToString());
-                    txtBday.DbSelectedDate = bDay.ToString("MM/dd/yyyy");
+                    txtBday.Text = bDay.ToString("yyyy-MM-dd");
                     imgUser.ImageUrl = "~/images/users/" + data["UserPic"].ToString();
                     imgUserLb.NavigateUrl = "~/images/users/" + data["UserPic"].ToString();
                     txtStreet.Text = data["Street"].ToString();
@@ -92,20 +93,20 @@ public partial class Admin_Profile : System.Web.UI.Page
                 }
             }
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text.ToString());
-            cmd.Parameters.AddWithValue("@LastName", txtLastName.Text.ToString());
-            cmd.Parameters.AddWithValue("@Birthday", txtBday.DbSelectedDate);
+            cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+            cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+            cmd.Parameters.AddWithValue("@Birthday", txtBday.Text);
 
             string fileExt = Path.GetExtension(usrPicUpload.FileName);
             string id = Guid.NewGuid().ToString();
             cmd.Parameters.AddWithValue("@UserPic", id + fileExt);
             usrPicUpload.SaveAs(Server.MapPath("~/images/users/" + id + fileExt));
 
-            cmd.Parameters.AddWithValue("@Street", txtStreet.Text.ToString());
-            cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text.ToString());
-            cmd.Parameters.AddWithValue("@City", txtCity.Text.ToString());
-            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text.ToString());
-            cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text.ToString());
+            cmd.Parameters.AddWithValue("@Street", txtStreet.Text);
+            cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
+            cmd.Parameters.AddWithValue("@City", txtCity.Text);
+            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+            cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text);
             cmd.Parameters.AddWithValue("@DateModified", DateTime.Now);
             cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash(txtPassword.Text));
             cmd.Parameters.AddWithValue("@UserID", Session["userid"].ToString());

@@ -102,14 +102,27 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Initial Date</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-                            <telerik:RadDatePicker ID="txtStartDate" runat="server" class="form-control"></telerik:RadDatePicker>
+                            <asp:TextBox ID="txtStartDate" class="form-control" runat="server" TextMode="date" required />
+                            <asp:RangeValidator ID="sdateVld" runat="server"
+                                Display="Dynamic"
+                                ForeColor="Red"
+                                ControlToValidate="txtStartDate"
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01"
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Discharge Date</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <telerik:RadDatePicker ID="txtEndDate" runat="server" class="form-control"></telerik:RadDatePicker>
+                            <asp:TextBox ID="txtEndDate" class="form-control" runat="server" TextMode="date" />
+                            <asp:RangeValidator ID="edateBld" runat="server"
+                                Display="Dynamic"
+                                ForeColor="Red"
+                                ControlToValidate="txtEndDate"
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01"
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -133,7 +146,14 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Call Date</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <telerik:RadDatePicker ID="txtCallDate" runat="server" class="form-control"></telerik:RadDatePicker>
+                            <asp:TextBox ID="txtCallDate" class="form-control" runat="server" TextMode="date" />
+                            <asp:RangeValidator ID="cdateVld" runat="server"
+                                Display="Dynamic"
+                                ForeColor="Red"
+                                ControlToValidate="txtCallDate"
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01"
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -189,7 +209,7 @@
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
                             <asp:Button ID="btnInsert" runat="server" class="btn btn-primary pull-right" Text="Submit"
-                                OnClick="btnInsert_Click" OnClientClick="return confirm('Are you sure?')" />
+                                OnClick="btnInsert_Click" OnClientClick="return validate()" />
                         </div>
                     </div>
                 </div>

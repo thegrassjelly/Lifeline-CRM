@@ -45,14 +45,26 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Phone No.</label>
-                        <div class="col-lg-4 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtPhone" runat="server" class="form-control" MaxLength="8" required/>
+                        <div class="col-lg-5 col-sm-12 col-xs-12">
+                            <asp:TextBox ID="txtPhone" runat="server" class="form-control" MaxLength="7" required/>
+                            <asp:RegularExpressionValidator ID="PhnVld" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ControlToValidate="txtPhone"
+                                ValidationExpression="^[0-9]{7}$"
+                                ErrorMessage="Enter a valid Phone Number" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Fax No.</label>
-                        <div class="col-lg-4 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtFax" runat="server" class="form-control" MaxLength="8" required/>
+                        <div class="col-lg-5 col-sm-12 col-xs-12">
+                            <asp:TextBox ID="txtFax" runat="server" class="form-control" MaxLength="7" required/>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ControlToValidate="txtFax"
+                                ValidationExpression="^[0-9]{7}$"
+                                ErrorMessage="Enter a valid fax Number" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -65,18 +77,36 @@
                         <label class="control-label col-lg-4">Municipality</label>
                         <div class="col-lg-4 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" required/>
+                            <asp:RegularExpressionValidator ID="MncpltyVld" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ControlToValidate="txtMunicipality"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid Municipality" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">City</label>
                         <div class="col-lg-4 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtCity" runat="server" class="form-control" required/>
+                            <asp:RegularExpressionValidator ID="CtyVld" runat="server"
+                                ForeColor="Red"
+                                Display="Dynamic"
+                                ControlToValidate="txtCity"
+                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                Text="Enter a valid City" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Email Address</label>
-                        <div class="col-lg-7 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtEmail" runat="server" class="form-control" TextMode="Email" MaxLength="80" required/>
+                            <asp:RegularExpressionValidator ID="emlVld" runat="server"
+                                ForeColor="red"
+                                Display="Dynamic"
+                                ControlToValidate="txtEmail"
+                                ErrorMessage="Please enter valid e-mail address"
+                                ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" />
                         </div>
                     </div>
                     <hr />

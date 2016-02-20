@@ -39,6 +39,7 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
         {
             medical.Visible = false;
         }
+        this.Form.DefaultButton = this.btnInsert.UniqueID;
     }
 
     DataSet GetMedicalList(int userID)
@@ -69,15 +70,15 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
                 "@TeamLeader, @TransportOfficer, @TreatmentOfficer, @ReceivingHospital, " +
                 "@Municipality, @City); SELECT TOP 1 DispatchID FROM Dispatch ORDER BY DispatchID DESC";
             cmd.Parameters.AddWithValue("@UserID", Request.QueryString["ID"].ToString());
-            cmd.Parameters.AddWithValue("@Dispatcher", txtDispatcher.Text.ToString());
-            cmd.Parameters.AddWithValue("@Date", txtCallDate.DbSelectedDate);
-            cmd.Parameters.AddWithValue("@Ambulance", txtAmbulance.Text.ToString());
-            cmd.Parameters.AddWithValue("@TeamLeader", txtTL.Text.ToString());
-            cmd.Parameters.AddWithValue("@TransportOfficer", txtTransportOfficer.Text.ToString());
-            cmd.Parameters.AddWithValue("@TreatmentOfficer", txtTreatmentOfficer.Text.ToString());
-            cmd.Parameters.AddWithValue("@ReceivingHospital", txtHospital.Text.ToString());
-            cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text.ToString());
-            cmd.Parameters.AddWithValue("@City", txtCity.Text.ToString());
+            cmd.Parameters.AddWithValue("@Dispatcher", txtDispatcher.Text);
+            cmd.Parameters.AddWithValue("@Date", txtCallDate.Text);
+            cmd.Parameters.AddWithValue("@Ambulance", txtAmbulance.Text);
+            cmd.Parameters.AddWithValue("@TeamLeader", txtTL.Text);
+            cmd.Parameters.AddWithValue("@TransportOfficer", txtTransportOfficer.Text);
+            cmd.Parameters.AddWithValue("@TreatmentOfficer", txtTreatmentOfficer.Text);
+            cmd.Parameters.AddWithValue("@ReceivingHospital", txtHospital.Text);
+            cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
+            cmd.Parameters.AddWithValue("@City", txtCity.Text);
             int DispatchID = (int)cmd.ExecuteScalar();
 
             cmd.CommandText = "INSERT INTO MedicalHistory VALUES (@UserID, @DispatchID, " +
@@ -85,16 +86,16 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@UserID", Request.QueryString["ID"].ToString());
             cmd.Parameters.AddWithValue("@DispatchID", DispatchID);
-            cmd.Parameters.AddWithValue("@Operation", txtOperation.Text.ToString());
-            cmd.Parameters.AddWithValue("@Details", txtDetails.Text.ToString());
-            cmd.Parameters.AddWithValue("@StartDate", txtStartDate.DbSelectedDate);
-            if (txtEndDate.DbSelectedDate == "")
+            cmd.Parameters.AddWithValue("@Operation", txtOperation.Text);
+            cmd.Parameters.AddWithValue("@Details", txtDetails.Text);
+            cmd.Parameters.AddWithValue("@StartDate", txtStartDate.Text);
+            if (txtEndDate.Text == "")
             {
-                cmd.Parameters.AddWithValue("@EndDate", txtStartDate.DbSelectedDate);
+                cmd.Parameters.AddWithValue("@EndDate", txtStartDate.Text);
             }
             else
             {
-                cmd.Parameters.AddWithValue("@EndDate", txtEndDate.DbSelectedDate);
+                cmd.Parameters.AddWithValue("@EndDate", txtEndDate.Text);
             }
             cmd.ExecuteNonQuery();
 
