@@ -44,8 +44,7 @@
                         <div class="form-group">
                             <label class="control-label col-lg-4 col-xs-12">Email</label>
                             <div class="col-lg-8 col-xs-12">
-                                <asp:TextBox ID="txtEmail" class="form-control" runat="server" TextMode="Email" required 
-                                    title="Please enter a valid email address so we can respond to your issue/inquiry"/>
+                                <asp:TextBox ID="txtEmail" class="form-control" runat="server" TextMode="Email" required />
                                 <asp:RegularExpressionValidator ID="emlVld" runat="server"
                                     ForeColor="red"
                                     Display="Dynamic"
@@ -79,8 +78,8 @@
                         <div class="form-group">
                             <label class="control-label col-lg-4 col-xs-12">Subject</label>
                             <div class="col-lg-6 col-xs-12">
-                                <asp:TextBox ID="txtSubject" class="form-control" runat="server" required 
-                                    title="For site issues, please include the name of the webpage."/>
+                                <asp:TextBox ID="txtSubject" class="form-control" runat="server"  
+                                    title="For site issues, please include the name of the webpage." required />
                             </div>
                         </div>
 
@@ -92,7 +91,8 @@
                         <label class="control-label">
                             Comments
                         </label>
-                        <dx:ASPxMemo ID="txtMessage" Width="100%" Height="250px" runat="server"></dx:ASPxMemo>
+                        <asp:TextBox ID="txtMessage" Width="100%" Height="100px" runat="server" TextMode="MultiLine"
+                            style="max-height: 100%; max-width: 100%"/>
                     </div>
                 </div>
                 <hr />

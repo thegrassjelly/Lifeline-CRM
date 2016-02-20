@@ -15,26 +15,50 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="control-label col-lg-4">First Name</label>
-                            <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtFirstName" runat="server" class="form-control" MaxLength="80" required/>
+                                <asp:RegularExpressionValidator ID="fnVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtFirstName"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid name" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Last Name</label>
-                            <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtLastName" runat="server" class="form-control" MaxLength="80" required/>
+                                <asp:RegularExpressionValidator ID="lnVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtLastName"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid name" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Phone No.</label>
                             <div class="col-lg-5 col-sm-12 col-xs-12">
-                                <asp:TextBox ID="txtPhone" runat="server" class="form-control" MaxLength="8" required/>
+                                <asp:TextBox ID="txtPhone" runat="server" class="form-control" MaxLength="7" required/>
+                                <asp:RegularExpressionValidator ID="PhnVld" runat="server"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtPhone"
+                                    ValidationExpression="^[0-9]{7}$"
+                                    ErrorMessage="Enter a valid Phone Number" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Mobile No.</label>
                             <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtMobile" runat="server" class="form-control" MaxLength="11" required/>
+                                <asp:RegularExpressionValidator ID="MblVld" runat="server"
+                                    ForeColor="Red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtMobile"
+                                    ValidationExpression="^[0-9]{11}$"
+                                    ErrorMessage="Enter a valid Mobile Number" />
                             </div>
                         </div>
                     </div>
@@ -52,6 +76,12 @@
                             <label class="control-label col-lg-4">If others</label>
                             <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtOthers" runat="server" class="form-control" MaxLength="12" />
+                                <asp:RegularExpressionValidator ID="nmVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtOthers"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid value" />
                             </div>
                         </div>
                     </div>

@@ -50,14 +50,13 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Date of Birth</label>
-                        <div class="col-lg-8 col-sm-12 col-xs-12">
-                            <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-                            <telerik:RadDatePicker ID="txtBday" runat="server" class="form-control"></telerik:RadDatePicker>
+                        <div class="col-lg-5 col-sm-12 col-xs-12">
+                            <asp:TextBox ID="txtBday" runat="server" class="form-control" TextMode="Date" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Street</label>
-                        <div class="col-lg-8 col-xs-12">
+                        <div class="col-lg-7 col-xs-12">
                             <asp:TextBox ID="txtStreet" runat="server" class="form-control" required />
                         </div>
                     </div>
@@ -114,7 +113,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Email Address</label>
                         <div class="col-lg-7 col-xs-12">
-                            <asp:TextBox ID="txtEmail" runat="server" class="form-control" required />
+                            <asp:TextBox ID="txtEmail" runat="server" class="form-control" TextMode="Email" required />
                             <asp:RegularExpressionValidator ID="emlVld" runat="server"
                                 ForeColor="Red"
                                 Display="Dynamic"

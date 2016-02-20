@@ -53,6 +53,7 @@
                         <label id="ddl-label" class="control-label pull-left">First Name</label>
                         <asp:RegularExpressionValidator ID="fnVld" class="pull-right" runat="server"
                             Display="Dynamic"
+                           ForeColor="Red"
                             ControlToValidate="txtFirstName"
                             ValidationExpression="^[a-zA-Z'.\s]{1,50}"
                             Text="Enter a valid first name" />
@@ -62,6 +63,7 @@
                         <label id="ddl-label" class="control-label pull-left">Last Name</label>
                         <asp:RegularExpressionValidator ID="lnVld" class="pull-right" runat="server"
                             Display="Dynamic"
+                            ForeColor="Red"
                             ControlToValidate="txtLastName"
                             ValidationExpression="^[a-zA-Z'.\s]{1,50}"
                             Text="Enter a valid last name" />
@@ -71,6 +73,7 @@
                         <label id="ddl-label" class="control-label pull-left">Email Address</label>
                         <asp:RegularExpressionValidator ID="emlVld" class="pull-right" runat="server"
                             Display="Dynamic"
+                            ForeColor="Red"
                             ErrorMessage="Please enter valid e-mail address"
                             ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$"
                             ControlToValidate="txtEmail" />
@@ -79,13 +82,15 @@
                     </div>
                     <div>
                         <label id="ddl-label" class="control-label pull-left">Date of Birth</label>
-                        <asp:RegularExpressionValidator ID="dateValRegex" class="pull-right" runat="server"
+                        <asp:RangeValidator ID="bdayVld" class="pull-right" runat="server"
                             Display="Dynamic"
+                            ForeColor="Red"
                             ControlToValidate="txtBday"
-                            ErrorMessage="Please Enter a valid date in the format (mm/dd/yyyy)"
-                            ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$" />
-                        <asp:TextBox ID="txtBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" data-toggle="tooltip"
-                            title="Date format: mm/dd/yyyy" MaxLength="10" />
+                            ErrorMessage="Choose a valid date"
+                            MaximumValue="2017-01-01"
+                            MinimumValue="1900-01-01" />
+                        <asp:TextBox ID="txtBday" class="form-control" runat="server" TextMode="Date" data-toggle="tooltip" MaxLength="10" />
+                        <br />
                     </div>
                     <div>
                         <label id="ddl-label" class="control-label pull-left">Password</label>

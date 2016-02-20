@@ -2,13 +2,15 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Web;
 
 public partial class Account_Register : System.Web.UI.Page
 {
     SqlConnection con = new SqlConnection(Helper.GetCon());
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        this.Form.DefaultButton = this.btnRegister.UniqueID;
+        GetUserIP();
     }
 
     bool IsRecordExisting(string email)
@@ -26,6 +28,22 @@ public partial class Account_Register : System.Web.UI.Page
             existing = false;
         con.Close();
         return existing;
+    }
+
+    public static string GetUserIP()
+    {
+        string VisitorsIPAddr = string.Empty;
+        if (HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] != null)
+        {
+            VisitorsIPAddr = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();
+        }
+        else if (HttpContext.Current.Request.UserHostAddress.Length != 0)
+        {
+            VisitorsIPAddr = HttpContext.Current.Request.UserHostAddress;
+        }
+        if (VisitorsIPAddr == "::1")
+            VisitorsIPAddr = "127.0.0.1";
+        return VisitorsIPAddr;
     }
 
     protected void btnRegister_Click(object sender, EventArgs e)
@@ -53,9 +71,9 @@ public partial class Account_Register : System.Web.UI.Page
                 cmd.Parameters.AddWithValue("@TypeID", "5");
             }
             cmd.Parameters.AddWithValue("@Status", "Pending");
-            cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text.ToString());
-            cmd.Parameters.AddWithValue("@LastName", txtLastName.Text.ToString());
-            cmd.Parameters.AddWithValue("@Birthday", txtBday.Text.ToString());
+            cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+            cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+            cmd.Parameters.AddWithValue("@Birthday", txtBday.Text);
             cmd.Parameters.AddWithValue("@UserPic", "placeholder.png");
             cmd.Parameters.AddWithValue("@Street", "");
             cmd.Parameters.AddWithValue("@Municipality", "");
@@ -68,6 +86,12 @@ public partial class Account_Register : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@Priority", "Normal");
             cmd.Parameters.AddWithValue("@CorporateID", "");
             int UserID = (int)cmd.ExecuteScalar();
+
+            cmd.CommandText = "INSERT INTO UserIP (UserID, IPAddr) VALUES (@UserID, @IPAddr)";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@UserID", UserID);
+            cmd.Parameters.AddWithValue("@IPAddr", GetUserIP());
+            cmd.ExecuteNonQuery();
 
             cmd.CommandText = "INSERT INTO MedicalInfo (UserID) VALUES (@UserID)";
             cmd.Parameters.Clear();

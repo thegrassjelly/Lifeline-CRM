@@ -23,8 +23,8 @@
                                         <hr />
                                         <p><strong>Relationship </strong><%# Eval("Relationship") %></p>
                                         <ul class="list-unstyled">
-                                            <li><i class="fa fa-phone"></i><%# Eval("TelNo") %> </li>
-                                            <li><i class="fa fa-mobile"></i><%# Eval("MobileNo") %> </li>
+                                            <li><i class="fa fa-phone"></i> <%# Eval("TelNo") %> </li>
+                                            <li><i class="fa fa-mobile"></i> <%# Eval("MobileNo") %> </li>
                                         </ul>
                                     </div>
                                 </div>

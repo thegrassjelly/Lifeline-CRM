@@ -6,6 +6,7 @@ public partial class Account_ClientForms_AddDependents : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Helper.ValidateUser();
+        this.Form.DefaultButton = this.btnAdd.UniqueID;
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)

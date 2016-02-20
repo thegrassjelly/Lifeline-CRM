@@ -103,9 +103,15 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Date of Birth</label>
-                            <div class="col-lg-8 col-sm-12 col-xs-12">
-                                 <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-                                 <telerik:RadDatePicker ID="txtBday" runat="server" class="form-control"></telerik:RadDatePicker>
+                            <div class="col-lg-5 col-sm-12 col-xs-12">
+                                 <asp:TextBox ID="txtBday" class="form-control" runat="server" TextMode="Date" />
+                                <asp:RangeValidator ID="bdayVld" runat="server"
+                                    Display="Dynamic"
+                                    ForeColor="Red"
+                                    ControlToValidate="txtBday"
+                                    ErrorMessage="Choose a valid date"
+                                    MaximumValue="2017-01-01"
+                                    MinimumValue="1900-01-01" />
                             </div>
                         </div>
                     </div>

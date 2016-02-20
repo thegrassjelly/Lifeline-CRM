@@ -12,6 +12,7 @@ public partial class Account_Issue_Inquiry : System.Web.UI.Page
         {
             GetUserInfo();
         }
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     void GetUserInfo()

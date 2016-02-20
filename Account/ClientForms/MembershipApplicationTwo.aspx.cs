@@ -26,6 +26,7 @@ public partial class Account_ClientForms_MembershipApplicationTwo : System.Web.U
                 txtDep.Text = "N/A";
             }
         }
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     bool IsApplied()

@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Account/customer.master" AutoEventWireup="true" CodeFile="MessageDetails.aspx.cs" Inherits="Account_MessageDetails" %>
-<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <h3>My Profile</h3>
@@ -57,8 +56,8 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-lg-12">
-                        <ckeditor:ckeditorcontrol id="ckeMessage" basepath="/ckeditor/" runat="server" toolbar="Basic">
-                        </ckeditor:ckeditorcontrol>
+                        <asp:TextBox ID="txtMessage" Width="100%" Height="200" TextMode="MultiLine" runat="server" 
+                            style="max-height: 100%; max-width: 100%" disabled />
                     </div>
                 </div>
                 <hr />

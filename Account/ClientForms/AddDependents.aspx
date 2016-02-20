@@ -64,16 +64,15 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="depOneBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" required />
-                            <asp:RegularExpressionValidator
-                                ForeColor="Red"
-                                display="Dynamic"
-                                ID="dateValRegex"
-                                runat="server"
+                            <asp:TextBox ID="depOneBday" class="form-control" runat="server" TextMode="date" 
+                                MaxLength="10" required />
+                            <asp:RangeValidator ID="bdayVldOne" runat="server" 
+                                Display="Dynamic"         
+                                ForeColor="Red"                       
                                 ControlToValidate="depOneBday"
-                                ErrorMessage="Please Enter a valid date in the format (mm/dd/yyyy)"
-                                ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$">
-                            </asp:RegularExpressionValidator>
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01" 
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                 </div>
@@ -138,16 +137,14 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="depTwoBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" />
-                            <asp:RegularExpressionValidator
-                                ForeColor="Red"
-                                display="Dynamic"
-                                ID="RegularExpressionValidator1"
-                                runat="server"
+                            <asp:TextBox ID="depTwoBday" class="form-control" runat="server" TextMode="date" />
+                            <asp:RangeValidator ID="bdayVldTwo" runat="server" 
+                                Display="Dynamic"         
+                                ForeColor="Red"                       
                                 ControlToValidate="depTwoBday"
-                                ErrorMessage="Please Enter a valid date in the format (mm/dd/yyyy)"
-                                ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$">
-                            </asp:RegularExpressionValidator>
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01" 
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                 </div>
@@ -212,16 +209,14 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="depThreeBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" />
-                            <asp:RegularExpressionValidator
+                            <asp:TextBox ID="depThreeBday" class="form-control" runat="server" TextMode="Date" />
+                            <asp:RangeValidator ID="bdayVldThree" runat="server"
+                                Display="Dynamic"
                                 ForeColor="Red"
-                                display="Dynamic"
-                                ID="RegularExpressionValidator2"
-                                runat="server"
                                 ControlToValidate="depThreeBday"
-                                ErrorMessage="Please Enter a valid date in the format (mm/dd/yyyy)"
-                                ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$">
-                            </asp:RegularExpressionValidator>
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01"
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                 </div>
@@ -286,16 +281,14 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="depFourBday" class="form-control" runat="server" placeholder="mm/dd/yyyy" MaxLength="10" />
-                            <asp:RegularExpressionValidator
+                            <asp:TextBox ID="depFourBday" class="form-control" runat="server" TextMode="Date" />
+                            <asp:RangeValidator ID="bdayVldFour" runat="server"
+                                Display="Dynamic"
                                 ForeColor="Red"
-                                display="Dynamic"
-                                ID="RegularExpressionValidator3"
-                                runat="server"
                                 ControlToValidate="depFourBday"
-                                ErrorMessage="Please Enter a valid date in the format (mm/dd/yyyy)"
-                                ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$">
-                            </asp:RegularExpressionValidator>
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01"
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,7 @@ public partial class Account_Feedback_Feedback : System.Web.UI.Page
         {
             GetUserInfo();
         }
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     void GetUserInfo()

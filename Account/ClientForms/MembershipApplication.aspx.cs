@@ -26,6 +26,7 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
                 Session.Remove("password");
             }
         }
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     bool IsApplied()
@@ -65,7 +66,7 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
                     txtFirstName.Text = data["FirstName"].ToString();
                     txtLastName.Text = data["LastName"].ToString();
                     DateTime bDay = Convert.ToDateTime(data["Birthday"].ToString());
-                    txtBday.DbSelectedDate = bDay.ToString("MM/dd/yyyy");
+                    txtBday.Text = bDay.ToString("yyyy-MM-dd");
                     txtStreet.Text = data["Street"].ToString();
                     txtMunicipality.Text = data["Municipality"].ToString();
                     txtCity.Text = data["City"].ToString();
@@ -124,7 +125,7 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
                         cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                         cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
                         cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
-                        cmd.Parameters.AddWithValue("@Birthday", txtBday.SelectedDate);
+                        cmd.Parameters.AddWithValue("@Birthday", txtBday.Text);
                         cmd.Parameters.AddWithValue("@Street", txtStreet.Text);
                         cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
                         cmd.Parameters.AddWithValue("@City", txtCity.Text);

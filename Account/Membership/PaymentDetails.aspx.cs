@@ -40,6 +40,7 @@ public partial class Account_Membership_PaymentDetails : System.Web.UI.Page
         {
             Response.Redirect("~/Account/Membership/Payments.aspx");
         }
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     void GetUserInfo()

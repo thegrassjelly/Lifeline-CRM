@@ -53,7 +53,7 @@ public partial class Account_MessageDetails : System.Web.UI.Page
                         txtSubject.Text = data["Subject"].ToString();
                         DateTime dDate = Convert.ToDateTime(data["DateSubmitted"].ToString());
                         txtDate.Text = dDate.ToString("MM/dd/yyyy");
-                        ckeMessage.Text = data["Message"].ToString();
+                        txtMessage.Text = data["Message"].ToString();
                         Session["messageuser"] = data["UserID"].ToString();
                     }
                     con.Close();

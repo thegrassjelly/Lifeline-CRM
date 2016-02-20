@@ -28,6 +28,7 @@ public partial class Account_SecondaryContacts_Default : System.Web.UI.Page
         {
             Response.Redirect("~/Account/SecondaryContacts/View.aspx");
         }
+        this.Form.DefaultButton = this.btnUpdate.UniqueID;
     }
 
     void GetContactInfo(int ID)

@@ -66,14 +66,14 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Date of Birth</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtBday" class="form-control" runat="server"
-                                placeholder="mm/dd/yyyy" MaxLength="10" required />
-                            <asp:RegularExpressionValidator ID="bdayVld" runat="server"
-                                ForeColor="red"
+                            <asp:TextBox ID="txtBday" class="form-control" runat="server" TextMode="date" />
+                            <asp:RangeValidator ID="bdayVld" runat="server"
                                 Display="Dynamic"
+                                ForeColor="Red"
                                 ControlToValidate="txtBday"
-                                ErrorMessage="Please Enter a valid date in the format (mm/dd/yyyy)"
-                                ValidationExpression="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$" />
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01"
+                                MinimumValue="1900-01-01" />
                         </div>
                     </div>
                 </div>

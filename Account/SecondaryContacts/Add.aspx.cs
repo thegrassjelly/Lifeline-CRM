@@ -10,6 +10,7 @@ public partial class Account_Secondary : System.Web.UI.Page
         {
             GetContactCat();
         }
+        this.Form.DefaultButton = this.btnInsert.UniqueID;
     }
 
     void GetContactCat()

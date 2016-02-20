@@ -35,15 +35,11 @@
                         </div>
                         <label class="control-label col-lg-2 col-xs-12">Payment</label>
                         <div class="col-lg-2 text-center">
-                            <button type="button" id="btnPaid" class="btn btn-info btn-md">
-                                <asp:Literal ID="txtPayStatus" runat="server"></asp:Literal>
-                            </button>
+                                <asp:TextBox ID="txtPayStatus" runat="server" class="form-control text-center" disabled />
                         </div>
                         <label class="control-label col-lg-2 col-xs-12">Membership Status</label>
                         <div class="col-lg-2 text-center">
-                            <button type="button" id="btnActive" class="btn btn-info btn-md">
-                                <asp:Literal ID="txtMemStatus" runat="server"></asp:Literal>
-                            </button>
+                                <asp:TextBox ID="txtMemStatus" runat="server" class="form-control text-center" disabled />
                         </div>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ public partial class Account_ClientForms_PendingClient : System.Web.UI.Page
                 Session.Remove("verification");
             }
         }
-
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     bool CheckVerification()
@@ -67,7 +67,7 @@ public partial class Account_ClientForms_PendingClient : System.Web.UI.Page
                     txtFN.Text = data["FirstName"].ToString();
                     txtLN.Text = data["LastName"].ToString();
                     DateTime bDay = Convert.ToDateTime(data["Birthday"].ToString());
-                    txtBday.DbSelectedDate = bDay.ToString("MM/dd/yyyy");
+                    txtBday.Text = bDay.ToString("yyyy-MM-dd");
                     txtStreet.Text = data["Street"].ToString();
                     txtMunicipality.Text = data["Municipality"].ToString();
                     txtCity.Text = data["City"].ToString();
@@ -96,7 +96,7 @@ public partial class Account_ClientForms_PendingClient : System.Web.UI.Page
                         "City=@City, Phone=@Phone, Mobile=@Mobile, Email=@Email FROM Users WHERE UserID=@UserID";
                     cmd.Parameters.AddWithValue("@FirstName", txtFN.Text);
                     cmd.Parameters.AddWithValue("@LastName", txtLN.Text);
-                    cmd.Parameters.AddWithValue("@Birthday", txtBday.DbSelectedDate);
+                    cmd.Parameters.AddWithValue("@Birthday", txtBday.Text);
                     cmd.Parameters.AddWithValue("@Street", txtStreet.Text);
                     cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
                     cmd.Parameters.AddWithValue("@City", txtCity.Text);

@@ -27,6 +27,7 @@ public partial class Account_Membership_PaymentHistoryDep : System.Web.UI.Page
         {
             Response.Redirect(Request.UrlReferrer.ToString());
         }
+        this.Form.DefaultButton = this.btnReturn.UniqueID;
     }
 
     void GetDependent(int depID)

@@ -395,7 +395,19 @@
                     <form class="contact-form" runat="server">
                         <div class="row">
                             <div class="col-md-6">
+                                <asp:RegularExpressionValidator ID="fnVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtFirstName"
+                                    ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                    Text="Enter a valid name" />
                                 <asp:TextBox ID="txtFirstName" class="form-control" runat="server" placeholder="Name"/>
+                                <asp:RegularExpressionValidator ID="emlVld" runat="server"
+                                    ForeColor="red"
+                                    Display="Dynamic"
+                                    ControlToValidate="txtEmail"
+                                    ErrorMessage="Please enter valid e-mail address"
+                                    ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" />
                                 <asp:TextBox ID="txtEmail" class="form-control" runat="server" TextMode="Email" placeholder="Email" required />
                                 <asp:TextBox ID="txtSubject" class="form-control" runat="server" placeholder="Subject" required />
                             </div>
@@ -455,7 +467,7 @@
                     <div class="col-md-12 text-center">
                         <div class="copyright_text wow fadeInUp animated">
                             <hr />
-                            <p>&copy; Lifeline Ambulance Rescue, Inc. 2015. All Rights Reserved By <a href="mailto:steven.tomas01@gmail.com" target="_blank">Team Tomasinoben</a></p>
+                            <p>&copy; Lifeline Ambulance Rescue, Inc. 2015. All Rights Reserved By <a href="mailto:steven.tomas@live.com" target="_blank">Team Tomasinoben</a></p>
                         </div>
                     </div>
                     <div class="elevator pull-right">

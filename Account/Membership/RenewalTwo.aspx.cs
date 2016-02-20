@@ -24,6 +24,7 @@ public partial class Account_Membership_RenewalTwo : System.Web.UI.Page
             }
 
         }
+        this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
 
     void GetUserInfo()
