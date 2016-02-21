@@ -1,12 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="AddMedical.aspx.cs" Inherits="Admin_Users_Dispatch" %>
+
 <%@ Register TagPrefix="dx" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
 <%@ Register TagPrefix="dxe" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <h3>User Management</h3>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
     <form class="form-horizontal" runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods="true" />
         <div class="col-lg-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -172,6 +175,12 @@
                         <label class="control-label col-lg-4">City</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtCity" runat="server" class="form-control" />
+                            <ajaxToolkit:AutoCompleteExtender ID="ajaxCity" runat="server"
+                                ServiceMethod="SearchCity"
+                                MinimumPrefixLength="1"
+                                CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                                TargetControlID="txtCity"
+                                FirstRowSelected="false" />
                         </div>
                     </div>
                     <div class="form-group">

@@ -2,6 +2,9 @@
 using System.Data;
 using System.Data.SqlClient;
 using DevExpress.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
+using System.Collections.Generic;
 
 public partial class Admin_Users_Dispatch : System.Web.UI.Page
 {
@@ -40,6 +43,31 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
             medical.Visible = false;
         }
         this.Form.DefaultButton = this.btnInsert.UniqueID;
+    }
+
+    [ScriptMethod()]
+    [WebMethod]
+    public static List<string> SearchCity(string prefixText, int count)
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT Name FROM Cities WHERE " +
+            "Name LIKE @SearchText + '%'";
+            cmd.Parameters.AddWithValue("@SearchText", prefixText);
+            List<string> cities = new List<string>();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    cities.Add(dr["Name"].ToString());
+                }
+            }
+            con.Close();
+            return cities;
+        }
     }
 
     DataSet GetMedicalList(int userID)

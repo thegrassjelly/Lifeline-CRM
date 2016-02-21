@@ -24,6 +24,7 @@
     <link href="../css/jquery.qtip.min.css" rel="stylesheet" />
     <link href="../css/lightbox.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href="../css/jquery-ui.min.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -267,6 +268,7 @@
 
     <script src='<%= Page.ResolveUrl("~/js/jquery.min.js") %>'></script>
     <script src='<%= Page.ResolveUrl("~/js/bootstrap.min.js") %>'></script>
+    <script src='<%= Page.ResolveUrl("~/js/jquery-ui.min.js") %>'></script>
     <!-- chart js -->
     <script src='<%= Page.ResolveUrl("~/js/chartjs/chart.min.js") %>'></script>
     <!-- bootstrap progress js -->

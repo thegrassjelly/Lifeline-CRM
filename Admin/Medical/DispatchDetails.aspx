@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="DispatchDetails.aspx.cs" Inherits="Admin_Medical_Default" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <h3>User Management</h3>
 </asp:Content>
@@ -11,6 +13,7 @@
         </div>
         <div class="x_content">
             <form class="form-horizontal" runat="server">
+                <asp:ScriptManager runat="server" EnablePageMethods="true" />
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <ul class="stats-overview">
                         <li>
@@ -76,12 +79,30 @@
                                 <label class="control-label col-lg-4">Municipality</label>
                                 <div class="col-lg-5 col-sm-12 col-xs-12">
                                     <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" />
+                                    <asp:RegularExpressionValidator ID="MncpltyVld" runat="server"
+                                        ForeColor="Red"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtMunicipality"
+                                        ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                        Text="Enter a valid Municipality" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-4">City</label>
                                 <div class="col-lg-5 col-sm-12 col-xs-12">
                                     <asp:TextBox ID="txtCity" runat="server" class="form-control" />
+                                    <ajaxToolkit:AutoCompleteExtender ID="ajaxCity" runat="server"
+                                        ServiceMethod="SearchCity"
+                                        MinimumPrefixLength="1"
+                                        CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                                        TargetControlID="txtCity"
+                                        FirstRowSelected="false" />
+                                    <asp:RegularExpressionValidator ID="CtyVld" runat="server"
+                                        ForeColor="Red"
+                                        Display="Dynamic"
+                                        ControlToValidate="txtCity"
+                                        ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                        Text="Enter a valid City" />
                                 </div>
                             </div>
                         </div>

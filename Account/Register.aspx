@@ -1,10 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Account_Register" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <!DOCTYPE html>
 
 <html lang="en">
 
-<head>
+<head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -42,6 +44,7 @@
         <div id="register" class="animate form">
             <section class="login_content">
                 <form runat="server" class="form-horizontal">
+                    <asp:ScriptManager runat="server" EnablePageMethods="true" />
                     <h1>Create Account</h1>
                     <div id="error" runat="server" class="alert alert-danger" visible="false">
                         Username / Email address already existing.
@@ -95,10 +98,30 @@
                     <div>
                         <label id="ddl-label" class="control-label pull-left">Password</label>
                         <asp:TextBox ID="txtPassword" runat="server" class="form-control" TextMode="Password" placeholder="Password *" MaxLength="20" required />
+                        <ajaxtoolkit:passwordstrength id="ajaxPwd" runat="server"
+                            targetcontrolid="txtPassword"
+                            displayposition="BelowRight"
+                            strengthindicatortype="Text"
+                            preferredpasswordlength="10"
+                            prefixtext="Strength: "
+                            helpstatuslabelid="TextBox1_HelpLabel"
+                            textstrengthdescriptions="Very Poor;Weak;Average;Strong;Excellent"
+                            strengthstyles="TextIndicator_TextBox1_Strength1;TextIndicator_TextBox1_Strength2;TextIndicator_TextBox1_Strength3;TextIndicator_TextBox1_Strength4;TextIndicator_TextBox1_Strength5"
+                            minimumnumericcharacters="0"
+                            minimumsymbolcharacters="0"
+                            requiresupperandlowercasecharacters="false" />
                     </div>
                     <div>
                         <label id="ddl-label" class="control-label pull-left">Repeat Password</label>
+                        <asp:CompareValidator ID="cmprPwd" runat="server" class="pull-right"
+                            Display="Dynamic"
+                            ForeColor="Red"
+                            ControlToCompare="txtPassword" 
+                            ControlToValidate="txtPassword2" 
+                            ErrorMessage="Passwords do not match" />
                         <asp:TextBox ID="txtPassword2" runat="server" class="form-control" TextMode="Password" placeholder="Repeat Password *" MaxLength="20" required />
+                    </div>
+                    <div>
                     </div>
                     <div>
                         <label id="ddl-label" class="control-label pull-left">Register as *</label>
@@ -110,10 +133,7 @@
                             <asp:ListItem>Pending Client</asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <div>
-                        <!-- Pending: Required validation for reCaptcha -->
-                        <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtPassword2" ErrorMessage="Passwords do not match"></asp:CompareValidator>
-                    </div>
+                    <!-- Pending: Required validation for reCaptcha -->
                     <div class="g-recaptcha" data-sitekey="6Ld1ohYTAAAAANzwfapvbp5hC2PsDH6ALQN2Aj5c"></div>
                     <br />
                     <div>

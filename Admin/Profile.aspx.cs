@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
+using System.Web.Script.Services;
+using System.Web.Services;
 
 public partial class Admin_Profile : System.Web.UI.Page
 {
@@ -22,6 +25,31 @@ public partial class Admin_Profile : System.Web.UI.Page
             GetUserInfo();
         }
         this.Form.DefaultButton = this.btnUpdate.UniqueID;
+    }
+
+    [ScriptMethod()]
+    [WebMethod]
+    public static List<string> SearchCity(string prefixText, int count)
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT Name FROM Cities WHERE " +
+            "Name LIKE @SearchText + '%'";
+            cmd.Parameters.AddWithValue("@SearchText", prefixText);
+            List<string> cities = new List<string>();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    cities.Add(dr["Name"].ToString());
+                }
+            }
+            con.Close();
+            return cities;
+        }
     }
 
     void GetUserInfo()

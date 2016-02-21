@@ -1,10 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Account/customer.master" AutoEventWireup="true" CodeFile="MembershipApplication.aspx.cs" Inherits="Account_ClientForms_MembershipApplication" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <h3>Membership Application Form</h3>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
     <form class="form-horizontal" runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods="true" />
         <div class="col-lg-6">
             <div class="x_panel">
                 <div class="x_title">
@@ -99,6 +102,12 @@
                         <label class="control-label col-lg-4">City</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtCity" runat="server" class="form-control" required/>
+                            <ajaxToolkit:AutoCompleteExtender ID="ajaxCity" runat="server"
+                                ServiceMethod="SearchCity"
+                                MinimumPrefixLength="1"
+                                CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                                TargetControlID="txtCity"
+                                FirstRowSelected="false" />
                             <asp:RegularExpressionValidator ID="CtyVld" runat="server"
                                 ForeColor="Red"
                                 Display="Dynamic"

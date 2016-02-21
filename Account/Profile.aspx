@@ -1,10 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Account/customer.master" AutoEventWireup="true" CodeFile="Profile.aspx.cs" Inherits="Account_Profile" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <h3>My Profile</h3>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
 <form class="form-horizontal" runat="server">
+<asp:ScriptManager runat="server" EnablePageMethods="true" />
     <div class="x_panel">
         <div class="x_title">
             <h2>Personal Information</h2>
@@ -139,6 +142,12 @@
                             <label class="control-label col-lg-4">City</label>
                             <div class="col-lg-5 col-sm-12 col-xs-12">
                                 <asp:TextBox ID="txtCity" runat="server" class="form-control" />
+                                <ajaxToolkit:AutoCompleteExtender ID="ajaxCity" runat="server"
+                                    ServiceMethod="SearchCity"
+                                    MinimumPrefixLength="2"
+                                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                                    TargetControlID="txtCity"
+                                    FirstRowSelected="false" />
                                 <asp:RegularExpressionValidator ID="CtyVld" runat="server"
                                     ForeColor="Red"
                                     Display="Dynamic"
@@ -161,9 +170,21 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-4">Password</label>
-                            <div class="col-lg-6 col-sm-12 col-xs-12">
-                                <asp:TextBox ID="txtPassword" runat="server" class="form-control" MaxLength="30"
+                            <div class="col-lg-5 col-sm-12 col-xs-12">
+                                <asp:TextBox ID="txtPassword" runat="server" class="form-control" MaxLength="20"
                                     TextMode="Password" />
+                                <ajaxToolkit:PasswordStrength ID="ajaxPwd" runat="server"
+                                    TargetControlID="txtPassword"
+                                    DisplayPosition="BelowRight"
+                                    StrengthIndicatorType="Text"
+                                    PreferredPasswordLength="10"
+                                    PrefixText="Strength: "
+                                    HelpStatusLabelID="TextBox1_HelpLabel"
+                                    TextStrengthDescriptions="Very Poor;Weak;Average;Strong;Excellent"
+                                    StrengthStyles="TextIndicator_TextBox1_Strength1;TextIndicator_TextBox1_Strength2;TextIndicator_TextBox1_Strength3;TextIndicator_TextBox1_Strength4;TextIndicator_TextBox1_Strength5"
+                                    MinimumNumericCharacters="0"
+                                    MinimumSymbolCharacters="0"
+                                    RequiresUpperAndLowerCaseCharacters="false" />
                             </div>
                         </div>
                         <hr/>
