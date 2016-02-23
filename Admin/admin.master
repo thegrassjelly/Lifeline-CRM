@@ -15,7 +15,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
     <link href="../fonts/css/font-awesome.css" rel="stylesheet">
     <link href="../css/animate.min.css" rel="stylesheet">
     <!-- Custom styling plus plugins -->
@@ -24,6 +23,7 @@
     <link href="../css/jquery.qtip.min.css" rel="stylesheet" />
     <link href="../css/lightbox.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href="../css/jquery-ui.min.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -104,6 +104,30 @@
 
                                             </li>
                                             <li><a href='<%= Page.ResolveUrl("~/Admin/Users/Verification.aspx") %>'><i class="fa fa-list"></i>Membership Verifications</a>
+
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="nav side-menu">
+                                    <li><a><i class="fa fa-ambulance"></i>Operations <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddResponders.aspx") %>'><i class="fa fa-plus"></i>Add Responders</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddAmbulance.aspx") %>'><i class="fa fa-plus"></i>Add Ambulance</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddHospitals.aspx") %>'><i class="fa fa-plus"></i>Add Hospitals</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddEmployees.aspx") %>'><i class="fa fa-list"></i>View Responders</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddAmbulance.aspx") %>'><i class="fa fa-list"></i>View Ambulance</a>
+
+                                            </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddHospitals.aspx") %>'><i class="fa fa-list"></i>View Hospitals</a>
 
                                             </li>
                                         </ul>
@@ -359,6 +383,7 @@
 
     <script src='<%= Page.ResolveUrl("~/js/jquery.min.js") %>'></script>
     <script src='<%= Page.ResolveUrl("~/js/bootstrap.min.js") %>'></script>
+    <script src='<%= Page.ResolveUrl("~/js/jquery-ui.min.js") %>'></script>
     <!-- chart js -->
     <script src='<%= Page.ResolveUrl("~/js/chartjs/chart.min.js") %>'></script>
     <!-- bootstrap progress js -->

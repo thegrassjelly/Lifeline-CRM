@@ -49,19 +49,18 @@ public partial class Admin_Users_Update : System.Web.UI.Page
         }
     }
 
-    [ScriptMethod()]
     [WebMethod]
-    public static List<string> SearchCity(string prefixText, int count)
+    public static List<string> SearchCity(string prefixText)
     {
+        List<string> cities = new List<string>();
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
         {
-            con.Open();
-            cmd.Connection = con;
             cmd.CommandText = "SELECT Name FROM Cities WHERE " +
-            "Name LIKE @SearchText + '%'";
+                    "Name LIKE @SearchText + '%'";
             cmd.Parameters.AddWithValue("@SearchText", prefixText);
-            List<string> cities = new List<string>();
+            cmd.Connection = con;
+            con.Open();
             using (SqlDataReader dr = cmd.ExecuteReader())
             {
                 while (dr.Read())
@@ -70,8 +69,8 @@ public partial class Admin_Users_Update : System.Web.UI.Page
                 }
             }
             con.Close();
-            return cities;
         }
+        return cities;
     }
 
     void GetTypes()

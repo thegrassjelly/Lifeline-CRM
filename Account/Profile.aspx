@@ -4,6 +4,33 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <h3>My Profile</h3>
+    <script type='text/javascript' src='<%= Page.ResolveUrl("~/js/newjs/jquery.min.js") %>'></script>
+    <script type='text/javascript' src='<%= Page.ResolveUrl("~/js/newjs/jquery-ui.min.js") %>'></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            SearchText();
+        });
+
+        function SearchText() {
+            $(".autosuggest").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "Profile.aspx/SearchCity",
+                        data: "{'prefixText':'" + document.getElementById('<%=txtCity.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+            }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
 <form class="form-horizontal" runat="server">
@@ -141,13 +168,7 @@
                         <div class="form-group">
                             <label class="control-label col-lg-4">City</label>
                             <div class="col-lg-5 col-sm-12 col-xs-12">
-                                <asp:TextBox ID="txtCity" runat="server" class="form-control" />
-                                <ajaxToolkit:AutoCompleteExtender ID="ajaxCity" runat="server"
-                                    ServiceMethod="SearchCity"
-                                    MinimumPrefixLength="2"
-                                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
-                                    TargetControlID="txtCity"
-                                    FirstRowSelected="false" />
+                                <asp:TextBox ID="txtCity" runat="server" class="form-control autosuggest" />
                                 <asp:RegularExpressionValidator ID="CtyVld" runat="server"
                                     ForeColor="Red"
                                     Display="Dynamic"
