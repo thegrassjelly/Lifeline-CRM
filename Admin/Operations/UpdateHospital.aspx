@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="AddHospitals.aspx.cs" Inherits="Admin_Operations_AddHospitals" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="UpdateHospital.aspx.cs" Inherits="Admin_Operations_UpdateHospital" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <h3>Operations</h3>
@@ -15,7 +15,7 @@
                     $.ajax({
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
-                        url: "AddHospitals.aspx/SearchCity",
+                        url: "UpdateHospital.aspx/SearchCity",
                         data: "{'prefixText':'" + document.getElementById('<%=txtCity.ClientID%>').value + "'}",
                             dataType: "json",
                             success: function (data) {
@@ -34,7 +34,7 @@
     <form class="form-horizontal" runat="server">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Add Hospital</h2>
+                <h2>Update Hospital</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="col-lg-6">
@@ -82,8 +82,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-offset-4 col-lg-8">
-                        <asp:Button ID="btnAdd" runat="server" class="btn btn-primary pull-right" Text="Submit"
-                            OnClick="btnAdd_Click" />
+                        <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary pull-right" Text="Update"
+                            OnClick="btnUpdate_Click" />
                     </div>
                 </div>
                 <br />

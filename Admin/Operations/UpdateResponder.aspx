@@ -1,13 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="AddResponders.aspx.cs" Inherits="Admin_Users_AddEmployees" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="UpdateResponder.aspx.cs" Inherits="Admin_Operations_UpdateResponder" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <h3>Operations</h3>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <form class="form-horizontal" runat="server">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Add Responders</h2>
+                <h2>Update Responder</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="col-lg-6">
@@ -48,7 +48,6 @@
                     <label class="control-label col-lg-4">Job Title</label>
                     <div class="col-lg-5 col-sm-12 col-xs-12">
                         <asp:DropDownList ID="ddlTitle" runat="server" class="form-control" required>
-                            <asp:ListItem>Dispatcher</asp:ListItem>
                             <asp:ListItem>Team Leader</asp:ListItem>
                             <asp:ListItem>Transport Officer</asp:ListItem>
                             <asp:ListItem>Treatment Officer</asp:ListItem>
@@ -57,8 +56,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-offset-4 col-lg-8">
-                        <asp:Button ID="btnAdd" runat="server" class="btn btn-primary pull-right" Text="Submit"
-                            OnClick="btnAdd_Click" />
+                        <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary pull-right" Text="Update"
+                            OnClick="btnUpdate_Click" />
                     </div>
                 </div>
                 <br />

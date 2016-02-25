@@ -121,13 +121,13 @@
                                             <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddHospitals.aspx") %>'><i class="fa fa-plus"></i>Add Hospitals</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddEmployees.aspx") %>'><i class="fa fa-list"></i>View Responders</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/ViewResponders.aspx") %>'><i class="fa fa-list"></i>View Responders</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddAmbulance.aspx") %>'><i class="fa fa-list"></i>View Ambulance</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/ViewAmbulance.aspx") %>'><i class="fa fa-list"></i>View Ambulance</a>
 
                                             </li>
-                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/AddHospitals.aspx") %>'><i class="fa fa-list"></i>View Hospitals</a>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Operations/ViewHospitals.aspx") %>'><i class="fa fa-list"></i>View Hospitals</a>
 
                                             </li>
                                         </ul>
@@ -349,6 +349,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <asp:ContentPlaceHolder ID="body" runat="server">
                             </asp:ContentPlaceHolder>
+                            <br />
                         </div>
                     </div>
 
@@ -361,7 +362,7 @@
                          <a href="<%= Page.ResolveUrl("../Default.aspx#WORK") %>">Works</a> |
                          <a href="<%= Page.ResolveUrl("../Default.aspx#CONTACT") %>">Contact</a>
                             <p class="pull-right">
-                                ©2015 All Rights Reserved. Lifeline Ambulance Rescue, Inc.
+                                ©2016 All Rights Reserved. Lifeline Ambulance Rescue, Inc.
                             </p>
                         </div>
                         <div class="clearfix"></div>

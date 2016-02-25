@@ -55,7 +55,8 @@ public partial class Admin_Users_DepositPaymentDetails : System.Web.UI.Page
                 {
                     while (da.Read())
                     {
-                        txtDepositAmount.Text = da["Amount"].ToString();
+                        double bal = Convert.ToDouble(da["Amount"].ToString());
+                        txtDepositAmount.Text = bal.ToString("₱ #,###.00");
                         DateTime paymentDate = Convert.ToDateTime(da["PaymentDate"]);
                         txtPaymentDate.Text = paymentDate.ToString("D");
                         imgDepositSlip.ImageUrl = "~/scans/" + da["DepositSlip"].ToString();

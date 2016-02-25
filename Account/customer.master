@@ -233,6 +233,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <asp:ContentPlaceHolder ID="body" runat="server">
                             </asp:ContentPlaceHolder>
+                            <br />
                         </div>
                     </div>
 
@@ -245,7 +246,7 @@
                          <a href="<%= Page.ResolveUrl("../Default.aspx#WORK") %>">Works</a> |
                          <a href="<%= Page.ResolveUrl("../Default.aspx#CONTACT") %>">Contact</a>
                             <p class="pull-right">
-                                ©2015 All Rights Reserved. Lifeline Ambulance Rescue, Inc.
+                                ©2016 All Rights Reserved. Lifeline Ambulance Rescue, Inc.
                             </p>
                         </div>
                         <div class="clearfix"></div>

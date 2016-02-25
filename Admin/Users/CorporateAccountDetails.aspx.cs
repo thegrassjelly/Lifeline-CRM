@@ -147,9 +147,16 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
                         txtCity.Text = da["City"].ToString();
                         txtEmail.Text = da["Email"].ToString();
                         txtLength.Text = da["Length"].ToString();
-                        ddlPaymentTerms.SelectedValue = da["PaymentTerms"].ToString();
+                        txtPaymentTerms.Text = da["PaymentTerms"].ToString();
                         txtDiscountRate.Text = da["DiscountRate"].ToString();
-                        txtBalance.Text = da["Balance"].ToString();
+                        Session["corporatebalance"] = da["Balance"].ToString();
+                        double bal = Convert.ToDouble(da["Balance"].ToString());
+                        txtBalance.Text = bal.ToString("₱ #,###.00");
+                        if (bal <= 0) 
+                        {
+                            txtDepositAmount.Visible = false;
+                            btnSubmit.Visible = false;
+                        }
                     }
                 }
                 else
@@ -182,16 +189,6 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text.ToString());
             cmd.Parameters.AddWithValue("@City", txtCity.Text.ToString());
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text.ToString());
-            cmd.Parameters.AddWithValue("@CorporateID", corporateID);
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = "UPDATE CorporatePayments SET Length=@Length, PaymentTerms=@PaymentTerms, DiscountRate=@DiscountRate, " +
-                              "Balance=@Balance WHERE CorporateID=@CorporateID";
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@Length", txtLength.Text.ToString());
-            cmd.Parameters.AddWithValue("@PaymentTerms", ddlPaymentTerms.SelectedValue);
-            cmd.Parameters.AddWithValue("@DiscountRate", txtDiscountRate.Text.ToString());
-            cmd.Parameters.AddWithValue("@Balance", txtBalance.Text.ToString());
             cmd.Parameters.AddWithValue("@CorporateID", corporateID);
             cmd.ExecuteNonQuery();
 
@@ -258,17 +255,18 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
                     {
                     cmd.Parameters.AddWithValue("@Amount", txtDepositAmount.Text);
                     cmd.ExecuteNonQuery();
+                    
 
-                    double grossAmount = Convert.ToDouble(txtBalance.Text) -
-                        Convert.ToDouble(txtDepositAmount.Text);
+                    double grossAmount = Convert.ToDouble(Session["corporatebalance"].ToString()) -
+                    Convert.ToDouble(txtDepositAmount.Text);
                     cmd.CommandText = "UPDATE CorporatePayments SET Balance=@Balance " +
                                       "WHERE CorporatePaymentID=@CorporatePaymentID";
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@Balance", grossAmount);
                     cmd.Parameters.AddWithValue("@CorporatePaymentID", Session["corporatePaymentID"].ToString());
                     cmd.ExecuteNonQuery();
+                    Session.Remove("corporatebalance");
                     }
-
                     tran.Commit();
                 }
                 catch (SqlException ex)

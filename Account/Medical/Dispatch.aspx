@@ -66,6 +66,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-lg-4">Address</label>
+                                <div class="col-lg-7 col-sm-12 col-xs-12">
+                                    <asp:TextBox ID="txtAddress" runat="server" class="form-control" disabled />
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-lg-4">Municipality</label>
                                 <div class="col-lg-5 col-sm-12 col-xs-12">
                                     <asp:textbox id="txtMunicipality" runat="server" class="form-control" disabled />

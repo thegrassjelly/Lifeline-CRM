@@ -9,17 +9,122 @@
     <script type='text/javascript' src='<%= Page.ResolveUrl("~/js/newjs/jquery-ui.min.js") %>'></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            SearchText();
+            SearchHospital();
+            SearchAmbulance();
+            SearchDispatcher();
+            SearchTeamleader();
+            SearchTreatmentOfficer();
+            SearchTransportOfficer();
         });
 
-        function SearchText() {
-            $(".autosuggest").autocomplete({
+        function SearchAmbulance() {
+            $(".search-ambulance").autocomplete({
                 source: function (request, response) {
                     $.ajax({
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
-                        url: "AddMedical.aspx/SearchCity",
-                        data: "{'prefixText':'" + document.getElementById('<%=txtCity.ClientID%>').value + "'}",
+                        url: "AddMedical.aspx/SearchAmbulance",
+                        data: "{'ambulanceText':'" + document.getElementById('<%=txtAmbulance.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+            }
+
+        function SearchHospital() {
+            $(".search-hospital").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchHospital",
+                        data: "{'hospitalText':'" + document.getElementById('<%=txtHospital.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+            }
+
+        function SearchTeamleader() {
+            $(".search-tl").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchTeamLeader",
+                        data: "{'tlText':'" + document.getElementById('<%=txtTL.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+           }
+
+        function SearchDispatcher() {
+            $(".search-dispatcher").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchDispatcher",
+                        data: "{'dpText':'" + document.getElementById('<%=txtDispatcher.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+            }
+
+        function SearchTreatmentOfficer() {
+            $(".search-treatment").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchTreatmentOfficer",
+                        data: "{'treatText':'" + document.getElementById('<%=txtTreatmentOfficer.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+            }
+
+        function SearchTransportOfficer() {
+            $(".search-transport").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchTransportOfficer",
+                        data: "{'transText':'" + document.getElementById('<%=txtTransportOfficer.ClientID%>').value + "'}",
                             dataType: "json",
                             success: function (data) {
                                 response(data.d);
@@ -49,45 +154,6 @@
                     <dx:ASPxGridView ID="gvMedicalList" runat="server"
                         OnDataBinding="gvMedicalList_OnDataBinding" Width="100%" AutoGenerateColumns="False" EnableTheming="True"
                         Theme="Moderno" KeyFieldName="DispatchID">
-                        <SettingsDetail ShowDetailRow="True" />
-                        <Templates>
-                            <DetailRow>
-                                <h2>Dispatch Details</h2>
-                                <dxe:ASPxGridView ID="gvDispatchDetails" runat="server"
-                                    OnBeforePerformDataSelect="gvDispatchDetails_OnBeforePerformDataSelect"
-                                    Width="100%" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" Theme="MetropolisBlue">
-                                    <Columns>
-                                        <dxe:GridViewDataTextColumn FieldName="Dispatcher" VisibleIndex="2">
-                                        </dxe:GridViewDataTextColumn>
-                                        <dxe:GridViewDataTextColumn FieldName="Date" VisibleIndex="3">
-                                        </dxe:GridViewDataTextColumn>
-                                        <dxe:GridViewDataDateColumn FieldName="Ambulance" VisibleIndex="4">
-                                        </dxe:GridViewDataDateColumn>
-                                        <dxe:GridViewDataDateColumn FieldName="TeamLeader" VisibleIndex="5">
-                                        </dxe:GridViewDataDateColumn>
-                                        <dxe:GridViewDataDateColumn FieldName="TransportOfficer" VisibleIndex="6">
-                                        </dxe:GridViewDataDateColumn>
-                                        <dxe:GridViewDataDateColumn FieldName="TreatmentOfficer" VisibleIndex="7">
-                                        </dxe:GridViewDataDateColumn>
-                                        <dxe:GridViewDataDateColumn FieldName="ReceivingHospital" VisibleIndex="8">
-                                        </dxe:GridViewDataDateColumn>
-                                        <dxe:GridViewDataDateColumn FieldName="Municipality" VisibleIndex="9">
-                                        </dxe:GridViewDataDateColumn>
-                                        <dxe:GridViewDataDateColumn FieldName="City" VisibleIndex="10">
-                                        </dxe:GridViewDataDateColumn>
-                                    </Columns>
-                                </dxe:ASPxGridView>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server"
-                                    ConnectionString="<%$ ConnectionStrings:dbLifelineConnectionString %>"
-                                    SelectCommand="SELECT [DispatchID], [Dispatcher], [Date], [Ambulance], 
-                                    [TeamLeader], [TransportOfficer], [TreatmentOfficer], [ReceivingHospital], 
-                                    [Municipality], [City] FROM [Dispatch] WHERE ([DispatchID] = @DispatchID)">
-                                    <SelectParameters>
-                                        <asp:SessionParameter Name="DispatchID" SessionField="DispatchID" Type="Int32" />
-                                    </SelectParameters>
-                                </asp:SqlDataSource>
-                            </DetailRow>
-                        </Templates>
                         <Settings ShowFilterRow="True" ShowGroupPanel="True" />
                         <SettingsSearchPanel Visible="True" />
                         <SettingsPager PageSize="5">
@@ -169,13 +235,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Dispatcher</label>
                         <div class="col-lg-7 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtDispatcher" runat="server" class="form-control" required />
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
-                                ForeColor="red"
-                                Display="Dynamic"
-                                ControlToValidate="txtHospital"
-                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
-                                Text="Enter a valid name" />
+                            <asp:TextBox ID="txtDispatcher" runat="server" class="form-control search-dispatcher" required />
                         </div>
                     </div>
                     <div class="form-group">
@@ -194,43 +254,13 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Recieving Hospital</label>
                         <div class="col-lg-7 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtHospital" runat="server" class="form-control" />
-                            <asp:RegularExpressionValidator ID="nmVld" runat="server"
-                                ForeColor="red"
-                                Display="Dynamic"
-                                ControlToValidate="txtHospital"
-                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
-                                Text="Enter a valid hospital name" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Municipality</label>
-                        <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" />
-                            <asp:RegularExpressionValidator ID="MncpltyVld" runat="server"
-                                ForeColor="Red"
-                                Display="Dynamic"
-                                ControlToValidate="txtMunicipality"
-                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
-                                Text="Enter a valid Municipality" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">City</label>
-                        <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtCity" runat="server" class="form-control autosuggest" />
-                            <asp:RegularExpressionValidator ID="CtyVld" runat="server"
-                                ForeColor="Red"
-                                Display="Dynamic"
-                                ControlToValidate="txtCity"
-                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
-                                Text="Enter a valid City" />
+                            <asp:TextBox ID="txtHospital" runat="server" class="form-control search-hospital" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Ambulance</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtAmbulance" runat="server" class="form-control" />
+                            <asp:TextBox ID="txtAmbulance" runat="server" class="form-control search-ambulance" />
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
                                 ForeColor="red"
                                 Display="Dynamic"
@@ -242,37 +272,19 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Team Leader</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtTL" runat="server" class="form-control" />
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server"
-                                ForeColor="red"
-                                Display="Dynamic"
-                                ControlToValidate="txtTL"
-                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
-                                Text="Enter a valid name" />
+                            <asp:TextBox ID="txtTL" runat="server" class="form-control search-tl" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Transport Officer</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtTransportOfficer" runat="server" class="form-control" />
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server"
-                                ForeColor="red"
-                                Display="Dynamic"
-                                ControlToValidate="txtTransportOfficer"
-                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
-                                Text="Enter a valid name" />
+                            <asp:TextBox ID="txtTransportOfficer" runat="server" class="form-control search-transport" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Treatment Officer</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtTreatmentOfficer" runat="server" class="form-control" />
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server"
-                                ForeColor="red"
-                                Display="Dynamic"
-                                ControlToValidate="txtTreatmentOfficer"
-                                ValidationExpression="^[a-zA-Z'.\s]{1,50}"
-                                Text="Enter a valid name" />
+                            <asp:TextBox ID="txtTreatmentOfficer" runat="server" class="form-control search-treatment" />
                         </div>
                     </div>
                 </div>

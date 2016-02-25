@@ -1,7 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Admin_Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ForgotPassword.aspx.cs" Inherits="Account_ForgotPassword" %>
 
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -11,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='shortcut icon' type='image/x-icon' href='../images/favicon.ico' />
-    <title>Lifeline Rescue | Admin Login</title>
+    <title>Lifeline Rescue | Recover Password</title>
 
     <!-- Bootstrap core CSS -->
 
@@ -38,63 +37,59 @@
         <![endif]-->
 
 </head>
-
 <body style="background: #F7F7F7;">
     <div id="wrapper">
-        <div id="login" class="animate form">
+        <div id="register" class="animate form">
             <section class="login_content">
-                <form runat="server" class="form-horizontal">
-                    <h1>Admin</h1>
-                    <div id="error" runat="server" class="alert alert-danger" visible="false" style="color: white">
-                        Invalid email/password
+                <form class="form-horizontal" runat="server">
+                    <asp:ScriptManager runat="server" EnablePageMethods="true" />
+                    <h1>Recover Password</h1>
+                    <div id="error" runat="server" class="alert alert-danger" visible="false" style="color: white" >
+                        Email address does not exist.
                     </div>
-                    <div id="admin" runat="server" class="alert alert-danger" visible="false" style="color: white">
-                        Access restricted
-                    </div>
-                    <div id="db_error" runat="server" class="alert alert-danger" visible="false" style="color: white">
-                        The database is busy at the moment, try again later.
+                    <div id="success" runat="server" class="alert alert-info" visible="false" style="color: white" >
+                        Check your email for your login credentials.
                     </div>
                     <div>
                         <label id="ddl-label" class="control-label pull-left">Email Address</label>
-                       <asp:RegularExpressionValidator ID="emlVld" class="pull-right" runat="server"
+                        <asp:RegularExpressionValidator ID="emlVld" class="pull-right" runat="server"
                             Display="Dynamic"
+                            ForeColor="Red"
                             ErrorMessage="Please enter valid e-mail address"
                             ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$"
                             ControlToValidate="txtEmail" />
-                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" MaxLength="80" data-validate-linked="email" required />
-                    </div>
+                        <asp:TextBox ID="txtEmail" class="form-control" runat="server" type="Email" TextMode="Email" MaxLength="80" required />
                     <div>
-                        <label id="ddl-label" class="control-label pull-left">Password</label>
-                        <asp:TextBox ID="txtPassword" runat="server" class="form-control" TextMode="Password" required />
+                        <asp:Button ID="btnSubmit" runat="server" class="btn btn-default submit" Text="Submit" OnClick="btnSubmit_Click" />
                     </div>
-                    <div>
-                        <asp:Button ID="btnLogin" runat="server" class="btn btn-default submit" Text="Login" OnClick="btnLogin_Click" />
                     </div>
-                    <div class="clearfix"></div>
-                    <div class="separator">
-                        <div class="clearfix"></div>
-                        <br />
-                        <div class="login-sitemap">
-                            <h1>Lifeline Rescue</h1>
+                    <div class="login-sitemap">
+                        <div class="separator">
+                            <p>Forgot you email address?<br />
+                                Contact us to verify and recover your account.</p>
+                            <div class="separator">
+                                <h1>Lifeline Rescue</h1>
 
-                            <p>
-                                ©2016 All 
+                                <p>
+                                    ©2016 All 
                                     Rights Reserved. Lifeline Ambulance Rescue, Inc.
-                            </p>
-                            <br />
-                            <a href="<%= Page.ResolveUrl("../Default.aspx#HOME") %>">Home</a> | 
+                                </p>
+                                <br />
+                                 <a href="<%= Page.ResolveUrl("../Default.aspx#HOME") %>">Home</a> | 
                                  <a href="<%= Page.ResolveUrl("../Default.aspx#SERVICE") %>">Services</a> |
                                  <a href="<%= Page.ResolveUrl("../Default.aspx#ABOUT") %>">About</a> |
                                  <a href="<%= Page.ResolveUrl("../Default.aspx#WORK") %>">Works</a> |
                                  <a href="<%= Page.ResolveUrl("../Default.aspx#CONTACT") %>">Contact</a>
+                            </div>
                         </div>
                     </div>
                 </form>
-                <!-- form -->
             </section>
-            <!-- content -->
         </div>
     </div>
+    <script src='<%= Page.ResolveUrl("../js/jquery.min.js") %>'></script>
+    <script src='<%= Page.ResolveUrl("../js/bootstrap.min.js") %>'></script>
+    <script src='<%= Page.ResolveUrl("../js/dashboard.js") %>'></script>
+    <script src='<%= Page.ResolveUrl("../js/jquery.qtip.min.js") %>'></script>
 </body>
-
 </html>

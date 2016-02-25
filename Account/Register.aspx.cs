@@ -20,7 +20,7 @@ public partial class Account_Register : System.Web.UI.Page
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = con;
         cmd.CommandText = "SELECT Email FROM Users WHERE Email=@Email";
-        cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = email;
+        cmd.Parameters.AddWithValue("@Email", email);
         SqlDataReader data = cmd.ExecuteReader();
         if (data.HasRows)
             existing = true;

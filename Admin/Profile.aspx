@@ -208,9 +208,9 @@
                                     requiresupperandlowercasecharacters="false" />
                             </div>
                         </div>
-
                     </div>
                 </div>
+                <br />
                 <hr />
                 <div class="form-group">
                     <div class="col-lg-offset-4 col-lg-8">

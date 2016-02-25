@@ -74,14 +74,14 @@
                     </div>
                     <div>
                         <asp:Button ID="btnLogin" runat="server" class="btn btn-default submit" Text="Login" OnClick="btnLogin_Click" />
-                        <%--<a class="reset_pass" href="#">Lost your password?</a>--%>
+                        <b><a class="reset_pass" href="../Account/ForgotPassword.aspx">Lost your password?</a></b>
                     </div>
                     <div class="clearfix"></div>
                     <div class="separator">
 
                         <p class="change_link">
                         <p>Create an account to access client verification and membership application forms</p>
-                                <a href="../Account/Register.aspx" class="to_register">Create Account </a>
+                                <b><a href="../Account/Register.aspx" class="to_register">Create Account </a></b>
                         </p>
                         <button id="btnFb" class="btn btn-facebook" runat="server" onserverclick="Login">
                             <i class="fa fa-facebook-square"></i> | Login via Facebook</button>
@@ -102,10 +102,11 @@
                         <div class="clearfix"></div>
                         <br />
                         <div class="login-sitemap">
-                            <h1>Lifeline Rescue</h1>
+                            <div class="separator">
+                                <h1>Lifeline Rescue</h1>
 
                             <p>
-                                ©2015 All 
+                                ©2016 All 
                                     Rights Reserved. Lifeline Ambulance Rescue, Inc.
                             </p>
                             <br />

@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Nature of Business</label>
-                        <div class="col-lg-4 col-sm-12 col-xs-12">
+                        <div class="col-lg-5 col-sm-12 col-xs-12">
                             <asp:DropDownList ID="ddlNature" runat="server" class="form-control">
                                 <asp:ListItem>Service</asp:ListItem>
                                 <asp:ListItem>Merchandising</asp:ListItem>
@@ -161,35 +161,29 @@
                 <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Membership Length</label>
                         <div class="col-lg-2 col-xs-12">
-                            <asp:TextBox ID="txtLength" runat="server" class="form-control" type="number" min="1" max="10" required />
+                            <asp:TextBox ID="txtLength" runat="server" class="form-control" type="number" min="1" max="10" disabled />
                         </div>
                         <label class="control-label">Year(s)</label>
                     </div>
                 <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Payment Terms</label>
                         <div class="col-lg-3 col-xs-12">
-                            <asp:DropDownList ID="ddlPaymentTerms" runat="server" class="form-control">
-                                <asp:ListItem>Net 7</asp:ListItem>
-                                <asp:ListItem>Net 10</asp:ListItem>
-                                <asp:ListItem>Net 30</asp:ListItem>
-                                <asp:ListItem>Net 60</asp:ListItem>
-                                <asp:ListItem>Net 90</asp:ListItem>
-                                <asp:ListItem>EOM</asp:ListItem>
-                            </asp:DropDownList>
+                        <asp:TextBox ID="txtPaymentTerms" class="form-control" min="1" max="25"
+                            runat="server" MaxLength="2" disabled></asp:TextBox>
                         </div>
                     </div>
                 <div class="form-group">
                     <label class="control-label col-lg-4 col-xs-12">Discount Rate</label>
                     <div class="col-lg-2 col-xs-12">
                         <asp:TextBox ID="txtDiscountRate" class="form-control" min="1" max="25"
-                            runat="server" MaxLength="2"></asp:TextBox>
+                            runat="server" MaxLength="2" disabled></asp:TextBox>
                     </div>
                     <label class="control-label">%</label>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-lg-4 col-xs-12">Total amount due for payment</label>
                     <div class="col-lg-4 col-xs-12 text-right">
-                        <asp:TextBox ID="txtBalance" runat="server" class="form-control" />
+                        <asp:TextBox ID="txtBalance" runat="server" class="form-control" disabled/>
                     </div>
                 </div>
                 <hr />

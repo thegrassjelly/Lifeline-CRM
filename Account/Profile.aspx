@@ -208,7 +208,6 @@
                                     RequiresUpperAndLowerCaseCharacters="false" />
                             </div>
                         </div>
-                        <hr/>
                         <div id="employererror" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
                             Invalid Employer Code
                         </div>
@@ -243,7 +242,8 @@
                     <label class="control-label col-lg-4 col-xs-12">Sort By</label>
                     <div class="col-lg-8 col-xs-12">
                         <asp:DropDownList ID="ddlSortBy" runat="server" class="form-control"
-                            OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true">
+                            OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" 
+                            AutoPostBack="true">
                             <asp:ListItem Selected="True" Value="MessageID">ID</asp:ListItem>
                             <asp:ListItem Value="MessageCat">Category</asp:ListItem>
                             <asp:ListItem>Subject</asp:ListItem>
@@ -255,7 +255,8 @@
                     <label class="control-label col-lg-4 col-xs-12">Direction</label>
                     <div class="col-lg-8 col-xs-12">
                         <asp:DropDownList ID="ddlDirection" runat="server" class="form-control"
-                            OnSelectedIndexChanged="ddlDirection_SelectedIndexChanged" AutoPostBack="true">
+                            OnSelectedIndexChanged="ddlDirection_SelectedIndexChanged" 
+                            AutoPostBack="true">
                             <asp:ListItem Value="ASC">Ascending</asp:ListItem>
                             <asp:ListItem Selected="True" Value="DESC">Descending</asp:ListItem>
                         </asp:DropDownList>
@@ -270,7 +271,8 @@
                         <th>Status</th>
                     </thead>
                     <tbody>
-                        <asp:ListView ID="lvUserMessage" runat="server" OnPagePropertiesChanging="lv_PagePropertiesChanging">
+                        <asp:ListView ID="lvUserMessage" runat="server" 
+                            OnPagePropertiesChanging="lv_PagePropertiesChanging">
                             <ItemTemplate>
                                 <tr>
                                     <td>

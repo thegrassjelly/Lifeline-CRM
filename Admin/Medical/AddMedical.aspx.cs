@@ -45,27 +45,152 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static List<string> SearchCity(string prefixText)
+    public static List<string> SearchAmbulance(string ambulanceText)
     {
-        List<string> cities = new List<string>();
+        List<string> ambulance = new List<string>();
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
         {
-            cmd.CommandText = "SELECT Name FROM Cities WHERE " +
-                    "Name LIKE @SearchText + '%'";
-            cmd.Parameters.AddWithValue("@SearchText", prefixText);
+            cmd.CommandText = "SELECT AmbulanceName FROM Ambulance WHERE " +
+                    "AmbulanceName LIKE @SearchText + '%'";
+            cmd.Parameters.AddWithValue("@SearchText", ambulanceText);
             cmd.Connection = con;
             con.Open();
             using (SqlDataReader dr = cmd.ExecuteReader())
             {
                 while (dr.Read())
                 {
-                    cities.Add(dr["Name"].ToString());
+                    ambulance.Add(dr["AmbulanceName"].ToString());
                 }
             }
             con.Close();
         }
-        return cities;
+        return ambulance;
+    }
+
+    [WebMethod]
+    public static List<string> SearchHospital(string hospitalText)
+    {
+        List<string> hospital = new List<string>();
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "SELECT HospitalName FROM " + 
+                "Hospitals WHERE HospitalName LIKE @SearchText + '%'";
+            cmd.Parameters.AddWithValue("@SearchText", hospitalText);
+            cmd.Connection = con;
+            con.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    hospital.Add(dr["HospitalName"].ToString());
+                }
+            }
+            con.Close();
+        }
+        return hospital;
+    }
+
+    [WebMethod]
+    public static List<string> SearchDispatcher(string dpText)
+    {
+        List<string> dispatcher = new List<string>();
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "SELECT FirstName, LastName FROM " +
+                "Responder WHERE Title='Dispatcher' AND Status='Active' " +
+                "AND (LastName LIKE @SearchText + '%' OR FirstName LIKE @SearchText + '%')";
+            cmd.Parameters.AddWithValue("@SearchText", dpText);
+            cmd.Connection = con;
+            con.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    dispatcher.Add(dr["LastName"].ToString() + ", " + dr["FirstName"].ToString());
+                }
+            }
+            con.Close();
+        }
+        return dispatcher;
+    }
+
+    [WebMethod]
+    public static List<string> SearchTeamLeader(string tlText)
+    {
+        List<string> tl = new List<string>();
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "SELECT FirstName, LastName FROM " +
+                "Responder WHERE Title='Team Leader' AND Status='Active' " +
+                "AND (LastName LIKE @SearchText + '%' OR FirstName LIKE @SearchText + '%')";
+            cmd.Parameters.AddWithValue("@SearchText", tlText);
+            cmd.Connection = con;
+            con.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    tl.Add(dr["LastName"].ToString() + ", " + dr["FirstName"].ToString());
+                }
+            }
+            con.Close();
+        }
+        return tl;
+    }
+
+    [WebMethod]
+    public static List<string> SearchTreatmentOfficer(string treatText)
+    {
+        List<string> treatment = new List<string>();
+
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "SELECT FirstName, LastName FROM " +
+                "Responder WHERE Title='Treatment Officer' AND Status='Active' " +
+                "AND (LastName LIKE @SearchText + '%' OR FirstName LIKE @SearchText + '%')";
+            cmd.Parameters.AddWithValue("@SearchText", treatText);
+            cmd.Connection = con;
+            con.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    treatment.Add(dr["LastName"].ToString() + ", " + dr["FirstName"].ToString());
+                }
+            }
+            con.Close();
+        }
+        return treatment;
+    }
+
+    [WebMethod]
+    public static List<string> SearchTransportOfficer(string transText)
+    {
+        List<string> transport = new List<string>();
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "SELECT FirstName, LastName FROM " +
+                "Responder WHERE Title='Transport Officer' AND Status='Active' " +
+                "AND (LastName LIKE @SearchText + '%' OR FirstName LIKE @SearchText + '%')";
+            cmd.Parameters.AddWithValue("@SearchText", transText);
+            cmd.Connection = con;
+            con.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    transport.Add(dr["LastName"].ToString() + ", " + dr["FirstName"].ToString());
+                }
+            }
+            con.Close();
+        }
+        return transport;
     }
 
     DataSet GetMedicalList(int userID)
@@ -93,8 +218,8 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
             con.Open();
             cmd.Connection = con;
             cmd.CommandText = "INSERT INTO Dispatch VALUES (@UserID, @Dispatcher, @Date, @Ambulance, " +
-                "@TeamLeader, @TransportOfficer, @TreatmentOfficer, @ReceivingHospital, " +
-                "@Municipality, @City); SELECT TOP 1 DispatchID FROM Dispatch ORDER BY DispatchID DESC";
+                "@TeamLeader, @TransportOfficer, @TreatmentOfficer, @ReceivingHospital); " +
+                "SELECT TOP 1 DispatchID FROM Dispatch ORDER BY DispatchID DESC";
             cmd.Parameters.AddWithValue("@UserID", Request.QueryString["ID"].ToString());
             cmd.Parameters.AddWithValue("@Dispatcher", txtDispatcher.Text);
             cmd.Parameters.AddWithValue("@Date", txtCallDate.Text);
@@ -103,8 +228,6 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@TransportOfficer", txtTransportOfficer.Text);
             cmd.Parameters.AddWithValue("@TreatmentOfficer", txtTreatmentOfficer.Text);
             cmd.Parameters.AddWithValue("@ReceivingHospital", txtHospital.Text);
-            cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
-            cmd.Parameters.AddWithValue("@City", txtCity.Text);
             int DispatchID = (int)cmd.ExecuteScalar();
 
             cmd.CommandText = "INSERT INTO MedicalHistory VALUES (@UserID, @DispatchID, " +

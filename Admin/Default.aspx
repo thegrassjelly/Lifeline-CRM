@@ -9,11 +9,16 @@
             <div class="left"></div>
             <div class="right">
                 <a href='<%= Page.ResolveUrl("~/Admin/Users/View.aspx") %>'>
-                    <span class="count_top"><i class="fa fa-user"></i>Total Users</span>
+                    <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
                     <div class="count">
                         <asp:Literal ID="ltUserCount" runat="server" /></div>
-                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
-                        <asp:Literal ID="ltUserNew" runat="server" /></i>last 24 hours</span>
+                    <span class="count_bottom">
+                        <i class="green">
+                            <i class="fa fa-sort-asc"></i>
+                            <asp:Literal ID="ltUserNew" runat="server" />
+                        </i>
+                        last 24 hours
+                    </span>
                 </a>
             </div>
         </div>
@@ -21,12 +26,12 @@
             <div class="left"></div>
             <div class="right">
                 <a href='<%= Page.ResolveUrl("~/Admin/Users/Verification.aspx") %>'>
-                    <span class="count_top"><i class="fa fa-check"></i>Membership Verifications</span>
+                    <span class="count_top"><i class="fa fa-check"></i> Membership Verifications</span>
                     <div class="count">
                         <asp:Literal ID="ltVerification" runat="server" /></div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
                         <asp:Literal ID="ltVerificationNew" runat="server" />
-                    </i>last 24 hours</span>
+                    </i> last 24 hours</span>
                 </a>
             </div>
         </div>
@@ -34,12 +39,12 @@
             <div class="left"></div>
             <div class="right">
                 <a href='<%= Page.ResolveUrl("~/Admin/Membership/Renewals.aspx") %>'>
-                    <span class="count_top"><i class="fa fa-suitcase"></i>New Renewals</span>
+                    <span class="count_top"><i class="fa fa-suitcase"></i> New Renewals</span>
                     <div class="count">
                         <asp:Literal ID="ltRenewals" runat="server" /></div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
                         <asp:Literal ID="ltRenewalsNew" runat="server" />
-                    </i>last 24 hours</span>
+                    </i> last 24 hours</span>
                 </a>
             </div>
         </div>
@@ -47,24 +52,24 @@
             <div class="left"></div>
             <div class="right">
                 <a href='<%= Page.ResolveUrl("~/Admin/Membership/MembershipApplications.aspx") %>'>
-                    <span class="count_top"><i class="fa fa-suitcase"></i>Membership Applications</span>
+                    <span class="count_top"><i class="fa fa-suitcase"></i> Membership Applications</span>
                     <div class="count">
                         <asp:Literal ID="ltMembership" runat="server" /></div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
                         <asp:Literal ID="ltMembershipNew" runat="server" />
-                    </i>last 24 hours</span>
+                    </i> last 24 hours</span>
                 </a>
             </div>
         </div>
         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
             <div class="left"></div>
             <div class="right">
-                    <span class="count_top"><i class="fa fa-inbox"></i>Total Unread Messages</span>
+                    <span class="count_top"><i class="fa fa-inbox"></i> Total Unread Messages</span>
                     <div class="count">
                         <asp:Literal ID="ltUnreadMsg" runat="server" /></div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>
                         <asp:Literal ID="ltUnreadNew" runat="server" />
-                    </i>last 24 hours</span>
+                    </i> last 24 hours</span>
             </div>
         </div>
         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
@@ -118,7 +123,7 @@
                 <div class="icon">
                     <i class="fa fa-bank"></i>
                 </div>
-                <div class="count"><asp:Literal ID="ltDeposit24Hrs" runat="server"></asp:Literal></div>
+                <div class="count" style="font-size: 35px"><asp:Literal ID="ltDeposit24Hrs" runat="server"></asp:Literal></div>
                 <br/>
                 <h3>Total Renewal Deposits</h3>
                 <p>Verified Deposits for the last 24 Hours</p>
@@ -130,7 +135,7 @@
                 <div class="icon">
                     <i class="fa fa-bank"></i>
                 </div>
-                <div class="count"><asp:Literal ID="ltDeposit30Days" runat="server"></asp:Literal></div>
+                <div class="count" style="font-size: 35px"><asp:Literal ID="ltDeposit30Days" runat="server"></asp:Literal></div>
                 <br />
                 <h3>Total Renewal Deposits</h3>
                 <p>Verified Deposits for the last 30 Days</p>
@@ -142,7 +147,7 @@
                 <div class="icon">
                     <i class="fa fa-building-o"></i>
                 </div>
-                <div class="count"><asp:Literal ID="ltCorporatePayments" runat="server"></asp:Literal></div>
+                <div class="count" style="font-size: 35px" ><asp:Literal ID="ltCorporatePayments" runat="server"></asp:Literal></div>
                 <br />
                 <h3>Corporate Membership Payments</h3>
                 <p>Payments for the last 30 Days</p>
@@ -154,7 +159,7 @@
                 <div class="icon">
                     <i class="fa fa-building-o"></i>
                 </div>
-                <div class="count"><asp:Literal ID="ltCorporateBalance" runat="server"></asp:Literal></div>
+                <div class="count" style="font-size: 35px" ><asp:Literal ID="ltCorporateBalance" runat="server"></asp:Literal></div>
                 <br />
                 <h3>Corporate Membership Balance</h3>
                 <p>Sum of payables in 30 Days</p>

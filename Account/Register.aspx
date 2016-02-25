@@ -46,10 +46,10 @@
                 <form runat="server" class="form-horizontal">
                     <asp:ScriptManager runat="server" EnablePageMethods="true" />
                     <h1>Create Account</h1>
-                    <div id="error" runat="server" class="alert alert-danger" visible="false">
+                    <div id="error" runat="server" class="alert alert-danger" visible="false" style="color: white" >
                         Username / Email address already existing.
                     </div>
-                    <div id="success" runat="server" class="alert alert-info" visible="false">
+                    <div id="success" runat="server" class="alert alert-info" visible="false" style="color: white" >
                         An activation link sent to your email address
                     </div>
                     <div>
@@ -133,8 +133,7 @@
                             <asp:ListItem>Pending Client</asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <!-- Pending: Required validation for reCaptcha -->
-                    <div class="g-recaptcha" data-sitekey="6Ld1ohYTAAAAANzwfapvbp5hC2PsDH6ALQN2Aj5c"></div>
+                    <%--<div class="g-recaptcha" data-sitekey="6Ld1ohYTAAAAANzwfapvbp5hC2PsDH6ALQN2Aj5c"></div>--%>
                     <br />
                     <div>
                         <asp:Button ID="btnRegister" runat="server" class="btn btn-default submit" Text="Register" OnClick="btnRegister_Click" />
@@ -144,15 +143,14 @@
 
                         <p class="change_link">
                             Already a member ?
-                                <a href="../Account/Login.aspx" class="to_register">Log in </a>
+                                <b><a href="../Account/Login.aspx" class="to_register">Log in </a></b>
                         </p>
-                        <div class="clearfix"></div>
-                        <br />
                         <div class="login-sitemap">
-                            <h1>Lifeline Rescue</h1>
+                            <div class="separator">
+                                <h1>Lifeline Rescue</h1>
 
                             <p>
-                                ©2015 All 
+                                ©2016 All 
                                     Rights Reserved. Lifeline Ambulance Rescue, Inc.
                             </p>
                             <br />

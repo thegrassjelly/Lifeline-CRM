@@ -6,17 +6,122 @@
     <script type='text/javascript' src='<%= Page.ResolveUrl("~/js/newjs/jquery-ui.min.js") %>'></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            SearchText();
+            SearchHospital();
+            SearchAmbulance();
+            SearchDispatcher();
+            SearchTeamleader();
+            SearchTreatmentOfficer();
+            SearchTransportOfficer();
         });
 
-        function SearchText() {
-            $(".autosuggest").autocomplete({
+        function SearchAmbulance() {
+            $(".search-ambulance").autocomplete({
                 source: function (request, response) {
                     $.ajax({
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
-                        url: "DispatchDetails.aspx/SearchCity",
-                        data: "{'prefixText':'" + document.getElementById('<%=txtCity.ClientID%>').value + "'}",
+                        url: "AddMedical.aspx/SearchAmbulance",
+                        data: "{'ambulanceText':'" + document.getElementById('<%=txtAmbulance.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+            }
+
+        function SearchHospital() {
+            $(".search-hospital").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchHospital",
+                        data: "{'hospitalText':'" + document.getElementById('<%=txtHospital.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+            }
+
+        function SearchTeamleader() {
+            $(".search-tl").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchTeamLeader",
+                        data: "{'tlText':'" + document.getElementById('<%=txtTL.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+           }
+
+        function SearchDispatcher() {
+            $(".search-dispatcher").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchDispatcher",
+                        data: "{'dpText':'" + document.getElementById('<%=txtDispatcher.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+            }
+
+        function SearchTreatmentOfficer() {
+            $(".search-treatment").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchTreatmentOfficer",
+                        data: "{'treatText':'" + document.getElementById('<%=txtTreatment.ClientID%>').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                alert("Error" + result.result);
+                            }
+                        });
+                    }
+                });
+            }
+
+        function SearchTransportOfficer() {
+            $(".search-transport").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "AddMedical.aspx/SearchTransportOfficer",
+                        data: "{'transText':'" + document.getElementById('<%=txtTransport.ClientID%>').value + "'}",
                             dataType: "json",
                             success: function (data) {
                                 response(data.d);
@@ -78,7 +183,7 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Dispatcher</label>
                                 <div class="col-lg-6 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txtDispatcher" runat="server" class="form-control" />
+                                    <asp:TextBox ID="txtDispatcher" runat="server" class="form-control search-dispatcher" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -97,31 +202,25 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Receiving Hospital</label>
                                 <div class="col-lg-6 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txtHospital" runat="server" class="form-control" />
+                                    <asp:TextBox ID="txtHospital" runat="server" class="form-control search-hospital" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Address</label>
+                                <div class="col-lg-7 col-sm-12 col-xs-12">
+                                    <asp:TextBox ID="txtAddress" runat="server" class="form-control" disabled />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Municipality</label>
                                 <div class="col-lg-5 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" />
-                                    <asp:RegularExpressionValidator ID="MncpltyVld" runat="server"
-                                        ForeColor="Red"
-                                        Display="Dynamic"
-                                        ControlToValidate="txtMunicipality"
-                                        ValidationExpression="^[a-zA-Z'.\s]{1,50}"
-                                        Text="Enter a valid Municipality" />
+                                    <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" disabled/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-4">City</label>
                                 <div class="col-lg-5 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txtCity" runat="server" class="form-control autosuggest" />
-                                    <asp:RegularExpressionValidator ID="CtyVld" runat="server"
-                                        ForeColor="Red"
-                                        Display="Dynamic"
-                                        ControlToValidate="txtCity"
-                                        ValidationExpression="^[a-zA-Z'.\s]{1,50}"
-                                        Text="Enter a valid City" />
+                                    <asp:TextBox ID="txtCity" runat="server" class="form-control autosuggest" disabled/>
                                 </div>
                             </div>
                         </div>
@@ -129,30 +228,30 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Ambulance</label>
                                 <div class="col-lg-4 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txtAmbulance" runat="server" class="form-control" />
+                                    <asp:TextBox ID="txtAmbulance" runat="server" class="form-control search-ambulance" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Team Leader</label>
                                 <div class="col-lg-6 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txtTL" runat="server" class="form-control" />
+                                    <asp:TextBox ID="txtTL" runat="server" class="form-control search-tl" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Transport Officer</label>
                                 <div class="col-lg-6 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txtTransport" runat="server" class="form-control" />
+                                    <asp:TextBox ID="txtTransport" runat="server" class="form-control search-transport" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Treatment Officer</label>
                                 <div class="col-lg-6 col-sm-12 col-xs-12">
-                                    <asp:TextBox ID="txtTreatment" runat="server" class="form-control" />
+                                    <asp:TextBox ID="txtTreatment" runat="server" class="form-control search-treatment" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr />
+                    <br />
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
                             <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary pull-right" Text="Update"
