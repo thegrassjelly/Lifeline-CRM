@@ -223,7 +223,7 @@
                             <div class="form-group">
                                 <div class="col-lg-offset-4 col-lg-8">
                                     <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pull-right" Text="Upload"
-                                        OnClick="btnSubmit_Click" OnClientClick="return confirm('Are you sure?')"/>
+                                        OnClick="btnSubmit_Click" OnClientClick="return confirm('Are you sure?')" />
                                 </div>
                             </div>
                             <hr />

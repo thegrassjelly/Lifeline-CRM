@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Web.Script.Services;
 using System.Web.Services;
 
 public partial class Admin_Medical_Default : System.Web.UI.Page
@@ -190,7 +189,7 @@ public partial class Admin_Medical_Default : System.Web.UI.Page
         { 
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT DispatchID, Dispatcher, Date, Ambulance, " +
+            cmd.CommandText = "SELECT DispatchID, Dispatcher, DispatchDate, Ambulance, " +
                 "TeamLeader, TransportOfficer, TreatmentOfficer, ReceivingHospital, " +
                 "Address, Municipality, City FROM Dispatch INNER JOIN Hospitals ON " +
                 "Dispatch.ReceivingHospital=Hospitals.HospitalName WHERE DispatchID=@DispatchID";
@@ -203,9 +202,8 @@ public partial class Admin_Medical_Default : System.Web.UI.Page
                     {
                         txtDispatchID.Text = data["DispatchID"].ToString();
                         txtDispatcher.Text = data["Dispatcher"].ToString();
-                        txtDate.Text = data["Date"].ToString();
-                        DateTime dDate = Convert.ToDateTime(data["Date"].ToString());
-                        txtDate.Text = dDate.ToString("yyyy-MM-dd");
+                        DateTime dDate = Convert.ToDateTime(data["DispatchDate"].ToString());
+                        txtStartDate.Text = dDate.ToString("MM/dd/yyyy");
                         txtAmbulance.Text = data["Ambulance"].ToString();
                         txtTL.Text = data["TeamLeader"].ToString();
                         txtTransport.Text = data["TransportOfficer"].ToString();
@@ -240,13 +238,11 @@ public partial class Admin_Medical_Default : System.Web.UI.Page
                 {
                     while (data.Read())
                     {
-
-                        DateTime sDate = Convert.ToDateTime(data["StartDate"].ToString());
                         DateTime eDate = Convert.ToDateTime(data["EndDate"].ToString());
 
                         txtOperation.Text = data["Operation"].ToString();
-                        txtStartDate.Text = sDate.ToString("MM/dd/yyyy");
                         txtEndDate.Text = eDate.ToString("MM/dd/yyyy");
+                        txtEndDate2.Text = eDate.ToString("yyyy-MM-dd");
                         txtDetails.Text = data["Details"].ToString();
 
                     }
@@ -266,19 +262,25 @@ public partial class Admin_Medical_Default : System.Web.UI.Page
         {
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "UPDATE Dispatch SET Dispatcher=@Dispatcher, Date=@Date, " +
+            cmd.CommandText = "UPDATE Dispatch SET Dispatcher=@Dispatcher, " +
                               "Ambulance=@Ambulance, TeamLeader=@TeamLeader, " +
                               "TransportOfficer=@TransportOfficer, TreatmentOfficer=@TreatmentOfficer, " +
                               "ReceivingHospital=@ReceivingHospital WHERE DispatchID=@DispatchID";
             cmd.Parameters.AddWithValue("@DispatchID", Request.QueryString["ID"].ToString());
             cmd.Parameters.AddWithValue("@Dispatcher", txtDispatcher.Text);
-            cmd.Parameters.AddWithValue("@Date", txtDate.Text);
             cmd.Parameters.AddWithValue("@Ambulance", txtAmbulance.Text);
             cmd.Parameters.AddWithValue("@TeamLeader", txtTL.Text);
             cmd.Parameters.AddWithValue("@TransportOfficer", txtTransport.Text);
             cmd.Parameters.AddWithValue("@TreatmentOfficer", txtTreatment.Text);
             cmd.Parameters.AddWithValue("@ReceivingHospital", txtHospital.Text);
             cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "UPDATE MedicalHistory SET EndDate=@EndDate WHERE DispatchID=@dispatchid";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@DispatchID", Request.QueryString["ID"].ToString());
+            cmd.Parameters.AddWithValue("@EndDate", txtEndDate2.Text);
+            cmd.ExecuteNonQuery();
+
             Response.Redirect("~/Admin/Medical/View.aspx");
         }
     }

@@ -79,7 +79,7 @@ public partial class Admin_Membership_MembershipApplicationDetails : System.Web.
             {
                 while (data.Read())
                 {
-                    ddlPaymentStatus.SelectedValue = data["PaymentStatus"].ToString();
+                    txtPaymentStatus.Text = data["PaymentStatus"].ToString();
                     if (data["Amount"].ToString() == "1000.00")
                     {
                         txtMembershipType.Text = "Individual";
@@ -138,7 +138,20 @@ public partial class Admin_Membership_MembershipApplicationDetails : System.Web.
                     txtPhone.Text = data["Phone"].ToString();
                     txtMobile.Text = data["Mobile"].ToString();
                     txtEmail.Text = data["Email"].ToString();
-                    ddlMembershipStatus.SelectedValue = data["Status"].ToString();
+                    txtMembershipStatus.Text = data["Status"].ToString();
+                    if (txtMembershipStatus.Text == "Voided")
+                    {
+                        btnSubmit.Visible = false;
+                        btnVoid.Visible = false;
+                        btnUpload.Visible = false;
+                        fileDepositSlip.Visible = false;
+                    }
+                    else if (txtMembershipStatus.Text == "Active")
+                    {
+                        btnSubmit.Visible = false;
+                        btnUpload.Visible = false;
+                        fileDepositSlip.Visible = false;
+                    }
                     txtStartDate.Text = sDate.ToString("MM/dd/yyyy");
                     txtEndDate.Text = sDate.AddYears(1).ToString("MM/dd/yyyy");
                 }
@@ -154,7 +167,7 @@ public partial class Admin_Membership_MembershipApplicationDetails : System.Web.
                 while (data.Read())
                 {
                     txtUserStatus.Text = data["Status"].ToString();
-                    ddlUserType.SelectedValue = data["UserType"].ToString();
+                    txtUserType.Text = data["UserType"].ToString();
                 }
             }
         }
@@ -193,14 +206,14 @@ public partial class Admin_Membership_MembershipApplicationDetails : System.Web.
             cmd.Connection = con;
             cmd.CommandText = "UPDATE Applications SET Status=@Status " +
                 "WHERE ApplicationID=@appID";
-            cmd.Parameters.AddWithValue("@Status", ddlMembershipStatus.SelectedValue);
+            cmd.Parameters.AddWithValue("@Status", "Active");
             cmd.Parameters.AddWithValue("@appID", appID);
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = "UPDATE Payments SET PaymentStatus=@PaymentStatus " +
                 "WHERE MembershipID=@appID";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@PaymentStatus", ddlPaymentStatus.SelectedValue);
+            cmd.Parameters.AddWithValue("@PaymentStatus", "Paid");
             cmd.Parameters.AddWithValue("@appID", appID);
             cmd.ExecuteNonQuery();
 
@@ -209,7 +222,7 @@ public partial class Admin_Membership_MembershipApplicationDetails : System.Web.
                 "ApplicationID=@appID)";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@appID", appID);
-            cmd.Parameters.AddWithValue("@UserType", ddlUserType.SelectedValue);
+            cmd.Parameters.AddWithValue("@UserType", "Client");
             cmd.ExecuteNonQuery();
 
             Response.Redirect("~/Admin/Membership/MembershipApplicationDetails.aspx?ID=" + appID);

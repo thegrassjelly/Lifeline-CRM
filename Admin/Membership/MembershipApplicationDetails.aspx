@@ -34,18 +34,11 @@
                         </div>
                         <label class="control-label col-lg-2 col-xs-12">Payment</label>
                         <div class="col-lg-2 text-center">
-                            <asp:DropDownList ID="ddlPaymentStatus" class="form-control" runat="server">
-                                <asp:ListItem>Paid</asp:ListItem>
-                                <asp:ListItem>Unpaid</asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:TextBox ID="txtPaymentStatus" class="form-control text-center" runat="server" disabled />
                         </div>
                         <label class="control-label col-lg-2 col-xs-12">Membership Status</label>
                         <div class="col-lg-2 text-center">
-                            <asp:DropDownList ID="ddlMembershipStatus" class="form-control" runat="server">
-                                <asp:ListItem>Active</asp:ListItem>
-                                <asp:ListItem>Inactive</asp:ListItem>
-                                <asp:ListItem>Voided</asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:TextBox ID="txtMembershipStatus" class="form-control text-center" runat="server" disabled />
                         </div>
                     </div>
                 </div>
@@ -116,12 +109,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">User Type</label>
                         <div class="col-lg-4 col-sm-12 col-xs-12">
-                            <asp:DropDownList id="ddlUserType" class="form-control" runat="server">
-                                <asp:ListItem>Client</asp:ListItem>
-                                <asp:ListItem>Pending Client</asp:ListItem>
-                                <asp:ListItem>Guest</asp:ListItem>
-                                <asp:ListItem>Administrator</asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:TextBox ID="txtUserType" runat="server" class="form-control" disabled/>
                         </div>
                     </div>
                     <hr />
@@ -248,7 +236,7 @@
                 <div class="x_content">
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
-                            <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pull-right" Text="Submit"
+                            <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pull-right" Text="Approve"
                                 OnClick="btnSubmit_Click" OnClientClick="return confirm('Are you sure?')"/>
                             <asp:Button ID="btnVoid" runat="server" class="btn btn-primary pull-right" Text="Void Application"
                                 OnClick="btnVoid_Click"/>

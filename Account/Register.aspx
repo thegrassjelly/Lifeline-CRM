@@ -122,8 +122,6 @@
                         <asp:TextBox ID="txtPassword2" runat="server" class="form-control" TextMode="Password" placeholder="Repeat Password *" MaxLength="20" required />
                     </div>
                     <div>
-                    </div>
-                    <div>
                         <label id="ddl-label" class="control-label pull-left">Register as *</label>
                         <asp:DropDownList ID="ddlUserType" class="form-control" runat="server" data-toggle="tooltip"
                             title="Pending Client registrations needs to be further verified,

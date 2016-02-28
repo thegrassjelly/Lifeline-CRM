@@ -20,7 +20,6 @@ public partial class Admin_Membership_RenewalsDetails : System.Web.UI.Page
                     GetMembershipInfo(membershipID);
                     GetPaymentSummary(membershipID);
                     GetUserInfo();
-                    GetTypes();
                     if (txtMembershipType.Text == "Household")
                     {
                         GetDependents(membershipID);
@@ -64,29 +63,24 @@ public partial class Admin_Membership_RenewalsDetails : System.Web.UI.Page
                     txtStartDate.Text = sDate.ToString("MM/dd/yyyy");
                     txtEndDate.Text = eDate.ToString("MM/dd/yyyy");
                     txtMembershipLength.Text = data["Length"].ToString();
-                    ddlPaymentStatus.SelectedValue = data["PaymentStatus"].ToString();
+                    txtPaymentStatus.Text = data["PaymentStatus"].ToString();
                     txtMembershipType.Text = data["Type"].ToString();
-                    ddlMembershipStatus.SelectedValue = data["MembershipStatus"].ToString();
+                    txtMembershipStatus.Text = data["MembershipStatus"].ToString();
+                    if (txtMembershipStatus.Text == "Voided")
+                    {
+                        btnSubmit.Visible = false;
+                        btnVoid.Visible = false;
+                        btnUpload.Visible = false;
+                        fileDepositSlip.Visible = false;
+                    }
+                    else if (txtMembershipStatus.Text == "Active")
+                    {
+                        btnSubmit.Visible = false;
+                        btnUpload.Visible = false;
+                        fileDepositSlip.Visible = false;
+                    }
                     Session["localUserID"] = data["UserID"].ToString();
                 }  
-            }
-        }
-    }
-
-    void GetTypes()
-    {
-        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
-        using (SqlCommand cmd = new SqlCommand())
-        {
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandText = "SELECT TypeID, UserType FROM Types";
-            using (SqlDataReader dr = cmd.ExecuteReader())
-            {
-                ddlUserType.DataSource = dr;
-                ddlUserType.DataTextField = "UserType";
-                ddlUserType.DataValueField = "TypeID";
-                ddlUserType.DataBind();  
             }
         }
     }
@@ -99,8 +93,9 @@ public partial class Admin_Membership_RenewalsDetails : System.Web.UI.Page
             con.Open();
             cmd.Connection = con;
             cmd.CommandText = "SELECT FirstName, LastName, Birthday, UserPic, " +
-                "Street, Municipality, City, Phone, Mobile, Email, Status, Priority, " +
-                "TypeID FROM Users WHERE UserID=@UserID";
+                "Street, Municipality, City, Phone, Mobile, Email, Status, " +
+                "UserType FROM Users INNER JOIN Types ON Users.TypeID=Types.TypeID " +
+                "WHERE UserID=@UserID";
             cmd.Parameters.AddWithValue("@UserID", Session["localUserID"].ToString());
             using (SqlDataReader data = cmd.ExecuteReader())
             {
@@ -121,8 +116,7 @@ public partial class Admin_Membership_RenewalsDetails : System.Web.UI.Page
                         txtMobile.Text = data["Mobile"].ToString();
                         txtEmail.Text = data["Email"].ToString();
                         txtUserStatus.Text = data["Status"].ToString();
-                        ddlUserType.Text = data["TypeID"].ToString();
-                        txtUserPriority.Text = data["Priority"].ToString();
+                        txtUserType.Text = data["UserType"].ToString();
                     }
                 }  
             }
@@ -240,14 +234,14 @@ public partial class Admin_Membership_RenewalsDetails : System.Web.UI.Page
             cmd.Connection = con;
             cmd.CommandText = "UPDATE Memberships SET MembershipStatus=@MembershipStatus " +
                 "WHERE MembershipID=@MembershipID";
-            cmd.Parameters.AddWithValue("@MembershipStatus", ddlMembershipStatus.SelectedValue);
+            cmd.Parameters.AddWithValue("@MembershipStatus", "Active");
             cmd.Parameters.AddWithValue("@MembershipID", memID);
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = "UPDATE Payments SET PaymentStatus=@PaymentStatus " +
                 "WHERE MembershipID=@MembershipID";
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@PaymentStatus", ddlPaymentStatus.SelectedValue);
+            cmd.Parameters.AddWithValue("@PaymentStatus", "Paid");
             cmd.Parameters.AddWithValue("@MembershipID", memID);
             cmd.ExecuteNonQuery();
 
@@ -255,7 +249,7 @@ public partial class Admin_Membership_RenewalsDetails : System.Web.UI.Page
                 "WHERE UserID=@UserID";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@UserID", Session["localUserID"].ToString());
-            cmd.Parameters.AddWithValue("@TypeID", ddlUserType.SelectedValue);
+            cmd.Parameters.AddWithValue("@TypeID", "9");
             cmd.ExecuteNonQuery();
 
             Response.Redirect("~/Admin/Membership/RenewalDetails.aspx?ID=" + memID); 

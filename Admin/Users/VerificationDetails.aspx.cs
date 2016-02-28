@@ -17,7 +17,6 @@ public partial class Admin_Users_VerificationDetails : System.Web.UI.Page
                 {
                     GetUserInfo(scanID);
                     GetVerificationInfo(scanID);
-                    GetTypes();
                 }
             }
             else
@@ -65,7 +64,8 @@ public partial class Admin_Users_VerificationDetails : System.Web.UI.Page
             cmd.Connection = con;
             cmd.CommandText = "SELECT FirstName, LastName, Birthday, UserPic, " +
                 "Street, Municipality, City, Phone, Mobile, Email, Status, Priority, " +
-                "TypeID FROM Users WHERE UserID=(SELECT UserID FROM Verification WHERE " +
+                "UserType FROM Users INNER JOIN Types ON Users.TypeID=Types.TypeID " +
+                "WHERE UserID=(SELECT UserID FROM Verification WHERE " +
                 "ScanID=@ScanID)";
             cmd.Parameters.AddWithValue("@ScanID", scanID);
             using (SqlDataReader data = cmd.ExecuteReader())
@@ -87,7 +87,11 @@ public partial class Admin_Users_VerificationDetails : System.Web.UI.Page
                         txtMobile.Text = data["Mobile"].ToString();
                         txtEmail.Text = data["Email"].ToString();
                         txtUserStatus.Text = data["Status"].ToString();
-                        ddlUserType.Text = data["TypeID"].ToString();
+                        txtUserType.Text = data["UserType"].ToString();
+                        if (txtUserType.Text == "Client")
+                        {
+                            btnSubmit.Visible = false;
+                        }
                         txtUserPriority.Text = data["Priority"].ToString();
                     }
                 }
@@ -95,23 +99,6 @@ public partial class Admin_Users_VerificationDetails : System.Web.UI.Page
         }
     }
 
-    private void GetTypes()
-    {
-        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
-        using (SqlCommand cmd = new SqlCommand())
-        {
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandText = "SELECT TypeID, UserType FROM Types";
-            using (SqlDataReader dr = cmd.ExecuteReader())
-            {
-                ddlUserType.DataSource = dr;
-                ddlUserType.DataTextField = "UserType";
-                ddlUserType.DataValueField = "TypeID";
-                ddlUserType.DataBind();
-            }
-        }
-    }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
@@ -125,7 +112,7 @@ public partial class Admin_Users_VerificationDetails : System.Web.UI.Page
             "ScanID=@ScanID)";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@ScanID", Request.QueryString["ID"].ToString());
-            cmd.Parameters.AddWithValue("@TypeID", ddlUserType.SelectedValue);
+            cmd.Parameters.AddWithValue("@TypeID", "9");
             cmd.ExecuteNonQuery();
             Response.Redirect("~/Admin/Users/VerificationDetails.aspx?ID=" + Request.QueryString["ID"].ToString());
         }

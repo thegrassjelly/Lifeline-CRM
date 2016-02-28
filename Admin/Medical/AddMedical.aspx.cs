@@ -217,12 +217,12 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
         {
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "INSERT INTO Dispatch VALUES (@UserID, @Dispatcher, @Date, @Ambulance, " +
+            cmd.CommandText = "INSERT INTO Dispatch VALUES (@UserID, @Dispatcher, @DispatchDate, @Ambulance, " +
                 "@TeamLeader, @TransportOfficer, @TreatmentOfficer, @ReceivingHospital); " +
                 "SELECT TOP 1 DispatchID FROM Dispatch ORDER BY DispatchID DESC";
             cmd.Parameters.AddWithValue("@UserID", Request.QueryString["ID"].ToString());
             cmd.Parameters.AddWithValue("@Dispatcher", txtDispatcher.Text);
-            cmd.Parameters.AddWithValue("@Date", txtCallDate.Text);
+            cmd.Parameters.AddWithValue("@DispatchDate", txtCallDate.Text);
             cmd.Parameters.AddWithValue("@Ambulance", txtAmbulance.Text);
             cmd.Parameters.AddWithValue("@TeamLeader", txtTL.Text);
             cmd.Parameters.AddWithValue("@TransportOfficer", txtTransportOfficer.Text);
@@ -236,11 +236,11 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@UserID", Request.QueryString["ID"].ToString());
             cmd.Parameters.AddWithValue("@DispatchID", DispatchID);
             cmd.Parameters.AddWithValue("@Operation", txtOperation.Text);
+            cmd.Parameters.AddWithValue("@StartDate", txtCallDate.Text);
             cmd.Parameters.AddWithValue("@Details", txtDetails.Text);
-            cmd.Parameters.AddWithValue("@StartDate", txtStartDate.Text);
             if (txtEndDate.Text == "")
             {
-                cmd.Parameters.AddWithValue("@EndDate", txtStartDate.Text);
+                cmd.Parameters.AddWithValue("@EndDate", txtCallDate.Text);
             }
             else
             {

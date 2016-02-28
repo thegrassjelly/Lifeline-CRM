@@ -20,8 +20,8 @@
                 <div class="row">
                     <div class="col-lg-10">
                         <div class="form-group">
-                            <label class="control-label">
-                                Survey 1: Heyah
+                            <label class="control-label" style="font-size: 15px">
+                               1: Lifeline Rescue Inc., service representatives (CSRs) are well trained.
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -40,8 +40,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">
-                                Survey 2
+                            <label class="control-label" style="font-size: 15px">
+                                 2: Lifeline Rescue Inc., service representatives (CSRs) are well supervised.
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -60,8 +60,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">
-                                Survey 3
+                            <label class="control-label" style="font-size: 15px">
+                                 3: Lifeline Rescue Inc., service representatives (CSRs) adhere to professional standards of conduct.
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -80,8 +80,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">
-                                Survey 4
+                            <label class="control-label" style="font-size: 15px">
+                                 4: Lifeline Rescue Inc., service representatives (CSRs) act in my best interest.
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -100,8 +100,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">
-                                Survey 5
+                            <label class="control-label" style="font-size: 15px">
+                                 5: Overall, I am satisfied with the Lifeline Rescue Inc., service representatives (CSRs).
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -120,8 +120,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">
-                                Survey 6
+                            <label class="control-label" style="font-size: 15px">
+                                 6: The Lifeline Rescue Inc., account manager is knowledgeable and professional.
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -140,8 +140,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">
-                                Survey 7
+                            <label class="control-label" style="font-size: 15px">
+                                 7: The Lifeline Rescue Inc., account manager is making a positive contribution to my business.
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -160,8 +160,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">
-                                Survey 8
+                            <label class="control-label" style="font-size: 15px">
+                                 8: The Lifeline Rescue Inc., account manager responds to my inquiries in a timely manner.
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -180,8 +180,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">
-                                Survey 9
+                            <label class="control-label" style="font-size: 15px">
+                                 9: Overall, I am very satisfied with the Lifeline Rescue Inc., account manager.
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"
@@ -199,9 +199,9 @@
                                 </asp:RadioButtonList>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="font-size: 15px">
                             <label class="control-label">
-                                Survey 10
+                                 10: Overall, I am very satisfied with the service (general) offered by Lifeline Rescue Inc.,
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"

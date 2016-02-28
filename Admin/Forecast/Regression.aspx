@@ -68,9 +68,9 @@
                         <label class="control-label col-lg-4 col-xs-12">Period</label>
                         <div class="col-lg-5 col-xs-12">
                             <asp:DropDownList ID="ddlPeriod" class="form-control" runat="server" >
-                                <asp:ListItem Selected="True">10</asp:ListItem>
+                                <asp:ListItem>10</asp:ListItem>
                                 <asp:ListItem>20</asp:ListItem>
-                                <asp:ListItem>30</asp:ListItem>
+                                <asp:ListItem Selected="True">30</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -78,8 +78,7 @@
                         <label class="control-label col-lg-4 col-xs-12">Span</label>
                         <div class="col-lg-6 col-xs-12">
                             <asp:DropDownList ID="ddlSpan" class="form-control" runat="server" >
-                                <asp:ListItem Selected="True" Value="7">7 Days</asp:ListItem>
-                                <asp:ListItem Value="30">30 Days</asp:ListItem>
+                                <asp:ListItem Selected="True" Value="30">30 Days</asp:ListItem>
                                 <asp:ListItem Value="90">3 Months</asp:ListItem>
                                 <asp:ListItem Value="180">6 Months</asp:ListItem>
                                 <asp:ListItem Value="360">12 Months</asp:ListItem>
@@ -91,7 +90,7 @@
                         <div class="col-lg-8 col-xs-12">
                             <asp:DropDownList ID="ddlDataSet" class="form-control" runat="server">
                                 <asp:ListItem Value="Payments">Payment Amounts</asp:ListItem>
-                                <asp:ListItem Value="Renewals">No. of Renewals</asp:ListItem>
+                                <asp:ListItem Selected="True" Value="Renewals">No. of Renewals</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>

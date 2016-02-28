@@ -208,6 +208,7 @@
                                     RequiresUpperAndLowerCaseCharacters="false" />
                             </div>
                         </div>
+                        <hr />
                         <div id="employererror" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
                             Invalid Employer Code
                         </div>

@@ -189,50 +189,6 @@
             <div class="x_panel">
                 <div class="x_content">
                     <div class="form-group">
-                        <label class="control-label col-lg-4">Medical Event</label>
-                        <div class="col-lg-7 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtOperation" runat="server" class="form-control" required />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Initial Date</label>
-                        <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtStartDate" class="form-control" runat="server" TextMode="date" required />
-                            <asp:RangeValidator ID="sdateVld" runat="server"
-                                Display="Dynamic"
-                                ForeColor="Red"
-                                ControlToValidate="txtStartDate"
-                                ErrorMessage="Choose a valid date"
-                                MaximumValue="2017-01-01"
-                                MinimumValue="1900-01-01" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Discharge Date</label>
-                        <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtEndDate" class="form-control" runat="server" TextMode="date" />
-                            <asp:RangeValidator ID="edateBld" runat="server"
-                                Display="Dynamic"
-                                ForeColor="Red"
-                                ControlToValidate="txtEndDate"
-                                ErrorMessage="Choose a valid date"
-                                MaximumValue="2017-01-01"
-                                MinimumValue="1900-01-01" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Prognosis</label>
-                        <div class="col-lg-7 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtDetails" runat="server" class="form-control" required />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="x_panel">
-                <div class="x_content">
-                    <div class="form-group">
                         <label class="control-label col-lg-4">Dispatcher</label>
                         <div class="col-lg-7 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtDispatcher" runat="server" class="form-control search-dispatcher" required />
@@ -285,6 +241,37 @@
                         <label class="control-label col-lg-4">Treatment Officer</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <asp:TextBox ID="txtTreatmentOfficer" runat="server" class="form-control search-treatment" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Medical Event</label>
+                        <div class="col-lg-7 col-sm-12 col-xs-12">
+                            <asp:TextBox ID="txtOperation" runat="server" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Discharge Date</label>
+                        <div class="col-lg-5 col-sm-12 col-xs-12">
+                            <asp:TextBox ID="txtEndDate" class="form-control" runat="server" TextMode="date" />
+                            <asp:RangeValidator ID="edateBld" runat="server"
+                                Display="Dynamic"
+                                ForeColor="Red"
+                                ControlToValidate="txtEndDate"
+                                ErrorMessage="Choose a valid date"
+                                MaximumValue="2017-01-01"
+                                MinimumValue="1900-01-01" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Prognosis</label>
+                        <div class="col-lg-7 col-sm-12 col-xs-12">
+                            <asp:TextBox ID="txtDetails" runat="server" class="form-control" required />
                         </div>
                     </div>
                 </div>

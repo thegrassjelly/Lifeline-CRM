@@ -38,7 +38,7 @@ public partial class Account_Medical_Dispatch : System.Web.UI.Page
         {
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT DispatchID, Dispatcher, Date, Ambulance, " +
+            cmd.CommandText = "SELECT DispatchID, Dispatcher, DispatchDate, Ambulance, " +
                 "TeamLeader, TransportOfficer, TreatmentOfficer, ReceivingHospital, " +
                 "Address, Municipality, City FROM Dispatch INNER JOIN Hospitals ON " +
                 "Dispatch.ReceivingHospital=Hospitals.HospitalName WHERE DispatchID=@DispatchID";
@@ -51,7 +51,7 @@ public partial class Account_Medical_Dispatch : System.Web.UI.Page
                     {
                         txtDispatchID.Text = data["DispatchID"].ToString();
                         txtDispatcher.Text = data["Dispatcher"].ToString();
-                        txtDate.Text = data["Date"].ToString();
+                        txtDate.Text = data["DispatchDate"].ToString();
                         txtAmbulance.Text = data["Ambulance"].ToString();
                         txtTL.Text = data["TeamLeader"].ToString();
                         txtTransport.Text = data["TransportOfficer"].ToString();

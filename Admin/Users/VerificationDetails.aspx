@@ -87,8 +87,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">User Type</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:DropDownList id="ddlUserType" class="form-control" runat="server">
-                            </asp:DropDownList>
+                            <asp:TextBox ID="txtUserType" runat="server" class="form-control" disabled/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -125,7 +124,7 @@
                 <div class="x_content">
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
-                            <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pull-right" Text="Submit"
+                            <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pull-right" Text="Approve"
                                 OnClick="btnSubmit_Click" OnClientClick="return confirm('Are you sure?')"/>
                         </div>
                     </div>

@@ -150,7 +150,15 @@
                                         </ul>
                                     </li>
                                 </ul>
+                                <ul class="nav side-menu" id="Ul1" runat="server">
+                                    <li><a><i class="fa fa-ambulance"></i>Services<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li><a href='<%= Page.ResolveUrl("~/Account/Services.aspx") %>'><i class="fa fa-ambulance"></i>Services</a>
 
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <!-- /sidebar menu -->
@@ -233,13 +241,13 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <asp:ContentPlaceHolder ID="body" runat="server">
                             </asp:ContentPlaceHolder>
-                            <br />
                         </div>
                     </div>
 
                     <!-- footer content -->
+                    <br />
                     <footer>
-                        <div class="">
+                        <div class="dash-box-footer">
                             <a href="<%= Page.ResolveUrl("../Default.aspx#HOME") %>">Home</a> | 
                          <a href="<%= Page.ResolveUrl("../Default.aspx#SERVICE") %>">Services</a> |
                          <a href="<%= Page.ResolveUrl("../Default.aspx#ABOUT") %>">About</a> |
