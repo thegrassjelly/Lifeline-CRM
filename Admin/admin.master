@@ -259,6 +259,9 @@
                                             <li><a href='<%= Page.ResolveUrl("~/Admin/Feedback/Reports/IssueInquiryReport.aspx") %>'><i class="fa fa-print"></i>Issue & Inquiries Reports</a>
 
                                             </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/Reports/ApplicationReport.aspx") %>'><i class="fa fa-print"></i>Membership Application Reports</a>
+
+                                            </li>
                                             <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/Reports/RenewalsReport.aspx") %>'><i class="fa fa-print"></i>Renewal Reports</a>
 
                                             </li>

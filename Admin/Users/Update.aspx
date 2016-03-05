@@ -412,10 +412,14 @@
                                         </td>
                                         <td><%# Eval("DateSubmitted", "{0: MMMM dd, yyyy}") %></td>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-xs"><%# Eval("Status") %></button>
+                                            <button runat="server" type="button"
+                                                class='<%# Eval("Status").ToString() == "Read" ?
+                                                    "btn btn-success btn-xs" : "btn btn-danger btn-xs" %>'>
+                                                <%# Eval("Status") %>
+                                            </button>
                                         </td>
                                         <td>
-                                            <a href='MessageDetails.aspx?ID=<%# Eval("MessageID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>Message details </a>
+                                            <a href='MessageDetails.aspx?ID=<%# Eval("MessageID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Message details </a>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -508,15 +512,23 @@
                                                 <%# Eval("EndDate", "{0: MMMM dd, yyyy}") %>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-success btn-xs"><%# Eval("MembershipStatus") %></button>
+                                                <button runat="server" type="button"
+                                                    class='<%# Eval("MembershipStatus").ToString() == "Active" ?
+                                                    "btn btn-success btn-xs" : "btn btn-danger btn-xs" %>'>
+                                                    <%# Eval("MembershipStatus") %>
+                                                </button>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-success btn-xs"><%# Eval("PaymentStatus") %></button>
+                                                <button runat="server" type="button"
+                                                    class='<%# Eval("PaymentStatus").ToString() == "Paid" ?
+                                                    "btn btn-success btn-xs" : "btn btn-danger btn-xs" %>'>
+                                                    <%# Eval("PaymentStatus") %>
+                                                </button>
                                             </td>
                                             <td>
                                                 <a href='<%= Page.ResolveUrl("~/Admin/Membership/RenewalDetails.aspx?ID=") %>
                                                     <%# Eval("MembershipID") %>'
-                                                    class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>Details </a>
+                                                    class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Details </a>
                                             </td>
                                         </tr>
                                     </ItemTemplate>

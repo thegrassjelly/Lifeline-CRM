@@ -55,8 +55,8 @@
                             <label class="control-label col-lg-4">Status</label>
                             <div class="col-lg-3">
                                 <asp:DropDownList ID="ddlStatus" class="form-control" runat="server">
-                                    <asp:ListItem>Unread</asp:ListItem>
-                                    <asp:ListItem>Read</asp:ListItem>
+                                    <asp:ListItem Value="Unread">Unread</asp:ListItem>
+                                    <asp:ListItem Value="Read">Read</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>

@@ -13,6 +13,9 @@
                 <h2>Membership Applications</h2>
                 <div class="clearfix"></div>
             </div>
+            <a href='<%= Page.ResolveUrl("~/Admin/Membership/Reports/ApplicationReport.aspx") %>' class="btn btn-primary btn-md pull-right">
+                <i class="fa fa-print"></i>Print reports
+            </a>
             <div class="x_content">
                 <div class="col-lg-12">
                     <hr />

@@ -16,6 +16,7 @@ public partial class Admin_Users_MessageDetails : System.Web.UI.Page
                 if (!IsPostBack)
                 {
                     GetMessageDetails(messageID);
+                    ReadMsg(messageID);
                 }
             }
             else
@@ -29,6 +30,21 @@ public partial class Admin_Users_MessageDetails : System.Web.UI.Page
         }
     }
 
+    void ReadMsg(int messageID)
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "UPDATE Messages SET Status=@Status " +
+                "WHERE MessageID=@MessageID";
+            cmd.Parameters.AddWithValue("@Status", "Read");
+            cmd.Parameters.AddWithValue("@MessageID", Request.QueryString["ID"].ToString());
+            cmd.ExecuteNonQuery();
+        }
+    }
+
     void GetMessageDetails(int messageID)
     {
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
@@ -37,7 +53,7 @@ public partial class Admin_Users_MessageDetails : System.Web.UI.Page
             con.Open();
             cmd.Connection = con;
             cmd.CommandText = "SELECT MessageCat, Subject, DateSubmitted, Message, " +
-                "Messages.Email, FirstName, LastName, Messages.UserID FROM Messages INNER JOIN Users ON " +
+                "Messages.Email, FirstName, LastName, Messages.UserID, Messages.Status FROM Messages INNER JOIN Users ON " +
                 "Messages.UserID=Users.UserID WHERE Messages.MessageID=@MessageID";
             cmd.Parameters.AddWithValue("MessageID", messageID);
             using (SqlDataReader data = cmd.ExecuteReader())
@@ -55,6 +71,7 @@ public partial class Admin_Users_MessageDetails : System.Web.UI.Page
                         txtDate.Text = dDate.ToString("MM/dd/yyyy");
                         txtMessage.Text = data["Message"].ToString();
                         Session["messageuser"] = data["UserID"].ToString();
+                        ddlStatus.SelectedValue = data["Status"].ToString();
                     }
                 }
                 else

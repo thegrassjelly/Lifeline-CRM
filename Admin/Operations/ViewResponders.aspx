@@ -56,7 +56,9 @@
                                     <td><%# Eval("LastName") %>, <%# Eval("FirstName") %></td>
                                     <td><%# Eval("Title") %></td>
                                     <td>
-                                        <button runat="server" type="button" class="btn btn-info btn-xs">
+                                        <button runat="server" type="button"
+                                            class='<%# Eval("Status").ToString() == 
+                                                "Active" ? "btn btn-success btn-xs" : "btn btn-danger btn-xs" %>'>
                                             <%# Eval("Status") %>
                                         </button>
                                     </td>

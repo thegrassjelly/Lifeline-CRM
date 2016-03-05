@@ -54,7 +54,9 @@
                                     <td><%# Eval("AmbulanceName") %></td>
                                     <td><%# Eval("PlateNo") %></td>
                                     <td>
-                                        <button runat="server" type="button" class="btn btn-info btn-xs">
+                                        <button runat="server" type="button"
+                                            class='<%# Eval("AmbulanceStatus").ToString() == 
+                                                "Active" ? "btn btn-success btn-xs" : "btn btn-danger btn-xs" %>'>
                                             <%# Eval("AmbulanceStatus") %>
                                         </button>
                                     </td>

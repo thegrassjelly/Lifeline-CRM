@@ -106,7 +106,11 @@
                                                 </div>
                                                 <p class="excerpt">
                                                     <%# Eval("Message") %> 
-                                                <br/><br/><a href="<%= Page.ResolveUrl("~/Admin/Feedback/ViewFeedback.aspx") %>">Read&nbsp;More</a>
+                                                <br/><br/>
+                                                    <a href='<%# Eval("Category").ToString() == "Feedback" ? 
+                                                            ResolveUrl("~/Admin/Feedback/FeedbackDetails.aspx?ID=") + Eval("MessageID") :
+                                                            ResolveUrl("~/Admin/Feedback/Issue-InquiryDetails.aspx?ID=") + Eval("MessageID")%>'>Read&nbsp;More
+                                                    </a>
                                                 </p>
                                             </div>
                                         </div>

@@ -104,6 +104,38 @@
                     </div>
                 </div>
                 <hr />
+                <h3>Survey Questions</h3>
+                <p style="font-size: 14px">
+                    1: Lifeline Rescue Inc., service representatives (CSRs) are well trained.
+                </p>
+                <p style="font-size: 14px">
+                    2: Lifeline Rescue Inc., service representatives (CSRs) are well supervised.
+                </p>
+                <p style="font-size: 14px">
+                    3: Lifeline Rescue Inc., service representatives (CSRs) adhere to professional standards of conduct.
+                </p>
+                <p style="font-size: 14px">
+                    4: Lifeline Rescue Inc., service representatives (CSRs) act in my best interest.
+                </p>
+                <p style="font-size: 14px">
+                    5: Overall, I am satisfied with the Lifeline Rescue Inc., service representatives (CSRs).
+                </p>
+                <p style="font-size: 14px">
+                    6: The Lifeline Rescue Inc., account manager is knowledgeable and professional.
+                </p>
+                <p style="font-size: 14px">
+                    7: The Lifeline Rescue Inc., account manager is making a positive contribution to my business.
+                </p>
+                <p style="font-size: 14px">
+                    8: The Lifeline Rescue Inc., account manager is making a positive contribution to my business.
+                </p>
+                <p style="font-size: 14px">
+                    9: Overall, I am very satisfied with the Lifeline Rescue Inc., account manager.
+                </p>
+                <p style="font-size: 14px">
+                    10: Overall, I am very satisfied with the service (general) offered by Lifeline Rescue Inc.,
+                </p>
+                <hr />
                 <div class="form-group">
                     <div class="col-lg-12">
                         <asp:TextBox ID="txtMessage" Width="100%" Height="100" TextMode="Multiline" runat="server" 

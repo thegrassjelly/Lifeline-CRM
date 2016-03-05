@@ -161,7 +161,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" style="font-size: 15px">
-                                 8: The Lifeline Rescue Inc., account manager responds to my inquiries in a timely manner.
+                                 8: The Lifeline Rescue Inc., account manager is making a positive contribution to my business.
                             </label>
                             <asp:RequiredFieldValidator
                                 runat="server"

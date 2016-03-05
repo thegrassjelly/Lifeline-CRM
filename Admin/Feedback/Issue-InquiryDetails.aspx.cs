@@ -17,6 +17,7 @@ public partial class Admin_Feedback_Issue_InquiryDetails : System.Web.UI.Page
                 if (!IsPostBack)
                 {
                     GetMessageDetails(messageID);
+                    ReadMsg(messageID);
                 }
             }
             else
@@ -31,6 +32,21 @@ public partial class Admin_Feedback_Issue_InquiryDetails : System.Web.UI.Page
         this.Form.DefaultButton = this.btnUpdate.UniqueID;
     }
 
+    void ReadMsg(int messageID)
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "UPDATE Messages SET Status=@Status " +
+                "WHERE MessageID=@MessageID";
+            cmd.Parameters.AddWithValue("@Status", "Read");
+            cmd.Parameters.AddWithValue("@MessageID", Request.QueryString["ID"].ToString());
+            cmd.ExecuteNonQuery();
+        }
+    }
+
     void GetMessageDetails(int messageID)
     {
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
@@ -39,7 +55,7 @@ public partial class Admin_Feedback_Issue_InquiryDetails : System.Web.UI.Page
             con.Open();
             cmd.Connection = con;
             cmd.CommandText = "SELECT MessageCat, Subject, DateSubmitted, Message, " +
-                "Messages.Email, FirstName, LastName FROM Messages INNER JOIN Users ON " +
+                "Messages.Email, FirstName, LastName, Messages.Status FROM Messages INNER JOIN Users ON " +
                 "Messages.UserID=Users.UserID WHERE Messages.MessageID=@MessageID";
             cmd.Parameters.AddWithValue("MessageID", messageID);
             using (SqlDataReader data = cmd.ExecuteReader())
@@ -56,6 +72,7 @@ public partial class Admin_Feedback_Issue_InquiryDetails : System.Web.UI.Page
                         DateTime dDate = Convert.ToDateTime(data["DateSubmitted"].ToString());
                         txtDate.Text = dDate.ToString("MM/dd/yyyy");
                         txtMessage.Text = data["Message"].ToString();
+                        ddlStatus.SelectedValue = data["Status"].ToString();
                     }
                 }
                 else
