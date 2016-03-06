@@ -52,7 +52,10 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-xs"><%# Eval("PaymentStatus") %></button>
+                                            <button runat="server" type="button"
+                                                class='<%# Eval("PaymentStatus").ToString() == "Paid" ? "btn btn-success btn-xs" : "btn btn-danger btn-xs" %>'>
+                                                <%# Eval("PaymentStatus") %>
+                                            </button>
                                         </td>
                                         <td>
                                             <%# Eval("Amount", "{0: ₱ #,###.00}") %>
@@ -61,7 +64,7 @@
                                             <%# Eval("Length") %>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-info btn-xs"><%# Eval("Type") %></button>
+                                            <%# Eval("Type") %>
                                         </td>
                                         <td>
                                             <%# Eval("StartDate", "{0: MMMM dd, yyyy}") %>

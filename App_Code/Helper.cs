@@ -61,34 +61,46 @@ public class Helper
             HttpContext.Current.Response.Redirect("~/Account/Login.aspx");
     }
 
+    public static void ValidateCorporate()
+    {
+        if (HttpContext.Current.Session["corporateid"] == null)
+            HttpContext.Current.Response.Redirect("~/Corporate/Login.aspx");
+    }
+
     public static void Log(string userID, string logType, string desc, string specifics)
     {
-        con.Open();
-        SqlCommand cmd = new SqlCommand();
-        cmd.Connection = con;
-        cmd.CommandText = "INSERT INTO Logs VALUES (@UserID, @LogType, @Description, @Timestamp, @Specifics)";
-        cmd.Parameters.AddWithValue("@UserID", userID);
-        cmd.Parameters.AddWithValue("@LogType", logType);
-        cmd.Parameters.AddWithValue("@Description", desc);
-        cmd.Parameters.AddWithValue("@Timestamp", DateTime.Now);
-        cmd.Parameters.AddWithValue("@Specifics", specifics);
-        cmd.ExecuteNonQuery();
-        con.Close();
+        using (SqlCommand cmd = new SqlCommand())
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "INSERT INTO Logs VALUES (@UserID, @LogType, @Description, @Timestamp, @Specifics)";
+            cmd.Parameters.AddWithValue("@UserID", userID);
+            cmd.Parameters.AddWithValue("@LogType", logType);
+            cmd.Parameters.AddWithValue("@Description", desc);
+            cmd.Parameters.AddWithValue("@Timestamp", DateTime.Now);
+            cmd.Parameters.AddWithValue("@Specifics", specifics);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 
     public static void LogException(string userID, string logType, string desc)
     {
-        con.Open();
-        SqlCommand cmd = new SqlCommand();
-        cmd.Connection = con;
-        cmd.CommandText = "INSERT INTO Exceptions (UserID, Page, Description, " +
-            "Timestamp) VALUES (@UserID, @Page, @Description, @Timestamp)";
-        cmd.Parameters.AddWithValue("@UserID", userID);
-        cmd.Parameters.AddWithValue("@Page", logType);
-        cmd.Parameters.AddWithValue("@Description", desc);
-        cmd.Parameters.AddWithValue("@Timestamp", DateTime.Now);
-        cmd.ExecuteNonQuery();
-        con.Close();
+        using (SqlCommand cmd = new SqlCommand())
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "INSERT INTO Exceptions (UserID, Page, Description, " +
+                "Timestamp) VALUES (@UserID, @Page, @Description, @Timestamp)";
+            cmd.Parameters.AddWithValue("@UserID", userID);
+            cmd.Parameters.AddWithValue("@Page", logType);
+            cmd.Parameters.AddWithValue("@Description", desc);
+            cmd.Parameters.AddWithValue("@Timestamp", DateTime.Now);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 
     public static void SendEmail(string subject, string recipient, string body)
@@ -154,31 +166,34 @@ public class Helper
 
     public static void SendAutomaticEmail(string userID, string recipient, string body)
     {
-        con.Open();
-        SqlCommand cmd = new SqlCommand();
-        cmd.Connection = con;
-        cmd.CommandText = "UPDATE AutomaticRenewal SET RemindMeStatus='Sent' " +
-                          "WHERE UserID=@UserID";
-        cmd.Parameters.AddWithValue("@UserID", userID);
-        cmd.ExecuteNonQuery();
-        con.Close();
+        using (SqlCommand cmd = new SqlCommand())
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "UPDATE AutomaticRenewal SET RemindMeStatus='Sent' " +
+                              "WHERE UserID=@UserID";
+            cmd.Parameters.AddWithValue("@UserID", userID);
+            cmd.ExecuteNonQuery();
+            con.Close();
 
-        MailMessage mm = new MailMessage();
-        mm.From = new MailAddress("lifelineambulancerescue@gmail.com");
-        mm.To.Add(recipient);
-        mm.Subject = "Membership - Automatic Renewal Reminder";
-        mm.Body = body;
-        mm.IsBodyHtml = true;
+            MailMessage mm = new MailMessage();
+            mm.From = new MailAddress("lifelineambulancerescue@gmail.com");
+            mm.To.Add(recipient);
+            mm.Subject = "Membership - Automatic Renewal Reminder";
+            mm.Body = body;
+            mm.IsBodyHtml = true;
 
-        SmtpClient client = new SmtpClient();
-        client.EnableSsl = true;
-        client.UseDefaultCredentials = true;
-        NetworkCredential cred = new NetworkCredential("lifelineambulancerescue@gmail.com", "swantonbomb");
-        client.Host = "smtp.gmail.com";
-        client.Port = 587;
-        client.DeliveryMethod = SmtpDeliveryMethod.Network;
-        client.Credentials = cred;
-        client.Send(mm);
+            SmtpClient client = new SmtpClient();
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = true;
+            NetworkCredential cred = new NetworkCredential("lifelineambulancerescue@gmail.com", "swantonbomb");
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.Credentials = cred;
+            client.Send(mm);
+        }
     }
 
     public static void Alert(string msg, string title)

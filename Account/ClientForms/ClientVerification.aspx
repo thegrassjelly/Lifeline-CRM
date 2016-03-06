@@ -19,22 +19,22 @@
                         contentType: "application/json; charset=utf-8",
                         url: "ClientVerification.aspx/SearchCity",
                         data: "{'prefixText':'" + document.getElementById('<%=txtCity.ClientID%>').value + "'}",
-                            dataType: "json",
-                            success: function (data) {
-                                response(data.d);
-                            },
-                            error: function (result) {
-                                alert("Error" + result.result);
-                            }
-                        });
-                    }
-                });
-            }
+                        dataType: "json",
+                        success: function (data) {
+                            response(data.d);
+                        },
+                        error: function (result) {
+                            alert("Error" + result.result);
+                        }
+                    });
+                }
+            });
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
     <form class="form-horizontal" runat="server">
-        <asp:ScriptManager runat="server" EnablePageMethods="true" />
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
         <div class="col-lg-6">
             <div class="x_panel">
                 <div class="x_title">
@@ -59,7 +59,7 @@
                         <div class="col-lg-6 col-xs-12">
                             <asp:TextBox ID="txtFN" runat="server" class="form-control" required />
                             <asp:RegularExpressionValidator ID="fnVld" runat="server"
-                                ForeColor="Red" 
+                                ForeColor="Red"
                                 Display="Dynamic"
                                 ControlToValidate="txtFN"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -71,7 +71,7 @@
                         <div class="col-lg-5 col-xs-12">
                             <asp:TextBox ID="txtLN" runat="server" class="form-control" required />
                             <asp:RegularExpressionValidator ID="lnVld" runat="server"
-                                ForeColor="Red" 
+                                ForeColor="Red"
                                 Display="Dynamic"
                                 ControlToValidate="txtLN"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -95,7 +95,7 @@
                         <div class="col-lg-5 col-xs-12">
                             <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" required />
                             <asp:RegularExpressionValidator ID="MncpltyVld" runat="server"
-                                ForeColor="Red" 
+                                ForeColor="Red"
                                 Display="Dynamic"
                                 ControlToValidate="txtMunicipality"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -107,7 +107,7 @@
                         <div class="col-lg-5 col-xs-12">
                             <asp:TextBox ID="txtCity" runat="server" class="form-control autosuggest" required />
                             <asp:RegularExpressionValidator ID="CtyVld" runat="server"
-                                ForeColor="Red" 
+                                ForeColor="Red"
                                 Display="Dynamic"
                                 ControlToValidate="txtCity"
                                 ValidationExpression="^[a-zA-Z'.\s]{1,50}"
@@ -131,12 +131,12 @@
                         <label class="control-label col-lg-4 col-xs-12">Mobile No.</label>
                         <div class="col-lg-5 col-xs-12">
                             <asp:TextBox ID="txtMobile" runat="server" class="form-control" MaxLength="11"
-                                placeholder="09#########" required/>
+                                placeholder="09#########" required />
                             <asp:RegularExpressionValidator ID="MblVld" runat="server"
-                                ForeColor="Red" 
+                                ForeColor="Red"
                                 Display="Dynamic"
-                                ControlToValidate="txtMobile" 
-                                ValidationExpression="^[0-9]{11}$" 
+                                ControlToValidate="txtMobile"
+                                ValidationExpression="^[0-9]{11}$"
                                 ErrorMessage="Enter a valid Mobile Number" />
                         </div>
                     </div>
@@ -210,7 +210,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-l2">
+        <div class="col-lg-l2" id="btnpanel" runat="server">
             <div class="x_panel">
                 <div class="x_title"></div>
                 <div class="x_content">

@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.IO;
 
-public partial class Admin_Users_DepositPaymentDetails : System.Web.UI.Page
+public partial class Corporate_DepositPaymentDetails : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -30,12 +30,12 @@ public partial class Admin_Users_DepositPaymentDetails : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("~/Admin/Users/CorporateAccounts.aspx");
+                Response.Redirect("~/Corporate/Default.aspx");
             }
         }
         else
         {
-            Response.Redirect("~/Admin/Users/CorporateAccounts.aspx");
+            Response.Redirect("~/Corporate/Default.aspx");
         }
     }
 
@@ -65,7 +65,7 @@ public partial class Admin_Users_DepositPaymentDetails : System.Web.UI.Page
                 }
                 else
                 {
-                    Response.Redirect("~/Admin/Users/CorporateAccounts.aspx");
+                    Response.Redirect("~/Corporate/Default.aspx");
                 } 
             } 
         }

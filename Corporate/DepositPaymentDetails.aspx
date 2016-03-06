@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="DepositPaymentDetails.aspx.cs" Inherits="Admin_Users_DepositPaymentDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Corporate/corporate.master" AutoEventWireup="true" CodeFile="DepositPaymentDetails.aspx.cs" Inherits="Corporate_DepositPaymentDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <h3>User Management</h3>
@@ -21,6 +21,7 @@
                                 <asp:Image ID="imgDepositSlip" class="img-responsive pull-left" runat="server" />
                             </asp:HyperLink>
                         </div>
+                        <hr />
                     </div>
                 </div>
             </div>

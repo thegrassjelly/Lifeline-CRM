@@ -5,6 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <form class="form-horizontal" runat="server">
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
         <div class="row">
         <div class="col-lg-12">
             <div class="x_panel">
@@ -222,7 +223,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-offset-4 col-lg-8">
-                                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pull-right" Text="Upload"
+                                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary pull-right" Text="Submit"
                                         OnClick="btnSubmit_Click" OnClientClick="return confirm('Are you sure?')" />
                                 </div>
                             </div>

@@ -69,9 +69,10 @@ public partial class Account_Issue_Inquiry : System.Web.UI.Page
 
             con.Close();
             Helper.Log(userID, "Feedback", "Inquiry/Issue", messageID.ToString());
-            issue.Visible = true;
             Helper.SendEmail("Issue/Inquiry", txtEmail.Text.ToString(),
                 PopulateBody(txtEmail.Text.ToString(), txtFirstName.Text.ToString(), ddlMessageCat.SelectedValue));
+            issue.Visible = true;
+            btnSubmit.Visible = false;
         }
     }
 

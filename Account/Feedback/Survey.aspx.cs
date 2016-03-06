@@ -65,9 +65,10 @@ public partial class Account_Feedback_Survey : System.Web.UI.Page
             int surveyID = (int)cmd.ExecuteScalar();
 
             Helper.Log(userID, "Feedback", "Survey", surveyID.ToString());
-            survey.Visible = true;
             Helper.SendEmail("Survey", txtEmail.Text.ToString(),
                 PopulateBody(txtEmail.Text.ToString(), txtFirstName.Text.ToString()));
+            survey.Visible = true;
+            btnSubmit.Visible = false;
         }
     }
 

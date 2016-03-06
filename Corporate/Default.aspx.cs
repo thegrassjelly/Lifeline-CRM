@@ -6,47 +6,32 @@ using System.IO;
 using System.Web.Services;
 using System.Web.UI.WebControls;
 
-public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
+public partial class Corporate_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Helper.ValidateAdmin();
-        if (Request.QueryString["ID"] != null)
+        Helper.ValidateCorporate();
+        int corpID = int.Parse(Session["corporateid"].ToString());
+        if (!IsPostBack)
         {
-            int corporateID = 0;
-            bool validCorporateID = int.TryParse(Request.QueryString["ID"].ToString(), out corporateID);
-
-            if (validCorporateID)
+            GetEmployerDetails(corpID);
+            GetPaymentHistory(corpID);
+            if (Session["employerup"] != null)
             {
-                if (!IsPostBack)
-                {
-                    GetEmployerDetails(corporateID);
-                    GetPaymentHistory(corporateID);
-                    if (Session["employerup"] != null)
-                    {
-                        employer_up.Visible = true;
-                        Session.Remove("employerup");
-                    }
-                    else
-                    {
-                        employer_up.Visible = false;
-                    }
-                    if (Session["dberror"] != null)
-                    {
-                        db_error.Visible = true;
-                        Session.Remove("dberror");
-                    }
-                }
+                employer_up.Visible = true;
+                Session.Remove("employerup");
             }
             else
             {
-                Response.Redirect("~/Admin/Users/CorporateAccounts.aspx");
+                employer_up.Visible = false;
+            }
+            if (Session["dberror"] != null)
+            {
+                db_error.Visible = true;
+                Session.Remove("dberror");
             }
         }
-        else
-        {
-            Response.Redirect("~/Admin/Users/CorporateAccounts.aspx");
-        }
+        this.Form.DefaultButton = this.btnUpdate.UniqueID;
     }
 
     [WebMethod]
@@ -73,7 +58,7 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
         return cities;
     }
 
-    void GetPaymentHistory(int corporateID)
+    void GetPaymentHistory(int corpID)
     {
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
@@ -82,7 +67,7 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
             cmd.Connection = con;
             cmd.CommandText = "SELECT TOP 1 CorporatePaymentID FROM CorporatePayments " +
                               "WHERE CorporateID=@CorporateID ORDER BY CorporatePaymentID DESC";
-            cmd.Parameters.AddWithValue("@CorporateID", corporateID);
+            cmd.Parameters.AddWithValue("@CorporateID", corpID);
             Session["corporatePaymentID"] = (int)cmd.ExecuteScalar();
 
             cmd.CommandText = "SELECT DepositID, PaymentDate, Amount FROM DepositPayments " +
@@ -92,7 +77,7 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
             DataSet ds = new DataSet();
             da.Fill(ds);
             lvPaymentHistory.DataSource = ds;
-            lvPaymentHistory.DataBind();  
+            lvPaymentHistory.DataBind();
         }
     }
 
@@ -110,11 +95,11 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
             DataSet ds = new DataSet();
             da.Fill(ds);
             lvPaymentHistory.DataSource = ds;
-            lvPaymentHistory.DataBind(); 
+            lvPaymentHistory.DataBind();
         }
     }
 
-    void GetEmployerDetails(int corporateID)
+    void GetEmployerDetails(int corpID)
     {
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
@@ -127,7 +112,7 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
                               "FROM CorporateAccounts INNER JOIN CorporatePayments ON " +
                               "CorporateAccounts.CorporateID=CorporatePayments.CorporateID " +
                               "WHERE CorporateAccounts.CorporateID=@CorporateID";
-            cmd.Parameters.AddWithValue("@CorporateID", corporateID);
+            cmd.Parameters.AddWithValue("@CorporateID", corpID);
             using (SqlDataReader da = cmd.ExecuteReader())
             {
                 if (da.HasRows)
@@ -139,7 +124,7 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
                         txtName.Text = da["Name"].ToString();
                         ddlNature.SelectedValue = da["NatureOfBusiness"].ToString();
                         txtOthers.Text = da["Others"].ToString();
-                        ddlStatus.SelectedValue = da["Status"].ToString();
+                        txtStatus.Text = da["Status"].ToString();
                         txtPhone.Text = da["Phone"].ToString();
                         txtFax.Text = da["Fax"].ToString();
                         txtStreet.Text = da["Address"].ToString();
@@ -152,17 +137,13 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
                         Session["corporatebalance"] = da["Balance"].ToString();
                         double bal = Convert.ToDouble(da["Balance"].ToString());
                         txtBalance.Text = bal.ToString("₱ #,###.00");
-                        if (bal <= 0) 
+                        if (bal <= 0)
                         {
                             txtDepositAmount.Visible = false;
                             btnSubmit.Visible = false;
                         }
                     }
                 }
-                else
-                {
-                    Response.Redirect("~/Admin/Users/CorporateAccounts.aspx");
-                }  
             }
         }
     }
@@ -172,38 +153,36 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
         {
-            string corporateID = Request.QueryString["ID"].ToString();
+            string corporateID = Session["corporateid"].ToString();
 
             con.Open();
             cmd.Connection = con;
             if (txtPassword.Text.Trim() == "")
             {
-                cmd.CommandText = "UPDATE CorporateAccounts SET Name=@Name, NatureOfBusiness=@NatureOfBusiness, " +
-            "Others=@Others, Status=@Status, Phone=@Phone, Fax=@Fax, Address=@Address, " +
+                cmd.CommandText = "UPDATE CorporateAccounts SET NatureOfBusiness=@NatureOfBusiness, " +
+            "Others=@Others,Phone=@Phone, Fax=@Fax, Address=@Address, " +
             "Municipality=@Municipality, City=@City, Email=@Email WHERE CorporateID=@CorporateID";
             }
             else
             {
-                cmd.CommandText = "UPDATE CorporateAccounts SET Password=@Password, Name=@Name, NatureOfBusiness=@NatureOfBusiness, " +
-            "Others=@Others, Status=@Status, Phone=@Phone, Fax=@Fax, Address=@Address, " +
+                cmd.CommandText = "UPDATE CorporateAccounts SET Password=@Password, NatureOfBusiness=@NatureOfBusiness, " +
+            "Others=@Others,Phone=@Phone, Fax=@Fax, Address=@Address, " +
             "Municipality=@Municipality, City=@City, Email=@Email WHERE CorporateID=@CorporateID";
             }
-            cmd.Parameters.AddWithValue("@Name", txtName.Text.ToString());
             cmd.Parameters.AddWithValue("@NatureOfBusiness", ddlNature.SelectedValue);
-            cmd.Parameters.AddWithValue("@Others", txtOthers.Text.ToString());
-            cmd.Parameters.AddWithValue("@Status", ddlStatus.SelectedValue);
-            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text.ToString());
-            cmd.Parameters.AddWithValue("@Fax", txtFax.Text.ToString());
-            cmd.Parameters.AddWithValue("@Address", txtStreet.Text.ToString());
-            cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text.ToString());
-            cmd.Parameters.AddWithValue("@City", txtCity.Text.ToString());
-            cmd.Parameters.AddWithValue("@Email", txtEmail.Text.ToString());
+            cmd.Parameters.AddWithValue("@Others", txtOthers.Text);
+            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+            cmd.Parameters.AddWithValue("@Fax", txtFax.Text);
+            cmd.Parameters.AddWithValue("@Address", txtStreet.Text);
+            cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
+            cmd.Parameters.AddWithValue("@City", txtCity.Text);
+            cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
             cmd.Parameters.AddWithValue("@CorporateID", corporateID);
             cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash(txtPassword.Text));
             cmd.ExecuteNonQuery();
 
             Session["employerup"] = "yes";
-            Response.Redirect(Request.RawUrl); 
+            Response.Redirect("Default.aspx");
         }
     }
 
@@ -263,19 +242,19 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
                     }
                     else
                     {
-                    cmd.Parameters.AddWithValue("@Amount", txtDepositAmount.Text);
-                    cmd.ExecuteNonQuery();
-                    
+                        cmd.Parameters.AddWithValue("@Amount", txtDepositAmount.Text);
+                        cmd.ExecuteNonQuery();
 
-                    double grossAmount = Convert.ToDouble(Session["corporatebalance"].ToString()) -
-                    Convert.ToDouble(txtDepositAmount.Text);
-                    cmd.CommandText = "UPDATE CorporatePayments SET Balance=@Balance " +
-                                      "WHERE CorporatePaymentID=@CorporatePaymentID";
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@Balance", grossAmount);
-                    cmd.Parameters.AddWithValue("@CorporatePaymentID", Session["corporatePaymentID"].ToString());
-                    cmd.ExecuteNonQuery();
-                    Session.Remove("corporatebalance");
+
+                        double grossAmount = Convert.ToDouble(Session["corporatebalance"].ToString()) -
+                        Convert.ToDouble(txtDepositAmount.Text);
+                        cmd.CommandText = "UPDATE CorporatePayments SET Balance=@Balance " +
+                                          "WHERE CorporatePaymentID=@CorporatePaymentID";
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@Balance", grossAmount);
+                        cmd.Parameters.AddWithValue("@CorporatePaymentID", Session["corporatePaymentID"].ToString());
+                        cmd.ExecuteNonQuery();
+                        Session.Remove("corporatebalance");
                     }
                     tran.Commit();
                 }
@@ -283,7 +262,7 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
                 {
                     tran.Rollback();
                     Session["dberror"] = "yes";
-                    Helper.LogException(Session["userid"].ToString(), "User Management, Corporate Payments ",
+                    Helper.LogException(Session["corporateid"].ToString(), "Corporate Account, Corporate Payments ",
                         "Exception Type: " + ex.GetType().ToString() + " " +
                         "Exception Message: " + ex.Message.ToString());
                 }

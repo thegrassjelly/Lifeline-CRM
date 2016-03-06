@@ -59,9 +59,10 @@ public partial class Account_Feedback_Feedback : System.Web.UI.Page
             int messageID = (int)cmd.ExecuteScalar();
 
             Helper.Log(userID, "Feedback", "Satisfaction Rating", messageID.ToString());
-            feedback.Visible = true;
             Helper.SendEmail("Satisfaction Rating", txtEmail.Text.ToString(),
                 PopulateBody(txtEmail.Text.ToString(), txtFirstName.Text.ToString(), ddlMessageCat.SelectedValue));
+            feedback.Visible = true;
+            btnSubmit.Visible = false;
         }
     }
 

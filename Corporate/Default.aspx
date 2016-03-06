@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="CorporateAccountDetails.aspx.cs" Inherits="Admin_Users_CorporateAccountDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Corporate/corporate.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Corporate_Default" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <h3>User Management</h3>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <h3>Account Management</h3>
     <script type='text/javascript' src='<%= Page.ResolveUrl("~/js/newjs/jquery.min.js") %>'></script>
     <script type='text/javascript' src='<%= Page.ResolveUrl("~/js/newjs/jquery-ui.min.js") %>'></script>
     <script type="text/javascript">
@@ -17,7 +17,7 @@
                     $.ajax({
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
-                        url: "CorporateAccountDetails.aspx/SearchCity",
+                        url: "Default.aspx/SearchCity",
                         data: "{'prefixText':'" + document.getElementById('<%=txtCity.ClientID%>').value + "'}",
                             dataType: "json",
                             success: function (data) {
@@ -32,9 +32,20 @@
             }
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <form class="form-horizontal" runat="server">
         <asp:ScriptManager runat="server" EnablePageMethods="true" />
+        <div class="col-lg-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Employees</h2>
+                <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="x_content">
+                <!-- Employee LV here -->
+            </div>
+        </div>
         <div class="col-lg-6">
             <div class="x_panel">
                 <div class="x_title">
@@ -62,7 +73,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Employer Name</label>
                         <div class="col-lg-7 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtName" class="form-control" runat="server" />
+                            <asp:TextBox ID="txtName" class="form-control" runat="server" disabled/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -173,10 +184,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Status</label>
                         <div class="col-lg-4 col-sm-12 col-xs-12">
-                            <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" data-toggle="tooltip">
-                                <asp:ListItem>Active</asp:ListItem>
-                                <asp:ListItem>Pending</asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:TextBox id="txtStatus" class="form-control" runat="server" disabled />
                         </div>
                     </div>
                     <hr />

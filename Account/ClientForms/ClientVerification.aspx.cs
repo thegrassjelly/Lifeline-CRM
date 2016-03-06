@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
-using System.Web.Script.Services;
 using System.Web.Services;
 
 public partial class Account_ClientForms_PendingClient : System.Web.UI.Page
@@ -13,7 +12,7 @@ public partial class Account_ClientForms_PendingClient : System.Web.UI.Page
         if (CheckVerification())
         {
             verify_pending.Visible = true;
-            btnSubmit.Visible = false;
+            btnpanel.Visible = false;
         }
         else
         {

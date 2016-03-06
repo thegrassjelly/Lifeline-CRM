@@ -34,7 +34,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
     <form class="form-horizontal" runat="server">
-        <asp:ScriptManager runat="server" EnablePageMethods="true" />
         <div class="col-lg-6">
             <div class="x_panel">
                 <div class="x_title">
@@ -49,7 +48,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">First Name</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtFirstName" runat="server" class="form-control" MaxLength="80" required/>
+                            <asp:TextBox ID="txtFirstName" runat="server" class="form-control" MaxLength="80" required />
                             <asp:RegularExpressionValidator ID="fnVld" runat="server"
                                 ForeColor="red"
                                 Display="Dynamic"
@@ -61,7 +60,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Last Name</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtLastName" runat="server" class="form-control" MaxLength="80" required/>
+                            <asp:TextBox ID="txtLastName" runat="server" class="form-control" MaxLength="80" required />
                             <asp:RegularExpressionValidator ID="lnVld" runat="server"
                                 ForeColor="red"
                                 Display="Dynamic"
@@ -85,7 +84,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Mobile No.</label>
                         <div class="col-lg-4 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtMobile" runat="server" class="form-control" MaxLength="11" required/>
+                            <asp:TextBox ID="txtMobile" runat="server" class="form-control" MaxLength="11" required />
                             <asp:RegularExpressionValidator ID="MblVld" runat="server"
                                 ForeColor="Red"
                                 Display="Dynamic"
@@ -110,13 +109,13 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Street</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtStreet" runat="server" class="form-control" required/>
+                            <asp:TextBox ID="txtStreet" runat="server" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Municipality</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" required/>
+                            <asp:TextBox ID="txtMunicipality" runat="server" class="form-control" required />
                             <asp:RegularExpressionValidator ID="MncpltyVld" runat="server"
                                 ForeColor="Red"
                                 Display="Dynamic"
@@ -128,7 +127,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">City</label>
                         <div class="col-lg-5 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtCity" runat="server" class="form-control autosuggest" required/>
+                            <asp:TextBox ID="txtCity" runat="server" class="form-control autosuggest" required />
                             <asp:RegularExpressionValidator ID="CtyVld" runat="server"
                                 ForeColor="Red"
                                 Display="Dynamic"
@@ -140,7 +139,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4">Email Address</label>
                         <div class="col-lg-6 col-sm-12 col-xs-12">
-                            <asp:TextBox ID="txtEmail" runat="server" class="form-control" TextMode="Email" MaxLength="80" required/>
+                            <asp:TextBox ID="txtEmail" runat="server" class="form-control" TextMode="Email" MaxLength="80" required />
                             <asp:RegularExpressionValidator ID="emlVld" runat="server"
                                 ForeColor="red"
                                 Display="Dynamic"
@@ -325,7 +324,7 @@
                     <hr />
                     <div class="col-lg-12">
                         <span class="pull-right">
-                            <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary" Text="Next" 
+                            <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary" Text="Next"
                                 OnClick="btnSubmit_Click" OnClientClick="return validate()" />
                         </span>
                     </div>

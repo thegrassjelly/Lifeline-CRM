@@ -62,21 +62,23 @@ public partial class Admin_Users_AddCorporateAccounts : System.Web.UI.Page
 
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "INSERT INTO CorporateAccounts (Name, NatureOfBusiness, " +
+                    cmd.CommandText = "INSERT INTO CorporateAccounts (UserName, Password, Name, NatureOfBusiness, " +
                                       "Address, Municipality, City, Phone, Fax, Email, Others, Status, DateAdded, EmployerCode) " +
-                                      "VALUES (@Name, @NatureOfBusiness, @Address, @Municipality, @City, @Phone, " +
+                                      "VALUES (@UserName, @Password, @Name, @NatureOfBusiness, @Address, @Municipality, @City, @Phone, " +
                                       "@Fax, @Email, @Others, @Status, @DateAdded, @EmployerCode); SELECT TOP 1 CorporateID " +
                                       "FROM CorporateAccounts ORDER By CorporateID DESC";
-                    cmd.Parameters.AddWithValue("@Name", txtCompanyName.Text.ToString());
+                    cmd.Parameters.AddWithValue("@UserName", txtCompanyName.Text.ToLower() + employerCode);
+                    cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash("1234"));
+                    cmd.Parameters.AddWithValue("@Name", txtCompanyName.Text);
                     cmd.Parameters.AddWithValue("@NatureOfBusiness", ddlNature.SelectedValue);
-                    cmd.Parameters.AddWithValue("@Address", txtStreet.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text.ToString());
-                    cmd.Parameters.AddWithValue("@City", txtCity.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Phone", txtPhone.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Fax", txtFax.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Others", txtOthers.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Status", ddlStatus.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@Address", txtStreet.Text);
+                    cmd.Parameters.AddWithValue("@Municipality", txtMunicipality.Text);
+                    cmd.Parameters.AddWithValue("@City", txtCity.Text);
+                    cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+                    cmd.Parameters.AddWithValue("@Fax", txtFax.Text);
+                    cmd.Parameters.AddWithValue("@Others", txtOthers.Text);
+                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                    cmd.Parameters.AddWithValue("@Status", ddlStatus.SelectedValue);
                     cmd.Parameters.AddWithValue("@DateAdded", DateTime.Now);
                     cmd.Parameters.AddWithValue("@EmployerCode", employerCode);
                     int corporateID = (int) cmd.ExecuteScalar();
@@ -106,8 +108,8 @@ public partial class Admin_Users_AddCorporateAccounts : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@Length", txtLength.Text.ToString());
                     cmd.ExecuteNonQuery();
                     tran.Commit();
-
                     Session["employer"] = "yes";
+                    Response.Redirect("~/Admin/Users/CorporateAccounts.aspx");
                 }
                 catch (SqlException ex)
                 {

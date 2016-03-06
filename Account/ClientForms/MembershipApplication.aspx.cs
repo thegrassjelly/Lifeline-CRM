@@ -208,8 +208,6 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
                             SendConfirmation(totalEndDate, 1000);
                             Response.Redirect("~/Account/ClientForms/MembershipApplicationTwo.aspx");
                         }
-
-
                     }
                     catch (SqlException ex)
                     {

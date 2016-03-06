@@ -131,6 +131,8 @@ public partial class Account_ClientForms_MembershipApplicationTwo : System.Web.U
                     {
                         imgDepositSlip.ImageUrl = "~/scans/" + data["DepositSlip"].ToString();
                         imgDepositSlipLb.NavigateUrl = "~/scans/" + data["DepositSlip"].ToString();
+                        btnSubmit.Visible = false;
+                        fileDepositSlip.Visible = false;
                     }
                     else
                     {
@@ -196,7 +198,7 @@ public partial class Account_ClientForms_MembershipApplicationTwo : System.Web.U
             con.Close();
 
             Helper.Log(Session["userid"].ToString(), "Membership Application", "Deposit slip submission", AppID.ToString());
-            Helper.DepositConfirmation(txtEmail.Text.ToString(), PopulateBody());
+            Helper.DepositConfirmation(txtEmail.Text, PopulateBody());
             Response.Redirect("~/Account/ClientForms/MembershipApplicationTwo.aspx");
         }
     }
