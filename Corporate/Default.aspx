@@ -14,7 +14,7 @@
         function SearchText() {
             $(".autosuggest").autocomplete({
                 source: function (request, response) {
-                    $.ajax({
+                    $.ajax({7
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
                         url: "Default.aspx/SearchCity",
@@ -35,17 +35,95 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <form class="form-horizontal" runat="server">
         <asp:ScriptManager runat="server" EnablePageMethods="true" />
-        <div class="col-lg-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Employees</h2>
-                <div class="clearfix"></div>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="col-lg-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Employees</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="input-group">
+                                        <asp:DropDownList ID="ddlStatus" runat="server" class="form-control"
+                                            AutoPostBack="True" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged">
+                                            <asp:ListItem Text="Active" Value="Active" />
+                                            <asp:ListItem Text="Inactive" Value="Inactive" />
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="input-group">
+                                        <asp:TextBox ID="txtSearch" runat="server" class="form-control"
+                                            placeholder="Keyword..." />
+                                        <span class="input-group-btn">
+                                            <asp:LinkButton ID="btnSearch" runat="server" class="btn btn-info"
+                                                OnClick="btnSearch_Click">
+                                      <i class="fa fa-search"></i>
+                                            </asp:LinkButton>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table class="table table-striped project">
+                                <thead>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Contact No.</th>
+                                    <th>Street</th>
+                                    <th>Municipality</th>
+                                    <th>City</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <asp:ListView ID="lvEmployees" runat="server"
+                                        OnPagePropertiesChanging="lvEmployees_PagePropertiesChanging">
+                                        <ItemTemplate>
+                                            <tr>
+                                                <td><%# Eval("LastName") %>, <%# Eval("FirstName") %></td>
+                                                <td><%# Eval("Email") %></td>
+                                                <td><%# Eval("Phone") %> / <%# Eval("Mobile") %></td>
+                                                <td><%# Eval("Street") %></td>
+                                                <td><%# Eval("Municipality") %></td>
+                                                <td><%# Eval("City") %></td>
+                                                <td><%# Eval("Status") %></td>
+                                                <td>
+                                                    <a href='<%# ResolveUrl("~/Corporate/UserDetails.aspx?ID=") %><%# Eval("UserID") %>'>
+                                                        <asp:Label runat="server"><i class="fa fa-folder"></i></asp:Label>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </ItemTemplate>
+                                        <EmptyDataTemplate>
+                                            <tr>
+                                                <td colspan="12">
+                                                    <h2 class="text-center">No records found.</h2>
+                                                </td>
+                                            </tr>
+                                        </EmptyDataTemplate>
+                                    </asp:ListView>
+                                </tbody>
+                            </table>
+                            <hr />
+                            <div class="text-center">
+                                <asp:DataPager ID="dpEmployees" runat="server" PagedControlID="lvEmployees" PageSize="5">
+                                    <Fields>
+                                        <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
+                                        <asp:NumericPagerField ButtonType="Button" RenderNonBreakingSpacesBetweenControls="false" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
+                                        <asp:NextPreviousPagerField ShowFirstPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
+                                    </Fields>
+                                </asp:DataPager>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="x_content">
-                <!-- Employee LV here -->
-            </div>
-        </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
         <div class="col-lg-6">
             <div class="x_panel">
                 <div class="x_title">
@@ -254,49 +332,53 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <table class="table table-striped projects">
-                        <thead>
-                            <th>ID</th>
-                            <th>Amount Paid</th>
-                            <th>Payment Date</th>
-                            <th></th>
-                        </thead>
-                        <tbody>
-                            <asp:ListView ID="lvPaymentHistory" runat="server" OnPagePropertiesChanging="lv_PagePropertiesChanging">
-                                <ItemTemplate>
-                                    <tr>
-                                        <td><%# Eval("DepositID") %></td>
-                                        <td>
-                                            <%# Eval("Amount", "{0:₱ #,###.00}") %>
-                                        </td>
-                                        <td>
-                                            <%# Eval("PaymentDate", "{0: MMMM dd, yyyy}") %>
-                                        </td>
-                                        <td>
-                                            <a href='DepositPaymentDetails.aspx?ID=<%# Eval("DepositID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Details</a>
-                                        </td>
-                                    </tr>
-                                </ItemTemplate>
-                                <EmptyDataTemplate>
-                                    <tr>
-                                        <td colspan="12">
-                                            <h2 class="text-center">No records found</h2>
-                                        </td>
-                                    </tr>
-                                </EmptyDataTemplate>
-                            </asp:ListView>
-                        </tbody>
-                    </table>
-                    <hr />
-                    <div class="text-center">
-                        <asp:DataPager ID="lvDataPager" runat="server" PagedControlID="lvPaymentHistory" PageSize="5">
-                            <Fields>
-                                <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
-                                <asp:NumericPagerField ButtonType="Button" RenderNonBreakingSpacesBetweenControls="false" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
-                                <asp:NextPreviousPagerField ShowFirstPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
-                            </Fields>
-                        </asp:DataPager>
-                    </div>
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <table class="table table-striped projects">
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Amount Paid</th>
+                                    <th>Payment Date</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <asp:ListView ID="lvPaymentHistory" runat="server" OnPagePropertiesChanging="lv_PagePropertiesChanging">
+                                        <ItemTemplate>
+                                            <tr>
+                                                <td><%# Eval("DepositID") %></td>
+                                                <td>
+                                                    <%# Eval("Amount", "{0:₱ #,###.00}") %>
+                                                </td>
+                                                <td>
+                                                    <%# Eval("PaymentDate", "{0: MMMM dd, yyyy}") %>
+                                                </td>
+                                                <td>
+                                                    <a href='DepositPaymentDetails.aspx?ID=<%# Eval("DepositID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Details</a>
+                                                </td>
+                                            </tr>
+                                        </ItemTemplate>
+                                        <EmptyDataTemplate>
+                                            <tr>
+                                                <td colspan="12">
+                                                    <h2 class="text-center">No records found</h2>
+                                                </td>
+                                            </tr>
+                                        </EmptyDataTemplate>
+                                    </asp:ListView>
+                                </tbody>
+                            </table>
+                            <hr />
+                            <div class="text-center">
+                                <asp:DataPager ID="lvDataPager" runat="server" PagedControlID="lvPaymentHistory" PageSize="5">
+                                    <Fields>
+                                        <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
+                                        <asp:NumericPagerField ButtonType="Button" RenderNonBreakingSpacesBetweenControls="false" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
+                                        <asp:NextPreviousPagerField ShowFirstPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
+                                    </Fields>
+                                </asp:DataPager>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                     <hr />
                     <div id="db_error" runat="server" class="alert alert-danger text-center" visible="false"
                         style="color: white;">
@@ -305,7 +387,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Amount</label>
                         <div class="col-lg-5 col-xs-12 text-right">
-                            <asp:TextBox ID="txtDepositAmount" runat="server" class="form-control" min="1"/>
+                            <asp:TextBox ID="txtDepositAmount" runat="server" class="form-control" min="1" max="" TextMode="Number"/>
                         </div>
                     </div>
                     <hr/>

@@ -358,205 +358,214 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>User Messages</h2>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="form-group pull-left">
-                        <label class="control-label col-lg-4 col-xs-12">Sort By</label>
-                        <div class="col-lg-8 col-xs-12">
-                            <asp:DropDownList ID="ddlSortBy" runat="server" class="form-control"
-                                OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true">
-                                <asp:ListItem Selected="True" Value="MessageID">ID</asp:ListItem>
-                                <asp:ListItem Value="MessageCat">Category</asp:ListItem>
-                                <asp:ListItem>Subject</asp:ListItem>
-                                <asp:ListItem Value="DateSubmitted">Date Submitted</asp:ListItem>
-                            </asp:DropDownList>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="col-lg-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>User Messages</h2>
+                            <div class="clearfix"></div>
                         </div>
-                    </div>
-                    <div class="form-group pull-left">
-                        <label class="control-label col-lg-4 col-xs-12">Direction</label>
-                        <div class="col-lg-8 col-xs-12">
-                            <asp:DropDownList ID="ddlDirection" runat="server" class="form-control"
-                                OnSelectedIndexChanged="ddlDirection_SelectedIndexChanged" AutoPostBack="true">
-                                <asp:ListItem Value="ASC">Ascending</asp:ListItem>
-                                <asp:ListItem Selected="True" Value="DESC">Descending</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <table class="table table-striped projects">
-                        <thead>
-                            <th>ID</th>
-                            <th>Category</th>
-                            <th>Message Category</th>
-                            <th>Subject</th>
-                            <th>Date Submitted</th>
-                            <th>Status</th>
-                        </thead>
-                        <tbody>
-                            <asp:ListView ID="lvUserMessage" runat="server" OnPagePropertiesChanging="lv_PagePropertiesChanging">
-                                <ItemTemplate>
-                                    <tr>
-                                        <td><%# Eval("MessageID") %></td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-xs"><%# Eval("Category") %></button>
-                                        </td>
-                                        <td>
-                                            <%# Eval("MessageCat") %>
-                                        </td>
-                                        <td>
-                                            <%# Eval("Subject") %>
-                                        </td>
-                                        <td><%# Eval("DateSubmitted", "{0: MMMM dd, yyyy}") %></td>
-                                        <td>
-                                            <button runat="server" type="button"
-                                                class='<%# Eval("Status").ToString() == "Read" ?
+                        <div class="x_content">
+                            <div class="form-group pull-left">
+                                <label class="control-label col-lg-4 col-xs-12">Sort By</label>
+                                <div class="col-lg-8 col-xs-12">
+                                    <asp:DropDownList ID="ddlSortBy" runat="server" class="form-control"
+                                        OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true">
+                                        <asp:ListItem Selected="True" Value="MessageID">ID</asp:ListItem>
+                                        <asp:ListItem Value="MessageCat">Category</asp:ListItem>
+                                        <asp:ListItem>Subject</asp:ListItem>
+                                        <asp:ListItem Value="DateSubmitted">Date Submitted</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group pull-left">
+                                <label class="control-label col-lg-4 col-xs-12">Direction</label>
+                                <div class="col-lg-8 col-xs-12">
+                                    <asp:DropDownList ID="ddlDirection" runat="server" class="form-control"
+                                        OnSelectedIndexChanged="ddlDirection_SelectedIndexChanged" AutoPostBack="true">
+                                        <asp:ListItem Value="ASC">Ascending</asp:ListItem>
+                                        <asp:ListItem Selected="True" Value="DESC">Descending</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <table class="table table-striped projects">
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Category</th>
+                                    <th>Message Category</th>
+                                    <th>Subject</th>
+                                    <th>Date Submitted</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <asp:ListView ID="lvUserMessage" runat="server" OnPagePropertiesChanging="lv_PagePropertiesChanging">
+                                        <ItemTemplate>
+                                            <tr>
+                                                <td><%# Eval("MessageID") %></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info btn-xs"><%# Eval("Category") %></button>
+                                                </td>
+                                                <td>
+                                                    <%# Eval("MessageCat") %>
+                                                </td>
+                                                <td>
+                                                    <%# Eval("Subject") %>
+                                                </td>
+                                                <td><%# Eval("DateSubmitted", "{0: MMMM dd, yyyy}") %></td>
+                                                <td>
+                                                    <button runat="server" type="button"
+                                                        class='<%# Eval("Status").ToString() == "Read" ?
                                                     "btn btn-success btn-xs" : "btn btn-danger btn-xs" %>'>
-                                                <%# Eval("Status") %>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <a href='MessageDetails.aspx?ID=<%# Eval("MessageID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Message details </a>
-                                        </td>
-                                    </tr>
-                                </ItemTemplate>
-                                <EmptyDataTemplate>
-                                    <tr>
-                                        <td colspan="12">
-                                            <h2 class="text-center">No records found</h2>
-                                        </td>
-                                    </tr>
-                                </EmptyDataTemplate>
-                            </asp:ListView>
-                        </tbody>
-                    </table>
-                    <hr />
-                    <div class="text-center">
-                        <asp:DataPager ID="lvDataPager" runat="server" PagedControlID="lvUserMessage" PageSize="5">
-                            <Fields>
-                                <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
-                                <asp:NumericPagerField ButtonType="Button" RenderNonBreakingSpacesBetweenControls="false" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
-                                <asp:NextPreviousPagerField ShowFirstPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
-                            </Fields>
-                        </asp:DataPager>
-                    </div>
-                    <hr />
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>User Renewals</h2>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="form-group pull-left">
-                        <label class="control-label col-lg-4 col-xs-12">Sort By</label>
-                        <div class="col-lg-8 col-xs-12">
-                            <asp:DropDownList ID="ddlRenewalCategory" runat="server" class="form-control"
-                                OnSelectedIndexChanged="ddlRenewalCategory_SelectedIndexChanged" AutoPostBack="true">
-                                <asp:ListItem Selected="True" Value="MembershipID">ID</asp:ListItem>
-                                <asp:ListItem Value="Type">Membership Type</asp:ListItem>
-                                <asp:ListItem>Length</asp:ListItem>
-                                <asp:ListItem Value="StartDate">Start Date</asp:ListItem>
-                                <asp:ListItem Value="EndDate">End Date</asp:ListItem>
-                                <asp:ListItem Value="MembershipStatus">Membership Status</asp:ListItem>
-                                <asp:ListItem Value="PaymentStatus">Payment Status</asp:ListItem>
-                            </asp:DropDownList>
+                                                        <%# Eval("Status") %>
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <a href='MessageDetails.aspx?ID=<%# Eval("MessageID") %>' class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Message details </a>
+                                                </td>
+                                            </tr>
+                                        </ItemTemplate>
+                                        <EmptyDataTemplate>
+                                            <tr>
+                                                <td colspan="12">
+                                                    <h2 class="text-center">No records found</h2>
+                                                </td>
+                                            </tr>
+                                        </EmptyDataTemplate>
+                                    </asp:ListView>
+                                </tbody>
+                            </table>
+                            <hr />
+                            <div class="text-center">
+                                <asp:DataPager ID="lvDataPager" runat="server" PagedControlID="lvUserMessage" PageSize="5">
+                                    <Fields>
+                                        <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
+                                        <asp:NumericPagerField ButtonType="Button" RenderNonBreakingSpacesBetweenControls="false" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
+                                        <asp:NextPreviousPagerField ShowFirstPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
+                                    </Fields>
+                                </asp:DataPager>
+                            </div>
+                            <hr />
                         </div>
                     </div>
-                    <div class="form-group pull-left">
-                        <label class="control-label col-lg-4 col-xs-12">Direction</label>
-                        <div class="col-lg-8 col-xs-12">
-                            <asp:DropDownList ID="ddlRenewalDirection" runat="server" class="form-control"
-                                OnSelectedIndexChanged="ddlRenewalDirection_SelectedIndexChanged" AutoPostBack="true">
-                                <asp:ListItem Value="ASC">Ascending</asp:ListItem>
-                                <asp:ListItem Selected="True" Value="DESC">Descending</asp:ListItem>
-                            </asp:DropDownList>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="col-lg-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>User Renewals</h2>
+                            <div class="clearfix"></div>
                         </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <hr />
-                        <table class="table table-striped projects">
-                            <thead>
-                                <th>Membership ID</th>
-                                <th>Membership Type</th>
-                                <th>Length</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Membership Status</th>
-                                <th>Payment Status</th>
-                                <th></th>
-                            </thead>
-                            <tbody>
-                                <asp:ListView ID="lvUserRenewals" runat="server" OnPagePropertiesChanging="lvRenewals_PagePropertiesChanging">
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td>
-                                                <%# Eval("MembershipID") %>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-info btn-xs"><%# Eval("Type") %></button>
-                                            </td>
-                                            <td>
-                                                <%# Eval("Length") %> Year(s)
-                                            </td>
-                                            <td>
-                                                <%# Eval("StartDate", "{0: MMMM dd, yyyy}") %>
-                                            </td>
-                                            <td>
-                                                <%# Eval("EndDate", "{0: MMMM dd, yyyy}") %>
-                                            </td>
-                                            <td>
-                                                <button runat="server" type="button"
-                                                    class='<%# Eval("MembershipStatus").ToString() == "Active" ?
+                        <div class="x_content">
+                            <div class="form-group pull-left">
+                                <label class="control-label col-lg-4 col-xs-12">Sort By</label>
+                                <div class="col-lg-8 col-xs-12">
+                                    <asp:DropDownList ID="ddlRenewalCategory" runat="server" class="form-control"
+                                        OnSelectedIndexChanged="ddlRenewalCategory_SelectedIndexChanged" AutoPostBack="true">
+                                        <asp:ListItem Selected="True" Value="MembershipID">ID</asp:ListItem>
+                                        <asp:ListItem Value="Type">Membership Type</asp:ListItem>
+                                        <asp:ListItem>Length</asp:ListItem>
+                                        <asp:ListItem Value="StartDate">Start Date</asp:ListItem>
+                                        <asp:ListItem Value="EndDate">End Date</asp:ListItem>
+                                        <asp:ListItem Value="MembershipStatus">Membership Status</asp:ListItem>
+                                        <asp:ListItem Value="PaymentStatus">Payment Status</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group pull-left">
+                                <label class="control-label col-lg-4 col-xs-12">Direction</label>
+                                <div class="col-lg-8 col-xs-12">
+                                    <asp:DropDownList ID="ddlRenewalDirection" runat="server" class="form-control"
+                                        OnSelectedIndexChanged="ddlRenewalDirection_SelectedIndexChanged" AutoPostBack="true">
+                                        <asp:ListItem Value="ASC">Ascending</asp:ListItem>
+                                        <asp:ListItem Selected="True" Value="DESC">Descending</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <hr />
+                                <table class="table table-striped projects">
+                                    <thead>
+                                        <th>Membership ID</th>
+                                        <th>Membership Type</th>
+                                        <th>Length</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Membership Status</th>
+                                        <th>Payment Status</th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        <asp:ListView ID="lvUserRenewals" runat="server" OnPagePropertiesChanging="lvRenewals_PagePropertiesChanging">
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td>
+                                                        <%# Eval("MembershipID") %>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-info btn-xs"><%# Eval("Type") %></button>
+                                                    </td>
+                                                    <td>
+                                                        <%# Eval("Length") %> Year(s)
+                                                    </td>
+                                                    <td>
+                                                        <%# Eval("StartDate", "{0: MMMM dd, yyyy}") %>
+                                                    </td>
+                                                    <td>
+                                                        <%# Eval("EndDate", "{0: MMMM dd, yyyy}") %>
+                                                    </td>
+                                                    <td>
+                                                        <button runat="server" type="button"
+                                                            class='<%# Eval("MembershipStatus").ToString() == "Active" ?
                                                     "btn btn-success btn-xs" : "btn btn-danger btn-xs" %>'>
-                                                    <%# Eval("MembershipStatus") %>
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button runat="server" type="button"
-                                                    class='<%# Eval("PaymentStatus").ToString() == "Paid" ?
+                                                            <%# Eval("MembershipStatus") %>
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <button runat="server" type="button"
+                                                            class='<%# Eval("PaymentStatus").ToString() == "Paid" ?
                                                     "btn btn-success btn-xs" : "btn btn-danger btn-xs" %>'>
-                                                    <%# Eval("PaymentStatus") %>
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <a href='<%= Page.ResolveUrl("~/Admin/Membership/RenewalDetails.aspx?ID=") %>
+                                                            <%# Eval("PaymentStatus") %>
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <a href='<%= Page.ResolveUrl("~/Admin/Membership/RenewalDetails.aspx?ID=") %>
                                                     <%# Eval("MembershipID") %>'
-                                                    class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Details </a>
-                                            </td>
-                                        </tr>
-                                    </ItemTemplate>
-                                    <EmptyDataTemplate>
-                                        <tr>
-                                            <td colspan="12">
-                                                <h2 class="text-center">No records found</h2>
-                                            </td>
-                                        </tr>
-                                    </EmptyDataTemplate>
-                                </asp:ListView>
-                            </tbody>
-                        </table>
-                        <hr />
-                        <div class="text-center">
-                            <asp:DataPager ID="lvRenewalPager" runat="server" PagedControlID="lvUserRenewals" PageSize="5">
-                                <Fields>
-                                    <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
-                                    <asp:NumericPagerField ButtonType="Button" RenderNonBreakingSpacesBetweenControls="false" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
-                                    <asp:NextPreviousPagerField ShowFirstPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
-                                </Fields>
-                            </asp:DataPager>
+                                                            class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Details </a>
+                                                    </td>
+                                                </tr>
+                                            </ItemTemplate>
+                                            <EmptyDataTemplate>
+                                                <tr>
+                                                    <td colspan="12">
+                                                        <h2 class="text-center">No records found</h2>
+                                                    </td>
+                                                </tr>
+                                            </EmptyDataTemplate>
+                                        </asp:ListView>
+                                    </tbody>
+                                </table>
+                                <hr />
+                                <div class="text-center">
+                                    <asp:DataPager ID="lvRenewalPager" runat="server" PagedControlID="lvUserRenewals" PageSize="5">
+                                        <Fields>
+                                            <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
+                                            <asp:NumericPagerField ButtonType="Button" RenderNonBreakingSpacesBetweenControls="false" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
+                                            <asp:NextPreviousPagerField ShowFirstPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="btn" RenderNonBreakingSpacesBetweenControls="false" />
+                                        </Fields>
+                                    </asp:DataPager>
+                                </div>
+                                <hr />
+                            </div>
                         </div>
-                        <hr />
                     </div>
                 </div>
-            </div>
-        </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </form>
 </asp:Content>
 

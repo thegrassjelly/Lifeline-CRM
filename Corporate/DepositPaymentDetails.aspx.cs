@@ -6,7 +6,7 @@ public partial class Corporate_DepositPaymentDetails : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Helper.ValidateAdmin();
+        Helper.ValidateCorporate();
         if (Request.QueryString["ID"] != null)
         {
             int depositID = 0;

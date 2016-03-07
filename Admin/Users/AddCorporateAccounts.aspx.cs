@@ -67,7 +67,7 @@ public partial class Admin_Users_AddCorporateAccounts : System.Web.UI.Page
                                       "VALUES (@UserName, @Password, @Name, @NatureOfBusiness, @Address, @Municipality, @City, @Phone, " +
                                       "@Fax, @Email, @Others, @Status, @DateAdded, @EmployerCode); SELECT TOP 1 CorporateID " +
                                       "FROM CorporateAccounts ORDER By CorporateID DESC";
-                    cmd.Parameters.AddWithValue("@UserName", txtCompanyName.Text.ToLower() + employerCode);
+                    cmd.Parameters.AddWithValue("@UserName", txtCompanyName.Text.ToLower().Substring(0, 2) + employerCode);
                     cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash("1234"));
                     cmd.Parameters.AddWithValue("@Name", txtCompanyName.Text);
                     cmd.Parameters.AddWithValue("@NatureOfBusiness", ddlNature.SelectedValue);

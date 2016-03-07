@@ -16,6 +16,7 @@ public partial class Corporate_Default : System.Web.UI.Page
         {
             GetEmployerDetails(corpID);
             GetPaymentHistory(corpID);
+            GetEmployees(txtSearch.Text);
             if (Session["employerup"] != null)
             {
                 employer_up.Visible = true;
@@ -31,7 +32,37 @@ public partial class Corporate_Default : System.Web.UI.Page
                 Session.Remove("dberror");
             }
         }
-        this.Form.DefaultButton = this.btnUpdate.UniqueID;
+        this.Form.DefaultButton = this.btnSearch.UniqueID;
+    }
+
+    void GetEmployees(string keyword)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT UserID, FirstName, LastName, Email, Phone, Mobile, " +
+                "Street, Municipality, City, Status FROM Users WHERE " +
+                "(UserID LIKE '" + keyword + "%' OR " +
+                "FirstName LIKE '" + keyword + "%' OR " +
+                "LastName LIKE '" + keyword + "%' OR " +
+                "Email LIKE '" + keyword + "%' OR " +
+                "Phone LIKE '" + keyword + "%' OR " +
+                "Mobile LIKE '" + keyword + "%' OR " +
+                "Street LIKE '" + keyword + "%' OR " +
+                "Municipality LIKE '" +keyword + "%' OR " +
+                "City LIKE '" + keyword + "%' OR " +
+                "Status LIKE '" + keyword + "%') AND CorporateID=@corpid ORDER BY LastName ASC";
+            cmd.Parameters.AddWithValue("@corpid", Session["corporateid"].ToString());
+            cmd.Parameters.AddWithValue("@status", ddlStatus.SelectedValue);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            con.Close();
+            da.Fill(ds, "Users");
+            lvEmployees.DataSource = ds;
+            lvEmployees.DataBind();
+        }
     }
 
     [WebMethod]
@@ -273,4 +304,26 @@ public partial class Corporate_Default : System.Web.UI.Page
             }
         }
     }
+
+    protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetEmployees(txtSearch.Text);
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        GetEmployees(txtSearch.Text);
+    }
+
+    protected void lvEmployees_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+    {
+        dpEmployees.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+        GetEmployees(txtSearch.Text);
+    }
+
+    protected void lvEmployees_DataBound(object sender, EventArgs e)
+    {
+        dpEmployees.Visible = dpEmployees.PageSize < dpEmployees.TotalRowCount;
+    }
+
 }
