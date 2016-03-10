@@ -4,14 +4,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Web.Services;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Corporate_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Helper.ValidateCorporate();
         int corpID = int.Parse(Session["corporateid"].ToString());
+        Helper.ValidateCorporate();
         if (!IsPostBack)
         {
             GetEmployerDetails(corpID);
@@ -32,9 +33,9 @@ public partial class Corporate_Default : System.Web.UI.Page
                 Session.Remove("dberror");
             }
         }
+
         this.Form.DefaultButton = this.btnSearch.UniqueID;
     }
-
     void GetEmployees(string keyword)
     {
         using (SqlCommand cmd = new SqlCommand())
@@ -236,6 +237,8 @@ public partial class Corporate_Default : System.Web.UI.Page
         var sortBy = ddlSortBy.SelectedValue;
         var direction = ddlDirection.SelectedValue;
         SortPaymentHistory(sortBy, direction);
+        GetEmployerDetails(int.Parse(Session["corporateid"].ToString()));
+        GetPaymentHistory(int.Parse(Session["corporateid"].ToString()));
     }
 
     protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -243,6 +246,8 @@ public partial class Corporate_Default : System.Web.UI.Page
         var sortBy = ddlSortBy.SelectedValue;
         var direction = ddlDirection.SelectedValue;
         SortPaymentHistory(sortBy, direction);
+        GetEmployerDetails(int.Parse(Session["corporateid"].ToString()));
+        GetPaymentHistory(int.Parse(Session["corporateid"].ToString()));
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
@@ -326,4 +331,57 @@ public partial class Corporate_Default : System.Web.UI.Page
         dpEmployees.Visible = dpEmployees.PageSize < dpEmployees.TotalRowCount;
     }
 
+    protected void lvEmployees_ItemCommand(object sender, ListViewCommandEventArgs e)
+    {
+        int dataKey = int.Parse(lvEmployees.DataKeys[e.Item.DataItemIndex].Value.ToString());
+
+    }
+    protected void lvEmployees_ItemDataBound(object sender, ListViewItemEventArgs e)
+    {
+        Label lnkSelect = (Label)e.Item.FindControl("lblUser");
+        int dataKey = int.Parse(lvEmployees.DataKeys[e.Item.DisplayIndex].Value.ToString());
+        lnkSelect.Attributes.Add("onclick", "Default("+ dataKey.ToString()+")");
+    }
+
+    void GetUserInfo()
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT FirstName, LastName, Birthday, UserPic, " +
+                "Street, Users.Municipality, Users.City, Users.Phone, Mobile, Users.Email, Users.Status, Types.UserType, Priority " +
+                "FROM Users INNER JOIN Types ON Users.TypeID = Types.TypeID WHERE UserID=@UserID";
+            cmd.Parameters.AddWithValue("@UserID", hdfValue.Value);
+            using (SqlDataReader data = cmd.ExecuteReader())
+            {
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        txtUserFN.Text = data["FirstName"].ToString();
+                        txtUserLN.Text = data["LastName"].ToString();
+                        DateTime bDay = Convert.ToDateTime(data["Birthday"].ToString());
+                        txtUserBday.Text = bDay.ToString("yyyy-MM-dd");
+                        imgUser.ImageUrl = "~/images/users/" + data["UserPic"].ToString();
+                        imgUserLb.NavigateUrl = "~/images/users/" + data["UserPic"].ToString();
+                        txtUserStreet.Text = data["Street"].ToString();
+                        txtUserMunicicpality.Text = data["Municipality"].ToString();
+                        txtUserCity.Text = data["City"].ToString();
+                        txtUserPhone.Text = data["Phone"].ToString();
+                        txtUserMobile.Text = data["Mobile"].ToString();
+                        txtUserEmail.Text = data["Email"].ToString();
+                        txtUserStatus.Text = data["Status"].ToString();
+                        txtUserType.Text = data["UserType"].ToString();
+                        txtPriority.Text = data["Priority"].ToString();
+                    }
+                }
+            }
+        }
+    }
+    protected void btnButton_Click(object sender, EventArgs e)
+    {
+        GetUserInfo();
+    }
 }

@@ -12,6 +12,7 @@ public partial class Corporate_Login : System.Web.UI.Page
     {
         if (Session["UserID"] != null && Session["TypeID"] != null)
         {
+            Session.Clear();
             Response.Redirect("~/Corporate/Default.aspx");
         }
     }

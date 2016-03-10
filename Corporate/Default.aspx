@@ -11,10 +11,16 @@
             SearchText();
         });
 
+        function Default(index)
+        {
+            document.getElementById('<%= hdfValue.ClientID %>').value = index;
+            $("#<%=btnButton.ClientID %>")[0].click();
+
+        }
         function SearchText() {
             $(".autosuggest").autocomplete({
                 source: function (request, response) {
-                    $.ajax({7
+                    $.ajax({
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
                         url: "Default.aspx/SearchCity",
@@ -70,6 +76,7 @@
 
                             <table class="table table-striped project">
                                 <thead>
+                                    <asp:HiddenField runat="server" ID="hdfValue" />
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Contact No.</th>
@@ -81,7 +88,7 @@
                                 </thead>
                                 <tbody>
                                     <asp:ListView ID="lvEmployees" runat="server"
-                                        OnPagePropertiesChanging="lvEmployees_PagePropertiesChanging">
+                                        OnPagePropertiesChanging="lvEmployees_PagePropertiesChanging" DataKeyNames="UserID" OnItemCommand="lvEmployees_ItemCommand" OnItemDataBound="lvEmployees_ItemDataBound">
                                         <ItemTemplate>
                                             <tr>
                                                 <td><%# Eval("LastName") %>, <%# Eval("FirstName") %></td>
@@ -92,8 +99,8 @@
                                                 <td><%# Eval("City") %></td>
                                                 <td><%# Eval("Status") %></td>
                                                 <td>
-                                                    <a href='<%# ResolveUrl("~/Corporate/UserDetails.aspx?ID=") %><%# Eval("UserID") %>'>
-                                                        <asp:Label runat="server"><i class="fa fa-folder"></i></asp:Label>
+                                                    <a data-toggle="modal" data-target="#modalUsers" runat="server">
+                                                        <asp:Label runat="server" ID="lblUser"><i class="fa fa-folder"></i></asp:Label>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -423,6 +430,113 @@
                                 OnClick="btnUpdate_Click" />
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div id="modalUsers" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <%-- Modal content--%>
+                <div class="modal-content">
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><i class="fa fa-user"></i>&nbsp;User Details</h4>
+                                <asp:Button ID="btnButton" CssClass="btn btn-default" runat="server" OnClick="btnButton_Click" Text="Refresh" style="display:none"/>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-sm-12 col-xs-12">Profile picture</label>
+                                    <div class="col-lg-8">
+                                        <div class="thumbnail" id="usrPic">
+                                            <asp:HyperLink ID="imgUserLb" runat="server" data-lightbox="lbDB">
+                                                <asp:Image ID="imgUser" class="img-responsive" runat="server" />
+                                            </asp:HyperLink>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">First Name</label>
+                                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserFN" runat="server" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Last Name</label>
+                                    <div class="col-lg-5 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserLN" runat="server" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Phone No.</label>
+                                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserPhone" runat="server" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Mobile No.</label>
+                                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserMobile" runat="server" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Date of Birth</label>
+                                    <div class="col-lg-5 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserBday" class="form-control" runat="server" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Street</label>
+                                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserStreet" runat="server" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Municipality</label>
+                                    <div class="col-lg-5 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserMunicicpality" runat="server" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">City</label>
+                                    <div class="col-lg-5 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserCity" runat="server" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Email Address</label>
+                                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserEmail" runat="server" class="form-control" TextMode="Email" disabled />
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Status</label>
+                                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserStatus" class="form-control" runat="server" disabled>
+                                        </asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">User Type</label>
+                                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtUserType" class="form-control" runat="server" disabled>
+                                        </asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Priority</label>
+                                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtPriority" class="form-control" runat="server" disabled>
+                                        </asp:TextBox>
+                                    </div>
+                                </div>
+                                <hr />
+
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>
