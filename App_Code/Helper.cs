@@ -25,6 +25,11 @@ public class Helper
         return ConfigurationManager.AppSettings["username"].ToString();
     }
 
+    public static string Secured()
+    {
+        return ConfigurationManager.AppSettings["Secured"].ToString();
+    }
+
     public static string GetCrvPass()
     {
         return ConfigurationManager.AppSettings["password"].ToString();
