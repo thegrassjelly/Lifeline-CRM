@@ -25,6 +25,9 @@
                         <div id="issue" runat="server" class="alert alert-success text-center" visible="false">
                             A customer care representative will reply to you shortly, Thanks!
                         </div>
+                        <div id="error" runat="server" class="alert alert-warning text-center" visible="false" style="color: white">
+                            The message pushed through, but there was an error in sending the email notification to you.
+                        </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">

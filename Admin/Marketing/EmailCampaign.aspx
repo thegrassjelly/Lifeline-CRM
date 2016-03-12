@@ -71,11 +71,11 @@
                 <div class="x_content">
                     <div id="complete" runat="server" class="alert alert-success text-center" visible="false"
                         style="color: white;">
-                        Message Sent Successful
+                        Message sent successful.
                     </div>
                     <div id="error" runat="server" class="alert alert-danger text-center" visible="false"
                         style="color: white;">
-                        An error occured while sending messages
+                        An error occured while sending message(s).
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4 col-xs-12">Subject</label>

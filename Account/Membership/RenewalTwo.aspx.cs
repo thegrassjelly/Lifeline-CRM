@@ -182,8 +182,20 @@ public partial class Account_Membership_RenewalTwo : System.Web.UI.Page
             int memID = (int)cmd.ExecuteScalar();
             con.Close();
             Helper.Log(Session["userid"].ToString(), "Membership Renewal", "Deposit slip submission", memID.ToString());
-            Helper.DepositConfirmation(txtEmail.Text.ToString(), PopulateBody());
-            Response.Redirect("~/Account/Membership/RenewalTwo.aspx");
+            try
+            {
+                Helper.DepositConfirmation(txtEmail.Text.ToString(), PopulateBody());
+            }
+            catch (Exception ex)
+            {
+                Helper.LogException(Session["userid"].ToString(), "Membership Renewal - Payment",
+                            "Exception Type: " + ex.GetType().ToString() + " " +
+                            "Exception Message: " + ex.Message.ToString());
+            }
+            finally
+            {
+                Response.Redirect("~/Account/Membership/RenewalTwo.aspx");
+            }
         }
     }
 

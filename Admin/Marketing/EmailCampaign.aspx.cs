@@ -112,7 +112,6 @@ public partial class Admin_Marketing_EmailCampaign : System.Web.UI.Page
 
     void SendEmail(string subject, string recipient)
     {
-
         try
         {
             MailMessage mm = new MailMessage();

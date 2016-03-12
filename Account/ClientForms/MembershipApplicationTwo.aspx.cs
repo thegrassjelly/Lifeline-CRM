@@ -198,8 +198,20 @@ public partial class Account_ClientForms_MembershipApplicationTwo : System.Web.U
             con.Close();
 
             Helper.Log(Session["userid"].ToString(), "Membership Application", "Deposit slip submission", AppID.ToString());
-            Helper.DepositConfirmation(txtEmail.Text, PopulateBody());
-            Response.Redirect("~/Account/ClientForms/MembershipApplicationTwo.aspx");
+            try
+            {
+                Helper.DepositConfirmation(txtEmail.Text, PopulateBody());
+            }
+            catch (Exception ex)
+            {
+                Helper.LogException(Session["userid"].ToString(), "Membership Application - Payment",
+                            "Exception Type: " + ex.GetType().ToString() + " " +
+                            "Exception Message: " + ex.Message.ToString());
+            }
+            finally
+            {
+                Response.Redirect("~/Account/ClientForms/MembershipApplicationTwo.aspx");
+            }
         }
     }
 

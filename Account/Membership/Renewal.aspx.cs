@@ -176,7 +176,7 @@ public partial class Account_Membership_Renewal : System.Web.UI.Page
                     {
                         tran.Rollback();
                         db_error.Visible = true;
-                        Helper.LogException(Session["userid"].ToString(), "Membership Renewal, Renewal Form ",
+                        Helper.LogException(Session["userid"].ToString(), "Membership Renewal - Renewal Form ",
                                 "Exception Type: " + ex.GetType().ToString() + " " +
                                 "Exception Message: " + ex.Message.ToString());
                     }
@@ -231,9 +231,20 @@ public partial class Account_Membership_Renewal : System.Web.UI.Page
         }
         catch (SmtpException ex)
         {
-            Helper.LogException(Session["userid"].ToString(), "Membership Renewal, Send Mail ",
+            Helper.LogException(Session["userid"].ToString(), "Membership Renewal - Send Mail ",
                     "Exception Type: " + ex.GetType().ToString() + " " +
                     "Exception Message: " + ex.Message.ToString());
+        }
+        finally
+        {
+            if (ddlMembershiptype.SelectedItem.ToString() == "Household")
+            {
+                Response.Redirect("~/Account/Membership/AddDependents.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Account/Membership/RenewalTwo.aspx");
+            }
         }
     }
 

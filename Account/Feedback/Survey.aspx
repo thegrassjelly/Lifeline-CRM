@@ -25,6 +25,9 @@
                         <div id="survey" runat="server" class="alert alert-success text-center" visible="false">
                             Thanks for answering the survey!
                         </div>
+                        <div id="error" runat="server" class="alert alert-warning text-center" visible="false" style="color: white">
+                            The survey pushed through, but there was an error in sending the email notification to you.
+                        </div>
                         <asp:Literal ID="txtFirstName" runat="server" Visible="false"></asp:Literal>
                         <asp:Literal ID="txtEmail" runat="server" Visible="false"></asp:Literal>
                         <div class="row">

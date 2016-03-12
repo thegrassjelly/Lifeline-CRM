@@ -57,8 +57,6 @@ public partial class Account_ForgotPassword : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@RecoveryCode", recover);
             cmd.ExecuteNonQuery();
             AccountRecovery(rurl);
-            error.Visible = false;
-            success.Visible = true;
         }
     }
 
@@ -80,26 +78,43 @@ public partial class Account_ForgotPassword : System.Web.UI.Page
 
     void AccountRecovery(string requesturl)
     {
-        MailMessage mm = new MailMessage();
-        mm.From = new MailAddress("lifelineambulancerescue@gmail.com");
-        mm.To.Add(txtEmail.Text);
-        mm.Subject = "Account Recovery";
-        string body = string.Empty;
-        body = File.ReadAllText(Server.MapPath("~/Account/ForgotPasswordTemplate.html"));
-        body = body.Replace("{FirstName}", txtEmail.Text);
-        body = body.Replace("{RequesIP}", GetUserIP());
-        body = body.Replace("{RequestUrl}", requesturl);
-        mm.Body = body;
-        mm.IsBodyHtml = true;
+        bool isError = false;
+        try
+        {
+            MailMessage mm = new MailMessage();
+            mm.From = new MailAddress("lifelineambulancerescue@gmail.com");
+            mm.To.Add(txtEmail.Text);
+            mm.Subject = "Account Recovery";
+            string body = string.Empty;
+            body = File.ReadAllText(Server.MapPath("~/Account/ForgotPasswordTemplate.html"));
+            body = body.Replace("{FirstName}", txtEmail.Text);
+            body = body.Replace("{RequesIP}", GetUserIP());
+            body = body.Replace("{RequestUrl}", requesturl);
+            mm.Body = body;
+            mm.IsBodyHtml = true;
 
-        SmtpClient client = new SmtpClient();
-        client.EnableSsl = true;
-        client.UseDefaultCredentials = true;
-        NetworkCredential cred = new NetworkCredential("lifelineambulancerescue@gmail.com", "swantonbomb");
-        client.Host = "smtp.gmail.com";
-        client.Port = 587;
-        client.DeliveryMethod = SmtpDeliveryMethod.Network;
-        client.Credentials = cred;
-        client.Send(mm);
+            SmtpClient client = new SmtpClient();
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = true;
+            NetworkCredential cred = new NetworkCredential("lifelineambulancerescue@gmail.com", "swantonbomb");
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.Credentials = cred;
+            client.Send(mm);
+        }
+        catch
+        {
+            errormail.Visible = true;
+            isError = true;
+        }
+        finally 
+        {
+            if (!isError)
+            {
+                error.Visible = false;
+                success.Visible = true;
+            }
+        }
     }
 }

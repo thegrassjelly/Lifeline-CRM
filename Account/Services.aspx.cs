@@ -68,10 +68,27 @@ public partial class Account_Services : System.Web.UI.Page
             con.Close();
 
             Helper.Log(userID, "Feedback", "Inquiry/Issue", messageID.ToString());
-            btnSubmit.Visible = false;
-            issue.Visible = true;
-            Helper.SendEmail("Issue/Inquiry", txtEmail.Text.ToString(),
+            Helper.Log(userID, "Feedback", "Inquiry/Issue", messageID.ToString());
+            try
+            {
+                Helper.SendEmail("Issue/Inquiry", txtEmail.Text.ToString(),
                 PopulateBody(txtEmail.Text.ToString(), txtFirstName.Text.ToString(), ddlMessageCat.SelectedValue));
+            }
+            catch
+            {
+                error.Visible = true;
+            }
+            finally
+            {
+                issue.Visible = true;
+            }
+            btnSubmit.Visible = false;
+            txtFirstName.Attributes.Add("Disabled", "True");
+            txtLastName.Attributes.Add("Disabled", "True");
+            txtEmail.Attributes.Add("Disabled", "True");
+            ddlMessageCat.Attributes.Add("Disabled", "True");
+            txtSubject.Attributes.Add("Disabled", "True");
+            txtMessage.Attributes.Add("Disabled", "True");
         }
     }
 

@@ -47,7 +47,6 @@ public partial class Admin_OpportunityTracking_AddOpportunity : System.Web.UI.Pa
                 Helper.LogException(Session["userid"].ToString(), 
                     "Opportunity Tracking, Add Opportunity", "Exception Type: " +
                     ex.GetType().ToString() + "Exception: " + ex.ToString());
-                Helper.Alert("The record was not added, try again", "");
             }
         }
     }

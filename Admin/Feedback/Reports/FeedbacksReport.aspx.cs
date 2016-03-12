@@ -62,7 +62,6 @@ public partial class Admin_Feedback_Reports_FeedbacksReport : System.Web.UI.Page
 
             ReportDocument report = new ReportDocument();
             report.Load(Server.MapPath("~/Admin/Feedback/Reports/rptFeedbacksReport.rpt"));
-            report.DataSourceConnections[0].SetConnection(Helper.GetCrServer(), Helper.GetCrDb(), true);
 
             if (Helper.Secured() != "true")
                 report.DataSourceConnections[0].SetConnection(Helper.GetCrServer(), Helper.GetCrDb(), true);

@@ -149,13 +149,13 @@ public partial class Account_ClientForms_PendingClient : System.Web.UI.Page
                     tran.Commit();
                     Helper.Log(Session["userid"].ToString(), "Client Forms", "Client Verification", ScanID.ToString());
                     Session["verification"] = "yes";
-                    Response.Redirect("ClientVerification.aspx");
+                    verify.Visible = true;
                 }
                 catch (SqlException ex)
                 {
                     tran.Rollback();
                     verify_error.Visible = true;
-                    Helper.LogException(Session["userid"].ToString(), "Client Forms, Client Verification Form",
+                    Helper.LogException(Session["userid"].ToString(), "Client Forms - Client Verification Form",
                             "Exception Type: " + ex.GetType().ToString() + " " +
                             "Exception Message: " + ex.Message.ToString());
                 }

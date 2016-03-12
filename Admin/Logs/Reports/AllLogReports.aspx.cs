@@ -3,8 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using CrystalDecisions.CrystalReports.Engine;
 
-
-public partial class Admin_Logs_Reports_ExceptionLogReports : System.Web.UI.Page
+public partial class Admin_Logs_Reports_AllLogReports : System.Web.UI.Page
 {
     private string name;
     private string type;
@@ -14,8 +13,27 @@ public partial class Admin_Logs_Reports_ExceptionLogReports : System.Web.UI.Page
         if (!IsPostBack)
         {
             MinMaxDate();
+            GetLogType();
         }
-        GetExceptionLogs();
+        GetAllLogs();
+    }
+
+    void GetLogType()
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT Distinct LogType FROM Logs";
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                ddlLogType.DataSource = dr;
+                ddlLogType.DataTextField = "LogType";
+                ddlLogType.DataValueField = "LogType";
+                ddlLogType.DataBind();
+            }
+        }
     }
 
     void MinMaxDate()
@@ -26,7 +44,7 @@ public partial class Admin_Logs_Reports_ExceptionLogReports : System.Web.UI.Page
             con.Open();
             cmd.Connection = con;
             cmd.CommandText = "SELECT MIN(Timestamp) AS Min, MAX(Timestamp) As Max  " +
-                "FROM Exceptions";
+                "FROM Logs";
             using (SqlDataReader dr = cmd.ExecuteReader())
             {
                 dr.Read();
@@ -41,7 +59,7 @@ public partial class Admin_Logs_Reports_ExceptionLogReports : System.Web.UI.Page
         }
     }
 
-    void GetExceptionLogs()
+    void GetAllLogs()
     {
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
@@ -62,7 +80,7 @@ public partial class Admin_Logs_Reports_ExceptionLogReports : System.Web.UI.Page
             }
 
             ReportDocument report = new ReportDocument();
-            report.Load(Server.MapPath("~/Admin/Logs/Reports/rptExceptionReports.rpt"));
+            report.Load(Server.MapPath("~/Admin/Logs/Reports/rptAllLogsReport.rpt"));
 
             if (Helper.Secured() != "true")
                 report.DataSourceConnections[0].SetConnection(Helper.GetCrServer(), Helper.GetCrDb(), true);
@@ -71,16 +89,18 @@ public partial class Admin_Logs_Reports_ExceptionLogReports : System.Web.UI.Page
 
             report.SetParameterValue("Name", name);
             report.SetParameterValue("UserType", type);
+            report.SetParameterValue("LogType", ddlLogType.SelectedValue);
             report.SetParameterValue("Date1", txtDate1.Text);
             report.SetParameterValue("Date2", txtDate2.Text);
 
-            crvException.ReportSource = report;
-            crvException.DataBind();
+            crvAllLogs.ReportSource = report;
+            crvAllLogs.DataBind();
         }
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        GetExceptionLogs();
+        GetAllLogs();
     }
+
 }

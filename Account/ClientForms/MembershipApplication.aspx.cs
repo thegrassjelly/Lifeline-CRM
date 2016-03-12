@@ -269,9 +269,20 @@ public partial class Account_ClientForms_MembershipApplication : System.Web.UI.P
         }
         catch (SmtpException ex)
         {
-            Helper.LogException(Session["userid"].ToString(), "Membership Application, Send Mail ",
+            Helper.LogException(Session["userid"].ToString(), "Membership Application - Send Mail ",
                     "Exception Type: " + ex.GetType().ToString() + " " +
                     "Exception Message: " + ex.Message.ToString());
+        }
+        finally
+        {
+            if (ddlMembershiptype.SelectedItem.ToString() == "Household")
+            {
+                Response.Redirect("~/Account/ClientForms/AddDependents.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Account/ClientForms/MembershipApplicationTwo.aspx");
+            }
         }
     }
 }

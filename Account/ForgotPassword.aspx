@@ -47,8 +47,11 @@
                     <div id="error" runat="server" class="alert alert-danger" visible="false" style="color: white" >
                         Email address does not exist.
                     </div>
+                    <div id="errormail" runat="server" class="alert alert-danger" visible="false" style="color: white">
+                        There was a problem contacting the server, Please check you connectivity and try again.
+                    </div>
                     <div id="success" runat="server" class="alert alert-info" visible="false" style="color: white" >
-                        Check your email for your login credentials.
+                        Check your email to recover your password.
                     </div>
                     <div>
                         <label id="ddl-label" class="control-label pull-left">Email Address</label>

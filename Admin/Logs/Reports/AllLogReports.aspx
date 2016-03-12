@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="RenewalLogsReports.aspx.cs" Inherits="Admin_Logs_Reports_FeedbackLogReports" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="AllLogReports.aspx.cs" Inherits="Admin_Logs_Reports_AllLogReports" %>
+
 <%@ Register TagPrefix="CR" Namespace="CrystalDecisions.Web" Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -13,6 +14,17 @@
                 <ContentTemplate>
                     <div class="x_title">
                         <div class="row">
+                            <div class="col-lg-4">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-3">Log Type</label>
+                                        <div class="col-lg-9">
+                                            <asp:DropDownList ID="ddlLogType" class="form-control" runat="server" required>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-lg-8">
                                 <div class="col-lg-5">
                                     <div class="form-group">
@@ -44,7 +56,8 @@
                         <br />
                     </div>
                     <div class="x_content">
-                        <CR:CrystalReportViewer ID="crvRenewal" runat="server" AutoDataBind="True"
+
+                        <CR:CrystalReportViewer ID="crvAllLogs" runat="server" AutoDataBind="True"
                             EnableDatabaseLogonPrompt="False"
                             ToolPanelView="None"
                             GroupTreeImagesFolderUrl=""

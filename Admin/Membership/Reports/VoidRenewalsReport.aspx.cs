@@ -5,17 +5,38 @@ using CrystalDecisions.CrystalReports.Engine;
 
 public partial class Admin_Membership_Reports_VoideRenewalsReport : System.Web.UI.Page
 {
+    private string name;
+    private string type;
     protected void Page_Load(object sender, EventArgs e)
     {
         Helper.ValidateAdmin();
         if (!IsPostBack)
         {
-            GetVoidReports();
+            MinMaxDate();
         }
-        else
-        {
-            crvVoid.ReportSource = (ReportDocument)Session["rptPostBack"];
+        GetVoidReports();
+    }
 
+    void MinMaxDate()
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT MIN(StartDate) AS Min, MAX(StartDate) As Max  " +
+                "FROM Memberships WHERE MembershipStatus='Voided'";
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                dr.Read();
+                if (dr.HasRows)
+                {
+                    DateTime DateOne = Convert.ToDateTime(dr["Min"].ToString());
+                    txtDate1.Text = DateOne.ToString("yyyy-MM-dd");
+                    DateTime DateTwo = Convert.ToDateTime(dr["Max"].ToString());
+                    txtDate2.Text = DateTwo.ToString("yyyy-MM-dd");
+                }
+            }
         }
     }
 
@@ -26,35 +47,40 @@ public partial class Admin_Membership_Reports_VoideRenewalsReport : System.Web.U
         {
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT MembershipID, UserID, Length, StartDate, EndDate, MembershipStatus " +
-                              "FROM Memberships WHERE MembershipStatus='Voided'";
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "Memberships");
 
-            cmd.CommandText = "SELECT FirstName, LastName, UserType FROM Users " +
+            cmd.CommandText = "SELECT LastName + ', ' + FirstName AS Name, UserType FROM Users " +
                 "INNER JOIN Types ON Users.TypeID=Types.TypeID WHERE UserID=@UserID";
             cmd.Parameters.AddWithValue("@UserID", Session["userid"].ToString());
             using (SqlDataReader dr = cmd.ExecuteReader())
             {
                 while (dr.Read())
                 {
-                    var lName = dr["LastName"].ToString();
-                    var fName = dr["FirstName"].ToString();
-                    var type = dr["UserType"].ToString();
-
-                    ReportDocument report = new ReportDocument();
-                    report.Load(Server.MapPath("~/Admin/Membership/Reports/rptVoidReport.rpt"));
-                    report.SetDatabaseLogon(Helper.GetCrvUser(), Helper.GetCrvPass(), Helper.GetCrServer(), Helper.GetCrDb());
-                    report.SetDataSource(ds);
-                    report.SetParameterValue("Name", lName + ", " + fName);
-                    report.SetParameterValue("UserType", type);
-
-                    crvVoid.ReportSource = report;
-                    crvVoid.DataBind();
-                    Session["rptPostBack"] = report;
+                    name = dr["Name"].ToString();
+                    type = dr["UserType"].ToString();
                 }
             }
+
+            ReportDocument report = new ReportDocument();
+            report.Load(Server.MapPath("~/Admin/Membership/Reports/rptVoidReport.rpt"));
+
+            if (Helper.Secured() != "true")
+                report.DataSourceConnections[0].SetConnection(Helper.GetCrServer(), Helper.GetCrDb(), true);
+            else
+                report.DataSourceConnections[0].SetConnection(Helper.GetCrServer(), Helper.GetCrDb(), Helper.GetCrvUser(), Helper.GetCrvPass());
+
+            report.SetParameterValue("Name", name);
+            report.SetParameterValue("UserType", type);
+            report.SetParameterValue("Date1", txtDate1.Text);
+            report.SetParameterValue("Date2", txtDate2.Text);
+
+            crvVoid.ReportSource = report;
+            crvVoid.DataBind();
         }
+    }
+
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        GetVoidReports();
     }
 }

@@ -212,8 +212,15 @@ public partial class Account_Default : System.Web.UI.Page
                     if (priorDate < DateTime.Today
                         && remindMeStatus == "Unsent")
                     {
-                        Helper.SendAutomaticEmail(userID, email,
+                        try
+                        {
+                            Helper.SendAutomaticEmail(userID, email,
                             PopulateBody(firstname, endDate));
+                        }
+                        catch (Exception ex)
+                        {
+                            Helper.LogException(Session["userid"].ToString(), "Send Automatic Email", ex.ToString());
+                        }
                     }
                     if (endDate < DateTime.Today)
                     {

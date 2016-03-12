@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Net;
-using System.Windows.Forms;
 
 public class Helper
 {
@@ -199,10 +198,5 @@ public class Helper
             client.Credentials = cred;
             client.Send(mm);
         }
-    }
-
-    public static void Alert(string msg, string title)
-    {
-        MessageBox.Show(msg,title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
     }
 }

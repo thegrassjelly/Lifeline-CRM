@@ -268,6 +268,9 @@
                                             <li><a href='<%= Page.ResolveUrl("~/Admin/Membership/Reports/VoidRenewalsReport.aspx") %>'><i class="fa fa-print"></i>Renewal Voids Reports</a>
 
                                             </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/Reports/AllLogReports.aspx") %>'><i class="fa fa-print"></i>Complete Log Reports</a>
+
+                                            </li>
                                             <li><a href='<%= Page.ResolveUrl("~/Admin/Logs/Reports/ExceptionLogReports.aspx") %>'><i class="fa fa-print"></i>Exception Log Reports</a>
 
                                             </li>

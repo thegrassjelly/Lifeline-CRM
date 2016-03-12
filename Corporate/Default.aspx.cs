@@ -11,8 +11,8 @@ public partial class Corporate_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        int corpID = int.Parse(Session["corporateid"].ToString());
         Helper.ValidateCorporate();
+        int corpID = int.Parse(Session["corporateid"].ToString());
         if (!IsPostBack)
         {
             GetEmployerDetails(corpID);
