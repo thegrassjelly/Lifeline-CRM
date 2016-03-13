@@ -299,4 +299,9 @@ public partial class Admin_Users_CorporateAccountDetails : System.Web.UI.Page
     {
         Response.Redirect("~/Admin/Users/Reports/CorporateDetailsReport.aspx?ID=" + Request.QueryString["ID"].ToString());
     }
+
+    protected void btnPrint2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Admin/Users/Reports/CorporateEmployeesReport.aspx?ID=" + Request.QueryString["ID"].ToString());
+    }
 }

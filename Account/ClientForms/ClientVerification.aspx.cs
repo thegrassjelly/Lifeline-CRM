@@ -20,11 +20,6 @@ public partial class Account_ClientForms_PendingClient : System.Web.UI.Page
             {
                 GetUserInfo();
             }
-            if (Session["verification"] != null)
-            {
-                verify.Visible = true;
-                Session.Remove("verification");
-            }
         }
         this.Form.DefaultButton = this.btnSubmit.UniqueID;
     }
@@ -148,8 +143,8 @@ public partial class Account_ClientForms_PendingClient : System.Web.UI.Page
                     int ScanID = (int)cmd.ExecuteScalar();
                     tran.Commit();
                     Helper.Log(Session["userid"].ToString(), "Client Forms", "Client Verification", ScanID.ToString());
-                    Session["verification"] = "yes";
                     verify.Visible = true;
+                    btnpanel.Visible = false;
                 }
                 catch (SqlException ex)
                 {

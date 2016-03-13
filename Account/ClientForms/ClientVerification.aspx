@@ -42,16 +42,16 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <div id="verify" runat="server" class="alert alert-success text-center" visible="false"
-                        style="color: white;">
+                    <div id="verify" runat="server" class="alert alert-success text-center" visible="false" style="color: white">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         Verification Sent. Please wait for further instructions.
                     </div>
-                    <div id="verify_error" runat="server" class="alert alert-danger text-center" visible="false"
-                        style="color: white;">
+                    <div id="verify_error" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         Verification Not Sent. Try again later.
                     </div>
-                    <div id="verify_pending" runat="server" class="alert alert-warning text-center" visible="false"
-                        style="color: white;">
+                    <div id="verify_pending" runat="server" class="alert alert-warning text-center" visible="false" style="color: white">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         A previous verification is already sent. Wait for further notice.
                     </div>
                     <div class="form-group">

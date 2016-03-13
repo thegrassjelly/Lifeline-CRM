@@ -12,15 +12,6 @@ public partial class Admin_Users_Update : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Helper.ValidateAdmin();
-        if (Session["profile"] != null)
-        {
-            profile.Visible = true;
-            Session.Remove("profile");
-        }
-        else
-        {
-            profile.Visible = false;
-        }
         if (Request.QueryString["ID"] != null)
         {
             int userID = 0;
@@ -36,7 +27,7 @@ public partial class Admin_Users_Update : System.Web.UI.Page
                     GetSecondaryContact(userID);
                     GetUserMessages(userID);
                     GetUserRenewals(userID);
-                };
+                }
             }
             else
             {
@@ -363,10 +354,8 @@ public partial class Admin_Users_Update : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@DateModified", DateTime.Now);
             cmd.Parameters.AddWithValue("@UserID", Request.QueryString["ID"].ToString());
             cmd.ExecuteNonQuery();
-
+            profile.Visible = true;
             UpdateMedicalInfo();
-            Session["profile"] = "yes";
-            Response.Redirect(Request.RawUrl); 
         }
     }
 

@@ -42,7 +42,12 @@
             <form class="form-horizontal" runat="server">
                 <asp:ScriptManager runat="server" EnablePageMethods="true" />
                 <div id="profile" runat="server" class="alert alert-success text-center" visible="false">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     Profile updated.
+                </div>
+                <div id="error" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    Email Address already exist.
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
