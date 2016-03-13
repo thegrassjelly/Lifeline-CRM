@@ -27,6 +27,46 @@ public partial class Account_Default : System.Web.UI.Page
             GetDates();
             GetArticles();
             GetCorporateMembership();
+            GetInitMembership();
+        }
+    }
+
+    void GetInitMembership()
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = @"SELECT DateSubmitted, Status, Amount, PaymentStatus FROM Applications INNER JOIN
+                            Payments ON Applications.ApplicationID = Payments.MembershipID WHERE UserID=@userid";
+            cmd.Parameters.AddWithValue("@userid", Session["userid"].ToString());
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        txtInitSDate.Text = Convert.ToDateTime(dr["DateSubmitted"]).ToString("MM/dd/yyyy");
+                        txtInitEDate.Text = Convert.ToDateTime(dr["DateSubmitted"]).AddYears(1).ToString("MM/dd/yyyy");
+                        txtInitLength.Text = "1";
+                        txtInitPStatus.Text = dr["PaymentStatus"].ToString();
+                        if (dr["Amount"].ToString() == "1000.00")
+                        {
+                            txtInitType.Text = "Individual";
+                        }
+                        else 
+{
+                            txtInitType.Text = "Household";
+                        }
+                        txtInitMemStatus.Text = dr["Status"].ToString();
+                    }
+                }
+                else
+                {
+                    panelApplication.Visible = false;
+                }
+            }
         }
     }
 
@@ -60,9 +100,7 @@ public partial class Account_Default : System.Web.UI.Page
         }
         else
         {
-            txtEmployerName.Text = "N/A";
-            txtCorporateLength.Text = "N/A";
-            txtCorporateType.Text = "N/A";
+            panelCorporate.Visible = false;
         }
     }
 
@@ -104,6 +142,7 @@ public partial class Account_Default : System.Web.UI.Page
         string userID = Session["userid"].ToString();
         if (CheckMembership())
         {
+            panelApplication.Visible = false;
             using (SqlConnection con = new SqlConnection(Helper.GetCon()))
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -132,12 +171,7 @@ public partial class Account_Default : System.Web.UI.Page
         }
         else
         {
-            txtStartDate.Text = "N/A";
-            txtEndDate.Text = "N/A";
-            txtMembershipLength.Text = "N/A";
-            txtMemStatus.Text = "N/A";
-            txtPayStatus.Text = "N/A";
-            txtMembershipType.Text = "N/A";
+            panelMembership.Visible = false;
         }
     }
 

@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using CrystalDecisions.CrystalReports.Engine;
 
-public partial class Admin_Users_Reports_UserIndividualReports : System.Web.UI.Page
+public partial class Admin_Users_Reports_UserIndividualPaymentReports : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -49,7 +49,7 @@ public partial class Admin_Users_Reports_UserIndividualReports : System.Web.UI.P
                     string type = dr["UserType"].ToString();
 
                     ReportDocument report = new ReportDocument();
-                    report.Load(Server.MapPath("~/Admin/Users/Reports/rptUsersIndividual.rpt"));
+                    report.Load(Server.MapPath("~/Admin/Users/Reports/rptIndividualPayment.rpt"));
 
                     if (Helper.Secured() != "true")
                         report.DataSourceConnections[0].SetConnection(Helper.GetCrServer(), Helper.GetCrDb(), true);
@@ -60,8 +60,8 @@ public partial class Admin_Users_Reports_UserIndividualReports : System.Web.UI.P
                     report.SetParameterValue("UserType", type);
                     report.SetParameterValue("PrintUserID", userID);
 
-                    crvIndividualUsers.ReportSource = report;
-                    crvIndividualUsers.DataBind();
+                    crvIndividualPayment.ReportSource = report;
+                    crvIndividualPayment.DataBind();
                 }
             }
         }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="UserIndividualReports.aspx.cs" Inherits="Admin_Users_Reports_UserIndividualReports" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="UserIndividualPaymentReports.aspx.cs" Inherits="Admin_Users_Reports_UserIndividualPaymentReports" %>
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <form id="form1" runat="server">
-        <script src='<%= Page.ResolveUrl("~/crystalreportviewers13/js/crviewer/crv.js") %>'></script>
+    <script src='<%= Page.ResolveUrl("~/crystalreportviewers13/js/crviewer/crv.js") %>'></script>
         <asp:ScriptManager runat="server"></asp:ScriptManager>
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
@@ -15,7 +15,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <CR:CrystalReportViewer ID="crvIndividualUsers" runat="server" AutoDataBind="True"
+                        <CR:CrystalReportViewer ID="crvIndividualPayment" runat="server" AutoDataBind="True"
                             EnableDatabaseLogonPrompt="False"
                             ToolPanelView="None"
                             GroupTreeImagesFolderUrl=""
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </ContentTemplate>
-        </asp:UpdatePanel>
+    </asp:UpdatePanel>
     </form>
 </asp:Content>
 

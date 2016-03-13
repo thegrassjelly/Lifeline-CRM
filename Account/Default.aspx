@@ -6,9 +6,48 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="Server">
     <form class="form-horizontal" runat="server">
         <div class="col-lg-12">
+            <div class="x_panel" id="panelApplication" runat="server">
+                <div class="x_title">
+                    <h2>Membership Details</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+                        <label class="control-label col-lg-1 col-xs-12">Start Date</label>
+                        <div class="col-lg-2 col-xs-12">
+                            <asp:TextBox ID="txtInitSDate" class="form-control" runat="server" disabled />
+                        </div>
+                        <label class="control-label col-lg-2 col-xs-12">Total Membership Length</label>
+                        <div class="col-lg-1 col-xs-12">
+                            <asp:TextBox ID="txtInitLength" class="form-control text-center" runat="server" disabled />
+                        </div>
+                        <label class="col-lg-1 col-xs-12">Year(s)</label>
+                        <label class="control-label col-lg-2 col-xs-12">Membership Type</label>
+                        <div class="col-lg-2 col-xs-12">
+                            <asp:TextBox ID="txtInitType" class="form-control text-center" runat="server" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-1 col-xs-12">End Date</label>
+                        <div class="col-lg-2 col-xs-12">
+                            <asp:TextBox ID="txtInitEDate" class="form-control" runat="server" disabled />
+                        </div>
+                        <label class="control-label col-lg-2 col-xs-12">Payment</label>
+                        <div class="col-lg-2 text-center">
+                            <asp:TextBox ID="txtInitPStatus" class="form-control text-center" runat="server" disabled />
+                        </div>
+                        <label class="control-label col-lg-2 col-xs-12">Membership Status</label>
+                        <div class="col-lg-2 text-center">
+                            <asp:TextBox ID="txtInitMemStatus" class="form-control text-center" runat="server" disabled />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
             <div class="x_panel" id="panelMembership" runat="server" visible="false">
                 <div class="x_title">
-                    <h2>Current Membership</h2>
+                    <h2>Current Renewal Details</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">

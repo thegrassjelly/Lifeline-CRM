@@ -349,10 +349,12 @@
                 <div class="x_content">
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
+                            <asp:Button ID="btnPrint2" runat="server" class="btn btn-primary pull-right" Text="Renewal Report"
+                                OnClick="btnPrint2_Click" />
+                            <asp:Button ID="btnPrint" runat="server" class="btn btn-primary pull-right" Text="Dispatch Report"
+                                OnClick="btnPrint_Click" />
                             <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary pull-right" Text="Update Info"
                                 OnClick="btnUpdate_Click" />
-                            <asp:Button ID="btnPrint" runat="server" class="btn btn-primary pull-right" Text="Print user report"
-                                OnClick="btnPrint_Click" />
                         </div>
                     </div>
                 </div>

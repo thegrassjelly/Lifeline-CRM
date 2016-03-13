@@ -209,19 +209,24 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="employererror" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
-                            Invalid Employer Code
-                        </div>
-                        <div id="employercorrect" runat="server" class="alert alert-success text-center" visible="false" style="color: white">
-                            Employer Added
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-lg-4">Employer Code</label>
-                            <div class="col-lg-5 col-sm-12 col-xs-12">
-                                <asp:TextBox ID="txtEmployerCode" runat="server" class="form-control" MaxLength="8" />
-                                <br /><asp:Button ID="btnAddEmployer" runat="server" class="btn btn-primary pull-right" Text="Submit" OnClick="btnAddEmployer_Click" />
-                            </div>   
-                        </div>
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <div id="employererror" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
+                                    Invalid Employer Code
+                                </div>
+                                <div id="employercorrect" runat="server" class="alert alert-success text-center" visible="false" style="color: white">
+                                    Employer Added
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Employer Code</label>
+                                    <div class="col-lg-5 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployerCode" runat="server" class="form-control" MaxLength="8" />
+                                        <br />
+                                        <asp:Button ID="btnAddEmployer" runat="server" class="btn btn-primary pull-right" Text="Submit" OnClick="btnAddEmployer_Click" />
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
                 </div>
                 <hr />

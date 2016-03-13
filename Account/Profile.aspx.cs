@@ -232,11 +232,13 @@ public partial class Account_Profile : System.Web.UI.Page
                 cmd.Parameters.AddWithValue("@CorporateID", corporateID);
                 cmd.ExecuteNonQuery();
                 employercorrect.Visible = true;
+                employererror.Visible = false;
             }
         }
         else
         {
             employererror.Visible = true;
+            employercorrect.Visible = false;
         }
     }
 

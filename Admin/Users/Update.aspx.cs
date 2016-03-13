@@ -445,4 +445,9 @@ public partial class Admin_Users_Update : System.Web.UI.Page
             }
         }
     }
+
+    protected void btnPrint2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Admin/Users/Reports/UserIndividualPaymentReports.aspx?ID=" + Request.QueryString["ID"].ToString());
+    }
 }

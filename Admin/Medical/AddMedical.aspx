@@ -284,7 +284,7 @@
                 <div class="x_content">
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
-                            <asp:Button ID="btnInsert" runat="server" class="btn btn-primary pull-right" Text="Submit"
+                            <asp:Button ID="btnInsert" runat="server" class="btn btn-primary pull-right" Text="Submit" CausesValidation="false"
                                 OnClick="btnInsert_Click" OnClientClick="return validate()" />
                         </div>
                     </div>

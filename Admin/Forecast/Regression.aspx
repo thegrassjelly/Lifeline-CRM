@@ -14,6 +14,9 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+                <div id="error" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
+                    Insufficient Data in the database, Cannot generate forecast formula.
+                </div>
                 <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
                 <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1" Width="650px">
                     <div class="form-group">

@@ -4,32 +4,32 @@ using System.Data;
 using System.Data.SqlClient;
 using CrystalDecisions.CrystalReports.Engine;
 
-public partial class Admin_Users_Reports_UserIndividualReports : System.Web.UI.Page
+public partial class Admin_Users_Reports_CorporateDetailsReport : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         Helper.ValidateAdmin();
         if (Request.QueryString["ID"] != null)
         {
-            int userID = 0;
-            bool validUser = int.TryParse(Request.QueryString["ID"].ToString(), out userID);
+            int corporateID = 0;
+            bool validCorporate = int.TryParse(Request.QueryString["ID"].ToString(), out corporateID);
 
-            if (validUser)
+            if (validCorporate)
             {
-                GetIndividualUserReport(userID);
+                GetCorporateDetails(corporateID);
             }
             else
             {
-                Response.Redirect("~/Admin/Users/View.aspx");
+                Response.Redirect("~/Admin/Users/CorporateAccounts.aspx");
             }
         }
         else
         {
-            Response.Redirect("~/Admin/Users/View.aspx");
+            Response.Redirect("~/Admin/Users/CorporateAccounts.aspx");
         }
     }
 
-    void GetIndividualUserReport(int userID)
+    void GetCorporateDetails(int corporateID)
     {
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
         using (SqlCommand cmd = new SqlCommand())
@@ -49,7 +49,7 @@ public partial class Admin_Users_Reports_UserIndividualReports : System.Web.UI.P
                     string type = dr["UserType"].ToString();
 
                     ReportDocument report = new ReportDocument();
-                    report.Load(Server.MapPath("~/Admin/Users/Reports/rptUsersIndividual.rpt"));
+                    report.Load(Server.MapPath("~/Admin/Users/Reports/rptCorporateDetails.rpt"));
 
                     if (Helper.Secured() != "true")
                         report.DataSourceConnections[0].SetConnection(Helper.GetCrServer(), Helper.GetCrDb(), true);
@@ -58,10 +58,10 @@ public partial class Admin_Users_Reports_UserIndividualReports : System.Web.UI.P
 
                     report.SetParameterValue("Name", lName + ", " + fName);
                     report.SetParameterValue("UserType", type);
-                    report.SetParameterValue("PrintUserID", userID);
+                    report.SetParameterValue("CorporateID", corporateID);
 
-                    crvIndividualUsers.ReportSource = report;
-                    crvIndividualUsers.DataBind();
+                    crvCorporateDetails.ReportSource = report;
+                    crvCorporateDetails.DataBind();
                 }
             }
         }

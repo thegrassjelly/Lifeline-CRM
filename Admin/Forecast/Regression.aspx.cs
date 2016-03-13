@@ -8,7 +8,14 @@ public partial class Admin_Forecast_SalesForecast : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Helper.ValidateAdmin();
-        GetRenewalForecast();
+        try
+        {
+            GetRenewalForecast();
+        }
+        catch
+        {
+            error.Visible = true;
+        }
         this.Form.DefaultButton = this.btnRefresh.UniqueID;
     }
 

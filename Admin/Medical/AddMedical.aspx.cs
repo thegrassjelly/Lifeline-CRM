@@ -261,6 +261,5 @@ public partial class Admin_Users_Dispatch : System.Web.UI.Page
     protected void gvDispatchDetails_OnBeforePerformDataSelect(object sender, EventArgs e)
     {
         Session["DispatchID"] = (sender as ASPxGridView).GetMasterRowKeyValue();
-
     }
 }
