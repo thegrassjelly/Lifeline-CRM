@@ -7,20 +7,21 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Lifeline-CRM(1)", ".", "{9F
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_9880"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\Documents\Repo\Lifeline-CRM\"
+		Debug.AspNetCompiler.PhysicalPath = "..\Lifeline-CRM\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_9880\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_9880"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\Documents\Repo\Lifeline-CRM\"
+		Release.AspNetCompiler.PhysicalPath = "..\Lifeline-CRM\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_9880\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "9880"
+		SlnRelativePath = "..\Lifeline-CRM\"
 	EndProjectSection
 EndProject
 Global
