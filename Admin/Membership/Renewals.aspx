@@ -82,7 +82,11 @@
                         <Columns>
                             <dx:GridViewDataTextColumn FieldName="MembershipID" VisibleIndex="0">
                             </dx:GridViewDataTextColumn>                           
-                            <dx:GridViewDataComboBoxColumn FieldName="Type" Caption="Membership Type" VisibleIndex="2">
+                            <dx:GridViewDataTextColumn FieldName="LastName" VisibleIndex="1">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="FirstName" VisibleIndex="2">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataComboBoxColumn FieldName="Type" Caption="Membership Type" VisibleIndex="3">
                                 <PropertiesComboBox>
                                     <Items>
                                         <dx:ListEditItem Text="Individual" Value="Individual" />
@@ -90,13 +94,13 @@
                                     </Items>
                                 </PropertiesComboBox>
                             </dx:GridViewDataComboBoxColumn>
-                            <dx:GridViewDataTextColumn FieldName="Length" VisibleIndex="3">
+                            <dx:GridViewDataTextColumn FieldName="Length" VisibleIndex="4">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataDateColumn FieldName="StartDate" VisibleIndex="4">
+                            <dx:GridViewDataDateColumn FieldName="StartDate" VisibleIndex="5">
                             </dx:GridViewDataDateColumn>
-                            <dx:GridViewDataDateColumn FieldName="EndDate" VisibleIndex="5">
+                            <dx:GridViewDataDateColumn FieldName="EndDate" VisibleIndex="6">
                             </dx:GridViewDataDateColumn>
-                            <dx:GridViewDataComboBoxColumn FieldName="MembershipStatus" Caption="Membership Status" VisibleIndex="6">
+                            <dx:GridViewDataComboBoxColumn FieldName="MembershipStatus" Caption="Membership Status" VisibleIndex="7">
                                 <PropertiesComboBox>
                                     <Items>
                                         <dx:ListEditItem Text="Inactive" Value="Inactive" />
@@ -105,7 +109,7 @@
                                     </Items>
                                 </PropertiesComboBox>
                             </dx:GridViewDataComboBoxColumn>
-                            <dx:GridViewDataComboBoxColumn FieldName="PaymentStatus" Caption="Payment Status" VisibleIndex="7">
+                            <dx:GridViewDataComboBoxColumn FieldName="PaymentStatus" Caption="Payment Status" VisibleIndex="8">
                                 <PropertiesComboBox>
                                     <Items>
                                         <dx:ListEditItem Text="Unpaid" Value="Unpaid" />
@@ -113,7 +117,7 @@
                                     </Items>
                                 </PropertiesComboBox>
                             </dx:GridViewDataComboBoxColumn>
-                            <dx:GridViewDataColumn Width="50px" VisibleIndex="8">
+                            <dx:GridViewDataColumn Width="50px" VisibleIndex="9">
                                 <DataItemTemplate>
                                     <a href='RenewalDetails.aspx?ID=<%# Eval("MembershipID") %>'><i class="fa fa-2x fa-folder"></i></a>
                                 </DataItemTemplate>

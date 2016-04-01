@@ -64,6 +64,10 @@ public partial class Admin_Membership_RenewalsDetails : System.Web.UI.Page
                     txtEndDate.Text = eDate.ToString("MM/dd/yyyy");
                     txtMembershipLength.Text = data["Length"].ToString();
                     txtPaymentStatus.Text = data["PaymentStatus"].ToString();
+                    if (txtPaymentStatus.Text == "Paid")
+                    {
+                        btnVoid.Visible = false;
+                    }
                     txtMembershipType.Text = data["Type"].ToString();
                     txtMembershipStatus.Text = data["MembershipStatus"].ToString();
                     if (txtMembershipStatus.Text == "Voided")

@@ -129,7 +129,7 @@ public partial class Account_Login : System.Web.UI.Page
                     {
                         cmd.Connection = con;
                         cmd.CommandText = "INSERT INTO Users VALUES (@TypeID, @Email, @Password, @FirstName, " +
-                        "@LastName, @Birthday, @UserPic, @Street, @Municipality, @City, @Phone, @Mobile, @Status, " +
+                        "@LastName, @Birthday, @UserPic, @Street, @Municipality, @City, @AreaCode, @Extension, @Phone, @Mobile, @Status, " +
                         "@DateAdded, @DateModified, @FacebookID, @Priority, @CorporateID); SELECT TOP 1 UserID FROM Users ORDER BY UserID DESC";
                         cmd.Parameters.AddWithValue("@Email", lblEmail.Text);
                         cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash(txtPassword.Text));
@@ -142,6 +142,8 @@ public partial class Account_Login : System.Web.UI.Page
                         cmd.Parameters.AddWithValue("@Street", "");
                         cmd.Parameters.AddWithValue("@Municipality", "");
                         cmd.Parameters.AddWithValue("@City", "");
+                        cmd.Parameters.AddWithValue("@AreaCode", "");
+                        cmd.Parameters.AddWithValue("@Extension", "");
                         cmd.Parameters.AddWithValue("@Phone", "");
                         cmd.Parameters.AddWithValue("@Mobile", "");
                         cmd.Parameters.AddWithValue("@DateModified", "");

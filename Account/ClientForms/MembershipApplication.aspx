@@ -195,6 +195,14 @@
                                 <asp:ListItem>B</asp:ListItem>
                                 <asp:ListItem>AB</asp:ListItem>
                                 <asp:ListItem>O</asp:ListItem>
+                                <asp:ListItem>A +</asp:ListItem>
+                                <asp:ListItem>B +</asp:ListItem>
+                                <asp:ListItem>AB +</asp:ListItem>
+                                <asp:ListItem>O +</asp:ListItem>
+                                <asp:ListItem>A -</asp:ListItem>
+                                <asp:ListItem>B -</asp:ListItem>
+                                <asp:ListItem>AB -</asp:ListItem>
+                                <asp:ListItem>O -</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>

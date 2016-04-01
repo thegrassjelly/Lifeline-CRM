@@ -122,7 +122,7 @@
                 </div>
             </div>
         </div>
-        <div class="animated flipInY col-lg-4 col-md-4 col-sm-8 col-xs-12">
+        <div class="animated flipInY col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <div class="tile-stats">
                 <div class="icon">
                     <i class="fa fa-bank"></i>
@@ -134,7 +134,7 @@
                 <p>From <asp:Literal ID="ltDeposit24HrsTime" runat="server"></asp:Literal></p>
             </div>
         </div>
-        <div class="animated flipInY col-lg-4 col-md-4 col-sm-8 col-xs-12">
+        <div class="animated flipInY col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <div class="tile-stats">
                 <div class="icon">
                     <i class="fa fa-bank"></i>
@@ -146,7 +146,7 @@
                 <p>From <asp:Literal ID="ltDeposit30DaysTime" runat="server"></asp:Literal></p>
             </div>
         </div>
-        <div class="animated flipInY col-lg-4 col-md-4 col-sm-8 col-xs-12">
+        <div class="animated flipInY col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <div class="tile-stats">
                 <div class="icon">
                     <i class="fa fa-building-o"></i>
@@ -158,7 +158,7 @@
                  <p>From <asp:Literal ID="ltCorporate30DaysOne" runat="server"></asp:Literal></p>
             </div>
         </div>
-        <div class="animated flipInY col-lg-4 col-md-4 col-sm-8 col-xs-12">
+        <div class="animated flipInY col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <div class="tile-stats">
                 <div class="icon">
                     <i class="fa fa-building-o"></i>
@@ -170,55 +170,6 @@
                 <p>From <asp:Literal ID="ltCorporate30DaysTwo" runat="server"></asp:Literal></p>
             </div>
         </div>
-    <div class="col-md-8 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Membership Renewals</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div>
-                    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-                    <asp:Literal ID="ltRenewalChart" runat="server"></asp:Literal>
-                    <div id="chart_div" style="width: 600px; height: 250px;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Membership Composition</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div>
-                    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-                    <asp:Literal ID="ltRenewalComposition" runat="server"></asp:Literal>
-                    <div id="piechart_renewal" style="width: 300px; height: 200px;">  
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>User Composition</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div>
-                    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-                    <asp:GridView ID="gvUserComposition" runat="server"></asp:GridView>
-                    <asp:Literal ID="ltUserComposition" runat="server"></asp:Literal>
-                    <div id="piechart_user" style="width: 300px; height: 200px;">  
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </form>
 </asp:Content>
 

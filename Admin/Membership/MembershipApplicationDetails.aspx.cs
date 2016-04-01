@@ -27,6 +27,14 @@ public partial class Admin_Membership_MembershipApplicationDetails : System.Web.
                     txtDep.Text = "N/A";
                 }
             }
+            else
+            {
+                Response.Redirect("~/Admin/Membership/MembershipApplications.aspx");
+            }
+        }
+        else
+        {
+            Response.Redirect("~/Admin/Membership/MembershipApplications.aspx");
         }
     }
 

@@ -88,6 +88,9 @@
                                             <li><a href='<%= Page.ResolveUrl("~/Account/Profile.aspx") %>'><i class="fa fa-user"></i>Profile</a>
 
                                             </li>
+                                            <li><a href='<%= Page.ResolveUrl("~/Account/ChangePassword.aspx") %>'><i class="fa fa-user"></i>Change Password</a>
+
+                                            </li>
                                             <li><a href='<%= Page.ResolveUrl("~/Account/SecondaryContacts/View.aspx") %>'><i class="fa fa-users"></i>Secondary Contact List</a>
 
                                             </li>

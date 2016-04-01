@@ -51,6 +51,10 @@
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             Email Address already exist.
                         </div>
+                        <div id="fsizeError" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            The image file size is larger than the maximum accepted.
+                        </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -69,6 +73,12 @@
                                     </div>
                                     <div class="col-lg-8 col-lg-offset-4 col-sm-12 col-xs-12">
                                         <asp:FileUpload ID="usrPicUpload" runat="server" class="file" />
+                                        <asp:RegularExpressionValidator runat="server" 
+                                            ForeColor="Red"
+                                            ErrorMessage="Only picture files are allowed" 
+                                            ValidationExpression="^(([a-zA-Z]:)|(\\{2}\w+)\$?)(\\(\w[\w].*))+(.gif|.GIF|.jpg|.JPG|.jpeg|.JPEG|.png)$" 
+                                            ControlToValidate="usrPicUpload" 
+                                            Display="Dynamic" />
                                     </div>
                                 </div>
                             </div>
@@ -115,6 +125,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-lg-4">Area Code</label>
+                                    <div class="col-lg-2 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtAreaCode" runat="server" class="form-control" MaxLength="3" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-lg-4">Phone No.</label>
                                     <div class="col-lg-5 col-sm-12 col-xs-12">
                                         <asp:TextBox ID="txtPhone" runat="server" class="form-control" MaxLength="7" />
@@ -124,6 +140,12 @@
                                             ControlToValidate="txtPhone"
                                             ValidationExpression="^[0-9]{7}$"
                                             ErrorMessage="Enter a valid Phone Number" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Extension</label>
+                                    <div class="col-lg-3 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtExt" runat="server" class="form-control" MaxLength="4" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -196,25 +218,6 @@
                                             ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" />
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-lg-4">Password</label>
-                                    <div class="col-lg-5 col-sm-12 col-xs-12">
-                                        <asp:TextBox ID="txtPassword" runat="server" class="form-control" MaxLength="20"
-                                            TextMode="Password" />
-                                        <ajaxToolkit:PasswordStrength ID="ajaxPwd" runat="server"
-                                            TargetControlID="txtPassword"
-                                            DisplayPosition="BelowRight"
-                                            StrengthIndicatorType="Text"
-                                            PreferredPasswordLength="10"
-                                            PrefixText="Strength: "
-                                            HelpStatusLabelID="TextBox1_HelpLabel"
-                                            TextStrengthDescriptions="Very Poor;Weak;Average;Strong;Excellent"
-                                            StrengthStyles="TextIndicator_TextBox1_Strength1;TextIndicator_TextBox1_Strength2;TextIndicator_TextBox1_Strength3;TextIndicator_TextBox1_Strength4;TextIndicator_TextBox1_Strength5"
-                                            MinimumNumericCharacters="0"
-                                            MinimumSymbolCharacters="0"
-                                            RequiresUpperAndLowerCaseCharacters="false" />
-                                    </div>
-                                </div>
                                 <hr />
 
                                 <div id="employererror" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
@@ -285,7 +288,6 @@
                                 <th>Message Category</th>
                                 <th>Subject</th>
                                 <th>Date Submitted</th>
-                                <th>Status</th>
                             </thead>
                             <tbody>
                                 <asp:ListView ID="lvUserMessage" runat="server"
@@ -304,11 +306,6 @@
                                                 <%# Eval("Subject") %>
                                             </td>
                                             <td><%# Eval("DateSubmitted", "{0: MMMM dd, yyyy}") %></td>
-                                            <td>
-                                                <button id="msgStatus" runat="server" type="button" class="btn btn-info btn-xs">
-                                                    <%# Eval("Status") %>
-                                                </button>
-                                            </td>
                                             <td>
                                                 <a href='MessageDetails.aspx?ID=<%# Eval("MessageID") %>'>
                                                     <button type="button" class="btn btn-primary btn-xs">
