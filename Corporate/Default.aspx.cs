@@ -384,4 +384,81 @@ public partial class Corporate_Default : System.Web.UI.Page
     {
         GetUserInfo();
     }
+
+    bool IsRecordExisting(string email)
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT Email FROM Users WHERE Email=@Email";
+            cmd.Parameters.AddWithValue("@Email", email);
+            using (SqlDataReader data = cmd.ExecuteReader())
+            {
+                bool existing = data.HasRows;
+                return existing;
+            }
+        }
+    }
+
+    protected void btnAddEmployee_Click(object sender, EventArgs e)
+    {
+        if (!IsRecordExisting(txtEmail.Text))
+        {
+            using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandText = "INSERT INTO Users VALUES (@TypeID, @Email, @Password, @FirstName, " +
+                "@LastName, @Birthday, @UserPic, @Street, @Municipality, @City, @AreaCode, @Extension, @Phone, @Mobile, @Status, " +
+                "@DateAdded, @DateModified, @FacebookID, @Priority, @CorporateID); SELECT TOP 1 UserID FROM Users ORDER BY UserID DESC";
+                cmd.Parameters.AddWithValue("@Email", txtEmployeeEA.Text);
+                cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash("1234"));
+                cmd.Parameters.AddWithValue("@TypeID", "9");
+                cmd.Parameters.AddWithValue("@Status", ddlEmployeeStatus.SelectedValue);
+                cmd.Parameters.AddWithValue("@FirstName", txtEmployeeFN.Text);
+                cmd.Parameters.AddWithValue("@LastName", txtEmployeeLN.Text);
+                cmd.Parameters.AddWithValue("@Birthday", txtEmployeeBday.Text);
+                if (!usrEmployeeUpload.HasFile)
+                {
+                    cmd.Parameters.AddWithValue("@UserPic", "placeholder.png");
+                }
+                else
+                {
+                    string fileExt = Path.GetExtension(usrEmployeeUpload.FileName);
+                    string id = Guid.NewGuid().ToString();
+                    cmd.Parameters.AddWithValue("@UserPic", id + fileExt);
+                    usrEmployeeUpload.SaveAs(Server.MapPath("~/images/users/" + id + fileExt));
+                }
+                cmd.Parameters.AddWithValue("@Street", txtEmployeeST.Text);
+                cmd.Parameters.AddWithValue("@Municipality", txtEmployeeMNCPLTY.Text);
+                cmd.Parameters.AddWithValue("@City", txtEmployeeCT.Text);
+                cmd.Parameters.AddWithValue("@Phone", txtEmployeePN.Text);
+                cmd.Parameters.AddWithValue("@AreaCode", "");
+                cmd.Parameters.AddWithValue("@Extension", "");
+                cmd.Parameters.AddWithValue("@Mobile", txtEmployeeMN.Text);
+                cmd.Parameters.AddWithValue("@DateModified", DateTime.Now);
+                cmd.Parameters.AddWithValue("@DateAdded", DateTime.Now);
+                cmd.Parameters.AddWithValue("@FacebookID", "");
+                cmd.Parameters.AddWithValue("@Priority", "Normal");
+                cmd.Parameters.AddWithValue("@CorporateID", Session["corporateid"].ToString());
+                int UserID = (int)cmd.ExecuteScalar();
+
+                cmd.CommandText = "INSERT INTO MedicalInfo (UserID) VALUES (@UserID)";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@UserID", UserID);
+                cmd.ExecuteNonQuery();
+                employeeAdded.Visible = true;
+                btnAddEmployee.Visible = false;
+                GetEmployees(txtSearch.Text);
+            }
+        }
+        else
+        {
+            employeeAdded.Visible = false;
+            employeeError.Visible = true;
+        }
+    }
 }

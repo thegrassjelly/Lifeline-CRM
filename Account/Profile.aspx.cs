@@ -109,7 +109,7 @@ public partial class Account_Profile : System.Web.UI.Page
         if (usrPicUpload.HasFile)
         {
             int fileSize = usrPicUpload.PostedFile.ContentLength;
-            if (fileSize > 10000000)
+            if (fileSize > 10000000 && fileSize < 1000000)
             {
                 fsizeError.Visible = true;
             }

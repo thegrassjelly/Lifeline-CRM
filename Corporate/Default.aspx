@@ -126,6 +126,13 @@
                                 </asp:DataPager>
                             </div>
                             <hr />
+                            <div class="form-group">
+                                <div class="col-lg-offset-4 col-lg-8">
+                                    <a data-toggle="modal" data-target="#modalAddUser" runat="server">
+                                        <asp:Button ID="btnAdd" runat="server" class="btn btn-primary pull-right" Text="Add Employee" />
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -534,6 +541,164 @@
                                 </div>
                                 <hr />
 
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalAddUser" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <%-- Modal content--%>
+                <div class="modal-content">
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><i class="fa fa-user"></i>&nbsp;User Details</h4>
+                            </div>
+                            <div id="employeeAdded" runat="server" class="alert alert-success text-center" visible="false" style="color: white">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                User Added
+                            </div>
+                            <div id="employeeError" runat="server" class="alert alert-danger text-center" visible="false" style="color: white">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                Email address already existing.
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-sm-12 col-xs-12">Profile picture</label>
+                                    <div class="col-lg-8">
+                                        <div class="thumbnail" id="usrPic">
+                                            <asp:Image ID="imgEmployee" class="img-responsive" runat="server" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-lg-offset-4 col-sm-12 col-xs-12">
+                                        <asp:FileUpload ID="usrEmployeeUpload" runat="server" class="file" />
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">First Name</label>
+                                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployeeFN" runat="server" class="form-control" required/>
+                                        <asp:RegularExpressionValidator ID="fnVld" runat="server"
+                                            ForeColor="red"
+                                            Display="Dynamic"
+                                            ControlToValidate="txtEmployeeFN"
+                                            ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                            Text="Enter a valid name" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Last Name</label>
+                                    <div class="col-lg-5 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployeeLN" runat="server" class="form-control"  required/>
+                                        <asp:RegularExpressionValidator ID="lnVld" runat="server"
+                                            ForeColor="red"
+                                            Display="Dynamic"
+                                            ControlToValidate="txtEmployeeLN"
+                                            ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                            Text="Enter a valid name" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Phone No.</label>
+                                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployeePN" runat="server" class="form-control" MaxLength="7" required/>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ControlToValidate="txtEmployeePN"
+                                            ValidationExpression="^[0-9]{7}$"
+                                            ErrorMessage="Enter a valid Phone Number" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Mobile No.</label>
+                                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployeeMN" runat="server" class="form-control" MaxLength="11" required/>
+                                        <asp:RegularExpressionValidator ID="MblVld" runat="server"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ControlToValidate="txtEmployeeMN"
+                                            ValidationExpression="^[0-9]{11}$"
+                                            ErrorMessage="Enter a valid mobile Number" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Date of Birth</label>
+                                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployeeBday" class="form-control" TextMode="Date" runat="server"  required/>
+                                        <asp:RangeValidator ID="rValidatorBday" runat="server"
+                                            Display="Dynamic"
+                                            ForeColor="Red"
+                                            ControlToValidate="txtEmployeeBday"
+                                            ErrorMessage="Choose a valid date"
+                                            MaximumValue="2017-01-01"
+                                            MinimumValue="1900-01-01" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Street</label>
+                                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployeeST" runat="server" class="form-control"  required/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Municipality</label>
+                                    <div class="col-lg-5 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployeeMNCPLTY" runat="server" class="form-control" required />
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ControlToValidate="txtEmployeeMNCPLTY"
+                                            ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                            Text="Enter a valid Municipality" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">City</label>
+                                    <div class="col-lg-5 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployeeCT" runat="server" class="form-control"  required/>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ControlToValidate="txtEmployeeCT"
+                                            ValidationExpression="^[a-zA-Z'.\s]{1,50}"
+                                            Text="Enter a valid City" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Email Address</label>
+                                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                                        <asp:TextBox ID="txtEmployeeEA" runat="server" class="form-control" TextMode="Email" required/>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server"
+                                            ForeColor="red"
+                                            Display="Dynamic"
+                                            ControlToValidate="txtEmployeeEA"
+                                            ErrorMessage="Please enter valid e-mail address"
+                                            ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" />
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4">Status</label>
+                                    <div class="col-lg-4 col-sm-12 col-xs-12"> 
+                                        <asp:DropDownList ID="ddlEmployeeStatus" class="form-control" runat="server">
+                                            <asp:ListItem>Active</asp:ListItem>
+                                            <asp:ListItem>Inactive</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <div class="col-lg-offset-4 col-lg-8">
+                                        <asp:Button ID="btnAddEmployee" runat="server" class="btn btn-primary pull-right" Text="Add Employee"
+                                            OnClick="btnAddEmployee_Click" />
+                                    </div>
+                                </div>
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
