@@ -75,6 +75,28 @@ public partial class Account_Login : System.Web.UI.Page
         }
     }
 
+    bool CheckStatus(string email)
+    {
+        bool isInactive = false;
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT Status FROM Users WHERE Email=@Email";
+            cmd.Parameters.AddWithValue("@Email", email);
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                dr.Read();
+                if (dr["Status"].ToString() == "Inactive")
+                {
+                    isInactive = true;
+                }
+            }
+        }
+        return isInactive;
+    }
+
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         using (SqlConnection con = new SqlConnection(Helper.GetCon()))
@@ -82,29 +104,37 @@ public partial class Account_Login : System.Web.UI.Page
         {
             try
             {
-                con.Open();
-                cmd.Connection = con;
-                cmd.CommandText = "SELECT UserID, TypeID FROM Users WHERE Email=@Email AND " +
-                    "Password=@Password";
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash(txtPassword.Text));
-                using (SqlDataReader data = cmd.ExecuteReader())
+                if (CheckStatus(txtEmail.Text))
                 {
-                    if (data.HasRows)
+                    accountinactive.Visible = true;
+                }
+                else
+                {
+                    accountinactive.Visible = false;
+                    con.Open();
+                    cmd.Connection = con;
+                    cmd.CommandText = "SELECT UserID, TypeID FROM Users WHERE Email=@Email AND " +
+                        "Password=@Password";
+                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                    cmd.Parameters.AddWithValue("@Password", Helper.CreateSHAHash(txtPassword.Text));
+                    using (SqlDataReader data = cmd.ExecuteReader())
                     {
-                        while (data.Read())
+                        if (data.HasRows)
                         {
-                            Session["userid"] = data["UserID"].ToString();
-                            Session["typeid"] = data["TypeID"].ToString();
+                            while (data.Read())
+                            {
+                                Session["userid"] = data["UserID"].ToString();
+                                Session["typeid"] = data["TypeID"].ToString();
+                            }
+                            con.Close();
+                            Response.Redirect("~/Default.aspx");
                         }
-                        con.Close();
-                        Response.Redirect("~/Default.aspx");
+                        else
+                        {
+                            con.Close();
+                            error.Visible = true;
+                        }
                     }
-                    else
-                    {
-                        con.Close();
-                        error.Visible = true;
-                    } 
                 }
             }
             catch (SqlException ex)

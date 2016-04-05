@@ -372,7 +372,7 @@ public partial class Corporate_Default : System.Web.UI.Page
                         txtUserPhone.Text = data["Phone"].ToString();
                         txtUserMobile.Text = data["Mobile"].ToString();
                         txtUserEmail.Text = data["Email"].ToString();
-                        txtUserStatus.Text = data["Status"].ToString();
+                        ddlMdlStatus.SelectedValue = data["Status"].ToString();
                         txtUserType.Text = data["UserType"].ToString();
                         txtPriority.Text = data["Priority"].ToString();
                     }
@@ -459,6 +459,21 @@ public partial class Corporate_Default : System.Web.UI.Page
         {
             employeeAdded.Visible = false;
             employeeError.Visible = true;
+        }
+    }
+
+    protected void btnUpdateStatus_Click(object sender, EventArgs e)
+    {
+        using (SqlConnection con = new SqlConnection(Helper.GetCon()))
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "UPDATE Users SET Status=@status WHERE UserID=@userid";
+            cmd.Parameters.AddWithValue("@userid", hdfValue.Value);
+            cmd.Parameters.AddWithValue("@status", ddlMdlStatus.SelectedValue);
+            cmd.ExecuteNonQuery();
+            employeeupdated.Visible = true;
         }
     }
 }

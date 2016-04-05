@@ -47,6 +47,9 @@
                     <div id="error" runat="server" class="alert alert-danger" visible="false" style="color: white">
                         Invalid email/password
                     </div>
+                    <div id="accountinactive" runat="server" class="alert alert-danger" visible="false" style="color: white">
+                        Your account is inactive. Please contact your administrator.
+                    </div>
                     <div id="active" runat="server" class="alert alert-success" visible="false" style="color: white">
                         Account activated
                     </div>

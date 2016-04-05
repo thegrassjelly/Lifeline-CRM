@@ -451,6 +451,10 @@
                                 <h4 class="modal-title"><i class="fa fa-user"></i>&nbsp;User Details</h4>
                                 <asp:Button ID="btnButton" CssClass="btn btn-default" runat="server" OnClick="btnButton_Click" Text="Refresh" style="display:none"/>
                             </div>
+                            <div id="employeeupdated" runat="server" class="alert alert-success text-center" visible="false" style="color: white">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                Emplpoyee status updated.
+                            </div>
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label class="control-label col-lg-4 col-sm-12 col-xs-12">Profile picture</label>
@@ -521,8 +525,10 @@
                                 <div class="form-group">
                                     <label class="control-label col-lg-4">Status</label>
                                     <div class="col-lg-4 col-sm-12 col-xs-12">
-                                        <asp:TextBox ID="txtUserStatus" class="form-control" runat="server" disabled>
-                                        </asp:TextBox>
+                                        <asp:DropDownList ID="ddlMdlStatus" class="form-control" runat="server">
+                                            <asp:ListItem>Active</asp:ListItem>
+                                            <asp:ListItem>Inactive</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -540,7 +546,12 @@
                                     </div>
                                 </div>
                                 <hr />
-
+                                <div class="form-group">
+                                    <div class="col-lg-offset-4 col-lg-8">
+                                        <asp:Button ID="btnUpdateStatus" runat="server" class="btn btn-primary pull-right" Text="Update Status"
+                                            OnClick="btnUpdateStatus_Click" />
+                                    </div>
+                                </div>
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
