@@ -46,3 +46,6 @@ Temporary Items
 .apdisk
 web.config
 *.suo
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+lifeline-crm.sln
